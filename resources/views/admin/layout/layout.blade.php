@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('assets/web/css/mmenu.css')}}">
     <link rel="stylesheet" href="{{asset('assets/web/css/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('assets/web/css/style.css')}}" id="colors">
+
     <!-- Google Font -->
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800&display=swap&subset=latin-ext,vietnamese"

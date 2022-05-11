@@ -122,9 +122,6 @@
 
 @section('script')
 
-
-
-
     <script src="{{asset('assets//web/scripts/jquery.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/jquery.validate.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/additional-methods.min.js')}}"></script>
@@ -134,7 +131,7 @@
 
         $("#addUser").validate({
 
-            errorClass: "error-message ",
+            errorClass: "error-message",
 
             rules: {
                 first_name: {

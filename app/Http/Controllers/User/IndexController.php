@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ads;
+use App\Models\User;
 use Illuminate\Support\Facades\File;
 
 use App\Models\Image;
@@ -26,14 +27,145 @@ class IndexController extends Controller
 
         return view('user.my-ads');
     }
+    public function editAds($adId)
+    {
+
+        $ads = Ads::find($adId);
+        return view('user.edit-ads', compact('ads'));
+
+    }
+    public function editAdsUpdate(Request $request, $adsId)
+    {
+
+//        $request->validate([
+//            'first_name' => 'required',
+//            'sellertype' => 'required',
+//            'firstname' => 'required',
+//            'lastname' => 'required',
+//            'addressone' => 'required',
+//            'addresstwo' => 'required',
+//            'city' => 'required',
+//            'postcode' => 'required',
+//            'telephone' => 'required',
+//            'email' => 'required',
+//            'membernumber' => 'required',
+//            'sellercode' => 'required',
+//            'collectionaddress' => 'required',
+//            'collection_city' => 'required',
+//            'collection_telephone' => 'required',
+//            'mileage' => 'required',
+//
+//        ]);
+
+
+        $ads = Ads::find($adsId);
+
+
+        $ads->update([
+
+            'sellertype' => $request['sellertype'],
+            'firstname' => $request['firstname'],
+            'lastname' => $request['lastname'],
+            'addressone' => $request['addressone'],
+            'addresstwo' => $request['addresstwo'],
+            'city' => $request['city'],
+            'postcode' => $request['postcode'],
+            'telephone' => $request['telephone'],
+            'email' => $request['email'],
+            'membernumber' => $request['membernumber'],
+            'sellercode' => $request['sellercode'],
+            'collectionaddress' => $request['collectionaddress'],
+            'collection_city' => $request['collection_city'],
+            'collection_telephone' => $request['collection_telephone'],
+            '$mileage' => $request['$mileage'],
+
+        ]);
+
+
+        if ($request->has('image'))
+        {
+            $image_ads = Image::find($ads->image->id);
+            $image_ads->update([
+
+                'ads_id' =>  $ads->image->id,
+                'image' => $this->postFile(3, $request, 'image'),
+            ]);
+        }
+
+
+        return redirect(route('admin.my-ads'));
+    }
+
+
+
+
+    public function myFavorite()
+    {
+
+
+        return view('user.my-favorite');
+    }
+
+    public function membership()
+    {
+
+
+        return view('user.membership');
+    }
 
     public function profile()
     {
 
+        $userId = 1;
 
-        return view('user.profile');
+        $user = User::find($userId);
+
+
+        return view('user.profile',compact('user'));
+    }
+    public function profileUpdate(Request $request,$userId)
+    {
+
+
+
+//        $request->validate([
+//
+//            'firstname' => 'required',
+//            'lastname' => 'required',
+//            'mobile' => 'required',
+//            'username' => 'required',
+//            'email' => 'required',
+//            'password' => 'required',
+//            'companyname' => 'required',
+//
+//        ]);
+
+
+        $user = User::find($userId);
+        $pass = bcrypt($request['password']);
+        $user->update([
+            'firstname' => $request['firstname'],
+            'lastname' => $request['lastname'],
+            'mobile' => $request['mobile'],
+            'username' => 'required|unique:users',
+            'email' => $request['email'],
+            'companyname' => $request['companyname'],
+            'password' => $pass,
+        ]);
+
+
+//        Image::create([
+//
+//            'ads_id' => 3,
+//            'image' => $this->postFile(3, $request, 'image'),
+//        ]);
+
+
+        return view('user.profile',compact('user'));
     }
 
+
+    // start add car
     public function addCarPost(Request $request)
     {
 
@@ -57,7 +189,7 @@ class IndexController extends Controller
         ]);
 
 
-        $ads = Ads::Create([
+        Ads::Create([
             'sellertype' => $request['sellertype'],
             'firstname' => $request['firstname'],
             'lastname' => $request['lastname'],
@@ -79,9 +211,8 @@ class IndexController extends Controller
         Image::create([
 
             'ads_id' => 3,
-            'image' => $this->postFile(3,$request,'image'),
+            'image' => $this->postFile(3, $request, 'image'),
         ]);
-
 
 
         return redirect()->route('user.add-car');
@@ -110,6 +241,9 @@ class IndexController extends Controller
 
         return view('user.add-car');
     }
+    // end add car
+
+
 
     public function adList()
     {

@@ -8,6 +8,14 @@
                         class="sl sl-icon-magnifier-add"></i>My Ads</a></li>
             <li class="{{ request()->is('user-panel/profile') ? 'active' : '' }}"><a href="{{route('user.profile')}}"><i
                         class="sl sl-icon-magnifier-add"></i>Profile</a></li>
+
+            <li class="{{ request()->is('user-panel/my-favorite') ? 'active' : '' }}"><a
+                    href="{{route('user.my-favorite')}}"><i
+                        class="sl sl-icon-magnifier-add"></i>My Favorite</a></li>
+
+            <li class="{{ request()->is('user-panel/membership') ? 'active' : '' }}"><a
+                    href="{{route('user.membership')}}"><i
+                        class="sl sl-icon-magnifier-add"></i>Membership</a></li>
         </ul>
     </div>
 </div>

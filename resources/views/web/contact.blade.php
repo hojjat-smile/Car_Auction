@@ -13,11 +13,9 @@
 
 @section('main')
     <!-- Content -->
-    <div class="utf_contact_map margin-bottom-70">
-        <div id="utf_single_listing_map_block">
-            <div id="utf_single_listingmap" data-latitude="36.778259" data-longitude="-119.417931" data-map-icon="im im-icon-Map2"></div>
-        </div>
-    </div>
+             
+		    	  
+    
     <div class="clearfix"></div>
 
     <div class="container">
@@ -63,7 +61,8 @@
             </div>
         </div>
     </div>
-
+    <div>
+   
 
 @endsection
 

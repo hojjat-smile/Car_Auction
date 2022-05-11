@@ -115,6 +115,12 @@ class IndexController extends Controller
 
         return redirect()->route('web.login');
     }
+    public function vehicle_search()
+    {
+        return view('web.vehicle_search');
+
+
+    }
 
 
 }

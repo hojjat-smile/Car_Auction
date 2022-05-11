@@ -23,6 +23,8 @@ Route::name('web.')->group(function () {
     Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('about-us');
     Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
     Route::get('/roles', [IndexController::class, 'roles'])->name('roles');
+    Route::get('/vehicle-search', [IndexController::class, 'vehicle_search'])->name('vehicle_search');
+//  Route::get('/roles', [IndexController::class, 'roles'])->name('roles'); is there a need for authentication page??????
 
     //register
     Route::get('/register', [IndexController::class, 'registerPage'])->name('register');

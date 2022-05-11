@@ -18329,3 +18329,6 @@ width: 5px;
 #utf_rev_slider_block .bootstrap-select.btn-group .dropdown-menu.inner{
     height: 150px;
 }
+.utf_box_left {
+	float:left;
+}

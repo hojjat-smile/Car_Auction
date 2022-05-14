@@ -9,92 +9,60 @@
 
 @section('main')
 
-<div class="utf_dashboard_list_box table-responsive recent_booking">
-    <h4>Recent Booking</h4>
-    <div class="dashboard-list-box table-responsive invoices with-icons">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Booking Date</th>
-                <th>Payment Type</th>
-                <th>Status</th>
-                <th>View Booking</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td><img alt="" class="img-fluid rounded-circle shadow-lg"
-                         src="{{asset('assets/web/images/thumb-1.jpg')}}" width="50" height="50"></td>
-                <td>Kathy Brown</td>
-                <td>12 Jan 2019</td>
-                <td>Paypal</td>
-                <td><span class="badge badge-pill badge-primary text-uppercase">Booked</span></td>
-                <td><a href="dashboard_bookings.html" class="button gray"><i class="fa fa-eye"></i> View</a>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td><img alt="" class="img-fluid rounded-circle shadow-lg"
-                         src="{{asset('assets/web/images/thumb-2.jpg')}}" width="50" height="50"></td>
-                <td>Kathy Brown</td>
-                <td>12 Jan 2019</td>
-                <td>Credit Card</td>
-                <td><span class="badge badge-pill badge-primary text-uppercase">Booked</span></td>
-                <td><a href="dashboard_bookings.html" class="button gray"><i class="fa fa-eye"></i> View</a>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td><img alt="" class="img-fluid rounded-circle shadow-lg"
-                         src="{{asset('assets/web/images/thumb-3.jpg')}}" width="50" height="50"></td>
-                <td>Kathy Brown</td>
-                <td>12 Jan 2019</td>
-                <td>Paypal</td>
-                <td><span class="badge badge-pill badge-danger text-uppercase">Pending</span></td>
-                <td><a href="dashboard_bookings.html" class="button gray"><i class="fa fa-eye"></i> View</a>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td><img alt="" class="img-fluid rounded-circle shadow-lg"
-                         src="{{asset('assets/web/images/thumb-1.jpg')}}" width="50" height="50"></td>
-                <td>Kathy Brown</td>
-                <td>12 Jan 2019</td>
-                <td>Paypal</td>
-                <td><span class="badge badge-pill badge-danger text-uppercase">Pending</span></td>
-                <td><a href="dashboard_bookings.html" class="button gray"><i class="fa fa-eye"></i> View</a>
-                </td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td><img alt="" class="img-fluid rounded-circle shadow-lg"
-                         src="{{asset('assets/web/images/thumb-2.jpg')}}" width="50" height="50"></td>
-                <td>Kathy Brown</td>
-                <td>12 Jan 2019</td>
-                <td>Paypal</td>
-                <td><span class="badge badge-pill badge-danger text-uppercase">Pending</span></td>
-                <td><a href="dashboard_bookings.html" class="button gray"><i class="fa fa-eye"></i> View</a>
-                </td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td><img alt="" class="img-fluid rounded-circle shadow-lg"
-                         src="{{asset('assets/web/images/thumb-3.jpg')}}" width="50" height="50"></td>
-                <td>Kathy Brown</td>
-                <td>12 Jan 2019</td>
-                <td>Paypal</td>
-                <td><span class="badge badge-pill badge-canceled text-uppercase">Canceled</span></td>
-                <td><a href="dashboard_bookings.html" class="button gray"><i class="fa fa-eye"></i> View</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="utf_dashboard_list_box table-responsive recent_booking">
+        <h4>Recent Booking</h4>
+        <div class="dashboard-list-box table-responsive invoices with-icons">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+
+                    <th>Image</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address One</th>
+                    <th>Address Two</th>
+                    <th>City</th>
+                    <th>Post Code</th>
+                    <th>Tele Phone</th>
+                    <th>Email</th>
+                    <th>Member Number</th>
+                    <th>Seller Code</th>
+                    <th>Collection Address</th>
+                    <th>Collection City</th>
+                    <th>Collection Telephone</th>
+                    <th>Mileage</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                @foreach(\App\Models\Ads::all() as $ad)
+                    <tr>
+
+                        <td><img style="width: 500% ;height: 500%" src="{{asset($ad->image->image)}}" alt=""></td>
+                        <td>{{$ad->firstname}}</td>
+                        <td>{{$ad->lastname}}</td>
+                        <td>{{$ad->addressone}}</td>
+                        <td>{{$ad->addresstwo}}</td>
+                        <td>{{$ad->city}}</td>
+                        <td>{{$ad->postcode}}</td>
+                        <td>{{$ad->telephone}}</td>
+                        <td>{{$ad->email}}</td>
+                        <td>{{$ad->membernumber}}</td>
+                        <td>{{$ad->sellercode}}</td>
+                        <td>{{$ad->collectionaddress}}</td>
+                        <td>{{$ad->collection_city}}</td>
+                        <td>{{$ad->collection_telephone}}</td>
+                        <td>{{$ad->mileage}}</td>
+                        <td><a href="{{route('admin.edit-ads',$ad->id)}}" class="button gray"><i class="fa fa-eye"></i>Edit</a>
+                    </tr>
+
+                @endforeach
+                </tbody>
+
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
 
 @endsection

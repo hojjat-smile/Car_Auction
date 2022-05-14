@@ -56,7 +56,7 @@
                     <td>{{$ad->collection_city}}</td>
                     <td>{{$ad->collection_telephone}}</td>
                     <td>{{$ad->mileage}}</td>
-
+                    <td><a href="{{route('user.edit-ads',$ad->id)}}" class="button gray"><i class="fa fa-eye"></i>Edit</a>
 
 
                 </tr>

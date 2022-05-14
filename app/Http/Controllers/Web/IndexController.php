@@ -48,6 +48,7 @@ class IndexController extends Controller
         return view('web.roles');
     }
 
+
     public function registerPage()
     {
 
@@ -84,6 +85,7 @@ class IndexController extends Controller
                 'usertype' => 'seller',
 
             ]);
+
         } elseif (!$request->has('company_name')) {
             User::Create([
                 'firstname' => $request['first_name'],
@@ -94,7 +96,6 @@ class IndexController extends Controller
                 'email' => $request['email'],
                 'password' => $pass,
                 'usertype' => 'member',
-
             ]);
         }
 
@@ -103,21 +104,14 @@ class IndexController extends Controller
     }
 
 
-      public function loginPage()
+    public function loginPage()
     {
-
 
         return view('web.login');
     }
 
     public function login(Request $request)
     {
-
-
-
-
-
-
 
         return redirect()->route('web.login');
     }
@@ -132,8 +126,6 @@ class IndexController extends Controller
 
         return view('web.how-works');
     }
-
-
 
 
 }

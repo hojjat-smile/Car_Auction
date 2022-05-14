@@ -33,8 +33,8 @@
         <div class="col-lg-2 col-md-6">
             <div class="utf_dashboard_stat color-1">
                 <div class="utf_dashboard_stat_content">
-                    <h4>36</h4>
-                    <span>Published Listings</span>
+                    <h4>{{\App\Models\Ads::all()->count()}}</h4>
+                    <span>Number of Ads</span>
                 </div>
                 <div class="utf_dashboard_stat_icon"><i class="im im-icon-Map2"></i></div>
             </div>
@@ -43,8 +43,8 @@
         <div class="col-lg-2 col-md-6">
             <div class="utf_dashboard_stat color-2">
                 <div class="utf_dashboard_stat_content">
-                    <h4>615</h4>
-                    <span>Pending Listings</span>
+                    <h4>{{\App\Models\Ads::all()->count()}}</h4>
+                    <span>Number of auctions</span>
                 </div>
                 <div class="utf_dashboard_stat_icon"><i class="im im-icon-Add-UserStar"></i></div>
             </div>

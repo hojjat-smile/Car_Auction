@@ -127,6 +127,11 @@ class IndexController extends Controller
 
 
     }
+    public function workings(){
+
+
+        return view('web.how-works');
+    }
 
 
 

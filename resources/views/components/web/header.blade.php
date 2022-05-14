@@ -53,7 +53,7 @@
 
                     
                         
-                        <li><a href="{{route('web.roles')}}">How It Works</a>
+                        <li><a href="{{route('web.how-works')}}">How It Works</a>
                         </li>
 
                         <li><a href="{{route('web.vehicle_search')}}">Find Vehicles</a>

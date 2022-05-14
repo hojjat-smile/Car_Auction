@@ -24,6 +24,7 @@ Route::name('web.')->group(function () {
     Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
     Route::get('/roles', [IndexController::class, 'roles'])->name('roles');
     Route::get('/vehicle-search', [IndexController::class, 'vehicle_search'])->name('vehicle_search');
+    Route::get('/how-it-works', [IndexController::class, 'workings'])->name('how-works');
 //  Route::get('/roles', [IndexController::class, 'roles'])->name('roles'); is there a need for authentication page??????
 
     //register

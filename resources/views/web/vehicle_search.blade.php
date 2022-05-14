@@ -17,50 +17,162 @@
           <div class="sidebar right"> 
             <div class="utf_box_widget">
               <h3><i class="sl sl-icon-magnifier"></i> Search Filters</h3>
+              <div class="form-group">
+
+
+<div class = "container">
+
+<label>all<input type="radio" name="category[]" value="Laravel"> </label>
+
+<label>Used<input type="radio" name="category[]" value="JQuery"></label>
+
+
+<label> Salvage<input type="radio" name="category[]" value="Bootstrap"></label>
+</div>
 
 
 
+
+
+
+
+
+</div> 
 
               
+
+
+            
+              
+            
               <div class="utf_search_blog_input">
+
               
-                 <div class="col-md-12">
-                     
-                   <input type="text" placeholder="make" value=""/>
-                 </div>
-                 <div class="col-md-12">
-                   <input type="text" placeholder="Model" value=""/>
-                 </div>
-                 <div class="col-md-12">
-                   <input type="text" placeholder="Location" value=""/>
-                 </div>
-                 <div class="col-md-12">
-                   <input type="text" placeholder="Mileage" value=""/>
-                 </div>
-                 <div class="col-md-12">
-                   <input type="text" placeholder="Year" value=""/>
-                 </div>
-
+  
+              
+   
+              
                 
-
-                 <div class="checkboxes one-in-row margin-bottom-15">
-					<input id="check-a" type="checkbox" name="check">
-					<label for="check-a">Tesla</label>
-					<input id="check-b" type="checkbox" name="check">
-					<label for="check-b">Tesla</label>
-					<input id="check-c" type="checkbox" name="check">
-					<label for="check-c">Tesla</label>
-					<input id="check-d" type="checkbox" name="check">
-					<label for="check-d">Tesla</label>
-					<input id="check-e" type="checkbox" name="check" >
-					<label for="check-e">Tesla</label>
-					<input id="check-f" type="checkbox" name="check" >
-					<label for="check-f">Tesla</label>
-					<input id="check-g" type="checkbox" name="check">
-					<label for="check-g">Tesla</label>	
-					<input id="check-h" type="checkbox" name="check">
-					<label for="check-h">Tesla</label>
-				</div>
+                
+                
+                 <div class="custom-select">
+                
+                 <select>
+                  <option value="0">Maker</option>
+                  <option value="1">Audi</option>
+                  <option value="2">BMW</option>
+                  <option value="3">Citroen</option>
+                  <option value="4">Ford</option>
+                  <option value="5">Honda</option>
+                  <option value="6">Jaguar</option>
+                  <option value="7">Land Rover</option>
+                  <option value="8">Mercedes</option>
+                  <option value="9">Mini</option>
+                  <option value="10">Nissan</option>
+                  <option value="11">Toyota</option>
+                  <option value="12">Volvo</option>
+                </select>
+                  </div>
+                  <div class="custom-select">
+                  
+                <select>
+                  <option value="0">Model </option>
+                  <option value="1">Audi</option>
+                  <option value="2">BMW</option>
+                  <option value="3">Citroen</option>
+                  <option value="4">Ford</option>
+                  <option value="5">Honda</option>
+                  <option value="6">Jaguar</option>
+                  <option value="7">Land Rover</option>
+                  <option value="8">Mercedes</option>
+                  <option value="9">Mini</option>
+                  <option value="10">Nissan</option>
+                  <option value="11">Toyota</option>
+                  <option value="12">Volvo</option>
+                </select>
+                  </div>
+                  <div class="custom-select">
+                <select>
+                
+                  <option value="0">Location </option>
+                  <option value="1">Audi</option>
+                  <option value="2">BMW</option>
+                  <option value="3">Citroen</option>
+                  <option value="4">Ford</option>
+                  <option value="5">Honda</option>
+                  <option value="6">Jaguar</option>
+                  <option value="7">Land Rover</option>
+                  <option value="8">Mercedes</option>
+                  <option value="9">Mini</option>
+                  <option value="10">Nissan</option>
+                  <option value="11">Toyota</option>
+                  <option value="12">Volvo</option>
+                </select>
+                  </div>
+                  <div class="custom-select">
+                <select>
+                
+                  <option value="0">Category </option>
+                  <option value="1">Audi</option>
+                  <option value="2">BMW</option>
+                  <option value="3">Citroen</option>
+                  <option value="4">Ford</option>
+                  <option value="5">Honda</option>
+                  <option value="6">Jaguar</option>
+                  <option value="7">Land Rover</option>
+                  <option value="8">Mercedes</option>
+                  <option value="9">Mini</option>
+                  <option value="10">Nissan</option>
+                  <option value="11">Toyota</option>
+                  <option value="12">Volvo</option>
+                </select>
+                  </div>
+                  <div class="custom-select">
+                <select>
+                
+                  <option value="0">Damage Type </option>
+                  <option value="1">Audi</option>
+                  <option value="2">BMW</option>
+                  <option value="3">Citroen</option>
+                  <option value="4">Ford</option>
+                  <option value="5">Honda</option>
+                  <option value="6">Jaguar</option>
+                  <option value="7">Land Rover</option>
+                  <option value="8">Mercedes</option>
+                  <option value="9">Mini</option>
+                  <option value="10">Nissan</option>
+                  <option value="11">Toyota</option>
+                  <option value="12">Volvo</option>
+                </select>
+                  </div>
+                  <strong>Mileage range:</strong>
+        <!-- declaration for first field -->
+        <input type="text" class="form-control 
+                input-sm" value="" placeholder ="min" />
+  
+        <!-- reducong the gap between them to zero -->
+        <span class="input-group-btn" 
+            style="width:0px align:center;">to</span>
+  
+        <!-- declaration for second field -->
+        <input type="text" class="form-control 
+                input-sm" value="" placeholder ="max" />
+    </div>
+                 
+                 <div class="input-group">
+      <strong>  Year range:
+</strong>        <!-- declaration for first field -->
+        <input type="text" class="form-control 
+                input-sm" value="" placeholder ="starting point"  />
+  
+        <!-- reducong the gap between them to zero -->
+        <span class="input-group-btn" 
+            style="width:0px align:center;"> to</span>
+  
+        <!-- declaration for second field -->
+        <input type="text" class="form-control 
+                input-sm" value="" placeholder ="ending point"  />
+    </div>
                 <button class="button fullwidth_block margin-top-5">Update</button>
               
             </div>
@@ -153,5 +265,7 @@
 
 
 @section('script')
+
+
 
 @endsection

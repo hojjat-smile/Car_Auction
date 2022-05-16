@@ -51,9 +51,8 @@
                     <ul id="responsive">
 
 
-
-
                         <li><a href="{{route('web.roles')}}">How It Works</a>
+
                         </li>
 
                         <li><a href="{{route('web.vehicle_search')}}">Find Vehicles</a>

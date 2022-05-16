@@ -14,7 +14,7 @@
 @section('main')
     <div class="container">
         <div class="tab_content">
-            <form action="{{route('web.register')}}" id="addUser" method="post" class="register"
+            <form action="{{route('register')}}" id="addUser" method="post" class="register"
                   enctype="multipart/form-data">
                 @csrf
 
@@ -67,8 +67,8 @@
                 </p>
 
                 <p class="utf_row_form utf_form_wide_block">
-                    <label for="username2">
-                        <input type="text" class="input-text" name="username" id="username2" value=""
+                    <label for="username">
+                        <input type="text" class="input-text" name="username" id="username" value=""
                                placeholder="Username"/>
 
                         @error('username')
@@ -77,6 +77,39 @@
 
                     </label>
                 </p>
+
+
+                <p class="utf_row_form utf_form_wide_block">
+                    <label for="username">
+                        <select class="input-text" name="country_id" id="username" value="">
+                            @foreach(\App\Models\Country::all() as $country)
+                                <option value="{{$country->id}}">{{$country->title}}</option>
+                            @endforeach
+                        </select>
+
+                        @error('username')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+
+                    </label>
+                </p>
+
+                <p class="utf_row_form utf_form_wide_block">
+                    <label for="username">
+                        <select class="input-text" name="city_id" id="username">
+                            @foreach(\App\Models\City::all() as $city)
+                                <option value="{{$city->id}}">{{$city->title}}</option>
+                            @endforeach
+                        </select>
+
+                        @error('username')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+
+                    </label>
+                </p>
+
+
                 <p class="utf_row_form utf_form_wide_block">
                     <label for="email2">
                         <input type="email" class="input-text" name="email" id="email2" value=""
@@ -88,6 +121,7 @@
 
                     </label>
                 </p>
+
                 <p class="utf_row_form utf_form_wide_block">
                     <label for="password1">
                         <input class="input-text" type="password" name="password" id="password1"
@@ -99,12 +133,13 @@
 
                     </label>
                 </p>
+
                 <p class="utf_row_form utf_form_wide_block">
-                    <label for="password2">
-                        <input class="input-text" type="password" name="password2" id="password2"
+                    <label for="password_confirm">
+                        <input class="input-text" type="password" name="password_confirm" id="password_confirm"
                                placeholder="Confirm Password"/>
 
-                        @error('password2')
+                        @error('password_confirm')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
 
@@ -120,68 +155,67 @@
 @endsection
 
 
-@section('script')
+{{--@section('script')--}}
 
-    <script src="{{asset('assets//web/scripts/jquery.min.js')}}"></script>
-    <script src="{{asset('assets//web/scripts/plugins/jquery-validate/jquery.validate.min.js')}}"></script>
-    <script src="{{asset('assets//web/scripts/plugins/jquery-validate/additional-methods.min.js')}}"></script>
-    <script src="{{asset('assets//web/scripts/plugins/jquery-validate/messages_fa.min.js')}}"></script>
+{{--    <script src="{{asset('assets//web/scripts/jquery.min.js')}}"></script>--}}
+{{--    <script src="{{asset('assets//web/scripts/plugins/jquery-validate/jquery.validate.min.js')}}"></script>--}}
+{{--    <script src="{{asset('assets//web/scripts/plugins/jquery-validate/additional-methods.min.js')}}"></script>--}}
+{{--    <script src="{{asset('assets//web/scripts/plugins/jquery-validate/messages_fa.min.js')}}"></script>--}}
 
-    <script>
+{{--    <script>--}}
 
-        $("#addUser").validate({
+{{--        $("#addUser").validate({--}}
 
-            errorClass: "error-message",
+{{--            errorClass: "error-message",--}}
 
-            rules: {
-                first_name: {
-                    required: true,
-                },
+{{--            rules: {--}}
+{{--                first_name: {--}}
+{{--                    required: true,--}}
+{{--                },--}}
 
-                last_name: {
-                    required: true,
-                },
+{{--                last_name: {--}}
+{{--                    required: true,--}}
+{{--                },--}}
 
-                mobile: {
-                    required: true,
-                },
-
-
-                username: {
-                    required: true,
-                    remote: {
-                        url: "user_availability.php",
-                        type: "post",
-                        data:
-                            {
-                                register: function () {
-                                    return $('#addUser :input[name="username"]').val();
-                                }
-                            }
-                    }
-                },
+{{--                mobile: {--}}
+{{--                    required: true,--}}
+{{--                },--}}
 
 
-                email: {
-                    required: true,
-                },
-
-                password: {
-                    required: true,
-                },
-
-            },
-            messages:{
-                username:{
-                    required: "Please enter your login.",
-                    remote: jQuery.validator.format("{0} is already taken.")
-                }
-            }
-        });
-    </script>
+{{--                username: {--}}
+{{--                    required: true,--}}
+{{--                    remote: {--}}
+{{--                        url: "user_availability.php",--}}
+{{--                        type: "post",--}}
+{{--                        data:--}}
+{{--                            {--}}
+{{--                                register: function () {--}}
+{{--                                    return $('#addUser :input[name="username"]').val();--}}
+{{--                                }--}}
+{{--                            }--}}
+{{--                    }--}}
+{{--                },--}}
 
 
+{{--                email: {--}}
+{{--                    required: true,--}}
+{{--                },--}}
 
-@endsection
+{{--                password: {--}}
+{{--                    required: true,--}}
+{{--                },--}}
+
+{{--            },--}}
+{{--            messages:{--}}
+{{--                username:{--}}
+{{--                    required: "Please enter your login.",--}}
+{{--                    remote: jQuery.validator.format("{0} is already taken.")--}}
+{{--                }--}}
+{{--            }--}}
+{{--        });--}}
+{{--    </script>--}}
+
+
+{{--@endsection--}}
 
 

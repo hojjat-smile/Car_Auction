@@ -1,35 +1,35 @@
 <header id="header_part">
     <div id="header">
-    
+
         <div class="container">
         <div>
              <a href="#"><img src="C:\xampp\htdocs\Car_Auction\public\assets\web\images\blog-post-02.jpg" alt="logo"></a>
         </div>
-        
 
-            
+
+
                 <div style = "float: right">
 
-                    <a href="{{route('web.register')}}"
+                    <a href="{{route('register')}}"
                        class="button border sign-in "><i
                             class="fa fa-sign-in"></i>Register</a>
                 </div>
                     <div style = "float: right">
 
-                    <a href="{{route('web.login')}}"
+                    <a href="{{route('login')}}"
                        class="button border sign-in "><i
                             class="fa fa-sign-in"></i> Log In</a>
                 </div>
                 <div style = "float: right">
 
 
-                    <a href="{{route('user.add-car')}}"
+                    <a href="{{route('user.add-ads')}}"
                        class="button border with-icon"><i
                             class="sl sl-icon-user"></i> Add Car</a>
                 </div>
-                
-            
-            
+
+
+
 
             <div class="main_input_search_part utf_coupon_top">
                 <div class="main_input_search_part_item">
@@ -51,8 +51,8 @@
                     <ul id="responsive">
 
 
-                    
-                        
+
+
                         <li><a href="{{route('web.roles')}}">How It Works</a>
                         </li>
 
@@ -62,12 +62,12 @@
                         <li><a href="{{route('user.ad-list')}}">Ad List</a>
                         </li>
 
-                        
-                        
+
+
                         <li><a href="{{route('web.contact')}}">Contact us</a>
                         </li>
 
-                        
+
                         <li><a href="{{route('web.about-us')}}">About Us</a>
 
                         </li>

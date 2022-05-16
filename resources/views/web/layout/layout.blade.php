@@ -38,6 +38,7 @@
 
     @include('components.web.header')
 
+    <div class="clearfix"></div>
     @yield('main')
 
     @include('components.web.footer')

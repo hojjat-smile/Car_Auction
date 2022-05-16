@@ -5,13 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class SecondaryDamage extends Model
 {
     use HasFactory;
 
-    protected $table = 'ads_images';
+    protected $table = 'secondary_damage';
     protected $fillable = [
-        'ads_id',
-        'image',
+        'title',
     ];
+
+
 }
+
+
+
+
+
+
+
+
+
+
+/*
+
+*/

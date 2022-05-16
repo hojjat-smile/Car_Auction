@@ -12,103 +12,168 @@
 
 
 @section('main')
-    <div id="utf_listing_gallery_part" class="utf_listing_section">
-        <div class="utf_listing_slider utf_gallery_container margin-bottom-0">
-            <a href="images/single-listing-01.jpg" data-background-image="images/single-listing-01.jpg" class="item utf_gallery"></a>
-            <a href="images/single-listing-02.jpg" data-background-image="images/single-listing-02.jpg" class="item utf_gallery"></a>
-            <a href="images/single-listing-03.jpg" data-background-image="images/single-listing-03.jpg" class="item utf_gallery"></a>
-            <a href="images/single-listing-04.jpg" data-background-image="images/single-listing-04.jpg" class="item utf_gallery"></a>
-        </div>
-    </div>
 
     <div class="container">
         <div class="row utf_sticky_main_wrapper">
             <div class="col-lg-8 col-md-8">
-                <div id="titlebar" class="utf_listing_titlebar">
-                    <div class="utf_listing_titlebar_title">
-                        <h2>The Hot and More Restaurant <span class="listing-tag">Restaurant</span></h2>
-                        <span> <a href="#utf_listing_location" class="listing-address"> <i class="sl sl-icon-location"></i> The Ritz-Carlton, Hong Kong </a> </span>
-                        <span class="call_now"><i class="sl sl-icon-phone"></i> (415) 796-3633</span>
-                        <div class="utf_star_rating_section" data-rating="4.5">
-                            <div class="utf_counter_star_rating">(4.5) / (14 Reviews)</div>
-                        </div>
-                        <ul class="listing_item_social">
-                            <li><a href="#"><i class="fa fa-bookmark"></i> Bookmark</a></li>
-                            <li><a href="#"><i class="fa fa-star"></i> Add Review</a></li>
-                            <li><a href="#"><i class="fa fa-flag"></i> Featured</a></li>
-                            <li><a href="#"><i class="fa fa-share"></i> Share</a></li>
-                            <li><a href="#" class="now_open">Open Now</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="utf_listing_overview" class="utf_listing_section">
-                    <h3 class="utf_listing_headline_part margin-top-30 margin-bottom-30">Listing Description</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam.</p>
-                    <div id="utf_listing_tags" class="utf_listing_section listing_tags_section margin-bottom-10 margin-top-0">
-                        <a href="#"><i class="sl sl-icon-phone" aria-hidden="true"></i> +(01) 1123-254-456</a>
-                        <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> info@example.com</a>
-                        <a href="#"><i class="sl sl-icon-globe" aria-hidden="true"></i> www.example.com</a>
-                    </div>
-                    <div class="social-contact">
-                        <a href="#" class="facebook-link"><i class="fa fa-facebook"></i> Facebook</a>
-                        <a href="#" class="twitter-link"><i class="fa fa-twitter"></i> Twitter</a>
-                        <a href="#" class="instagram-link"><i class="fa fa-instagram"></i> Instagram</a>
-                        <a href="#" class="linkedin-link"><i class="fa fa-linkedin"></i> Linkedin</a>
-                        <a href="#" class="youtube-link"><i class="fa fa-youtube-play"></i> Youtube</a>
-                    </div>
-                </div>
 
-                <div id="utf_listing_tags" class="utf_listing_section listing_tags_section">
-                    <h3 class="utf_listing_headline_part margin-top-30 margin-bottom-40">Listings Tags</h3>
-                    <a href="#"><i class="fa fa-tag" aria-hidden="true"></i> Food</a>
-                    <a href="#"><i class="fa fa-tag" aria-hidden="true"></i> Fruits</a>
-                    <a href="#"><i class="fa fa-tag" aria-hidden="true"></i> Lunch</a>
-                    <a href="#"><i class="fa fa-tag" aria-hidden="true"></i> Menu</a>
-                    <a href="#"><i class="fa fa-tag" aria-hidden="true"></i> Parking</a>
-                    <a href="#"><i class="fa fa-tag" aria-hidden="true"></i> Restaurant</a>
-                </div>
 
                 <div class="utf_listing_section">
                     <h3 class="utf_listing_headline_part margin-top-50 margin-bottom-40">Pricing</h3>
-                    <div class="show-more">
                         <div class="utf_pricing_list_section">
                             <h4>Menu Listing</h4>
                             <ul>
+
                                 <li>
-                                    <h5>Burger <sub class="ppl-offer label-light-success">20% Off</sub></h5>
-                                    <p>Beef, Salad, Mayonnaise, Spicey Relish, Cheese</p>
-                                    <span>$120</span>
+                                    <h5>Category: </h5>
+                                    <span>{{$ad->category}}</span>
                                 </li>
+
                                 <li>
-                                    <h5>Goat Cheese Mousse</h5>
-                                    <p>Caramelized Fig, Plums, Macadamia Nuts and Sorrel</p>
-                                    <span>$150</span>
+                                    <h5>Odometer: </h5>
+                                    <span>{{$ad->odometer}}</span>
                                 </li>
+
                                 <li>
-                                    <h5>Pizza <sub class="ppl-offer label-light-success">10% Off</sub></h5>
-                                    <p>Cheddar Cheese, Lettuce, Tomato, Onion, Dill Pickles</p>
-                                    <span>$130</span>
+                                    <h5>VRN: </h5>
+                                    <span>{{$ad->vrn}}</span>
                                 </li>
+
                                 <li>
-                                    <h5>French Crostini <sub class="ppl-offer label-light-success">10% Off</sub></h5>
-                                    <p>Breakfast Sandwich on a Roll with 2 Eggs</p>
-                                    <span>$130</span>
+                                    <h5>Highlights: </h5>
+                                    <span>{{$ad->highlights}}</span>
+
                                 </li>
+
                                 <li>
-                                    <h5>Caramelised Rum Punch <sub class="ppl-offer label-light-success">15% Off</sub></h5>
-                                    <p>Caramelised Mount Gay Eclipse with a Picked Watermelon</p>
-                                    <span>$120</span>
+                                    <h5>Primary Damage: </h5>
+                                    <span>{{$ad->primary_damage}}</span>
                                 </li>
+
                                 <li>
-                                    <h5><strong>Tatel Price</strong></h5>
-                                    <span><strong>$650</strong></span>
+                                    <h5>Secondary Damage: </h5>
+                                    <span>{{$ad->secondary_damage}}</span>
                                 </li>
+
+                                <li>
+                                    <h5>Additional Damage: </h5>
+                                    <span>{{$ad->additional_damage}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>Est. Retail Value: </h5>
+                                    <span>{{$ad->est_retail_value}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>Body Style: </h5>
+                                    <span>{{$ad->body_style}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>Colour: </h5>
+                                    <span>{{$ad->colour}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>VIN: </h5>
+                                    <span>{{$ad->vin}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>Engine Type: </h5>
+                                    <span>{{$ad->engine_type}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>Type </h5>
+                                    <span>{{$ad->type}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>Transmission: </h5>
+                                    <span>{{$ad->transmission}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>Drive: </h5>
+                                    <span>{{$ad->drive}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>Fuel: </h5>
+                                    <span>{{$ad->fuel}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>Keys: </h5>
+                                    <span>{{$ad->keys}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>V5 Notes: </h5>
+                                    <span>{{$ad->v_five_notes}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>Additional Info: </h5>
+                                    <span>{{$ad->additional_info}}</span>
+                                </li>
+
+                                <li>
+                                    <h5>VAT to be added to final sale price: </h5>
+                                    <span>{{$ad->vat}}</span></li>
+                                <li>
+
+
                             </ul>
                         </div>
+                </div>
+
+                @if($ad->type == 'auction')
+                <div class="utf_listing_section">
+                    <h3 class="utf_listing_headline_part margin-top-50 margin-bottom-40">Pricing</h3>
+                        <div class="utf_pricing_list_section">
+                            <h4>Bid Information</h4>
+                            <ul>
+                                                <li>
+                                                    <h5>Bid Status: </h5>
+                                                    <span>{{$ad->bid_status}}</span></li>
+                                                <li>
+                                                <li>
+                                                    <h5>Sale Status: </h5>
+                                                    <span>{{$ad->sale_status}}</span></li>
+                                                <li>
+                                                <li>
+                                                    <h5>Current Bid: </h5>
+                                                    <span>{{$ad->current_bid}}</span></li>
+                                                <li>
+
+                            </ul>
+                        </div>
+                </div>
+                @endif
+                <div class="utf_listing_section">
+                    <h3 class="utf_listing_headline_part margin-top-50 margin-bottom-40">Pricing</h3>
+                    <div class="utf_pricing_list_section">
+                        <h4>Bid Information</h4>
+                        <ul>
+                            <li>
+                                <h5>Bid Status: </h5>
+                                <span>{{$user->firstname}}</span></li>
+                            <li>
+                            <li>
+                                <h5>Sale Status: </h5>
+                                <span>{{$user->lastname}}</span></li>
+                            <li>
+                            <li>
+                                <h5>Location </h5>
+                                <span>{{$user->city->title}}</span></li>
+                            <li>
+
+
+                        </ul>
                     </div>
-                    <a href="#" class="show-more-button" data-more-title="Show More" data-less-title="Show Less"><i class="fa fa-angle-double-down"></i></a>
                 </div>
 
                 <div id="utf_listing_amenities" class="utf_listing_section">
@@ -132,17 +197,23 @@
                     <h3 class="utf_listing_headline_part margin-top-50 margin-bottom-40">Listing FAQ's</h3>
                     <div class="style-2">
                         <div class="accordion">
-                            <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> (1) How to Open an Account?</h3>
+                            <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i
+                                    class="sl sl-icon-plus"></i> (1) How to Open an Account?</h3>
                             <div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum is simply dummy text of the printing and type setting industry.</p>
+                                <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem
+                                    Ipsum is simply dummy text of the printing and type setting industry.</p>
                             </div>
-                            <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> (2) How to Add Listing?</h3>
+                            <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i
+                                    class="sl sl-icon-plus"></i> (2) How to Add Listing?</h3>
                             <div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum is simply dummy text of the printing and type setting industry.</p>
+                                <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem
+                                    Ipsum is simply dummy text of the printing and type setting industry.</p>
                             </div>
-                            <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i class="sl sl-icon-plus"></i> (3) What is Featured Listing?</h3>
+                            <h3><span class="ui-accordion-header-icon ui-icon ui-accordion-icon"></span><i
+                                    class="sl sl-icon-plus"></i> (3) What is Featured Listing?</h3>
                             <div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum is simply dummy text of the printing and type setting industry.</p>
+                                <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem
+                                    Ipsum is simply dummy text of the printing and type setting industry.</p>
                             </div>
                         </div>
                     </div>
@@ -151,7 +222,8 @@
                 <div id="utf_listing_location" class="utf_listing_section">
                     <h3 class="utf_listing_headline_part margin-top-60 margin-bottom-40">Location</h3>
                     <div id="utf_single_listing_map_block">
-                        <div id="utf_single_listingmap" data-latitude="36.778259" data-longitude="-119.417931" data-map-icon="im im-icon-Hamburger"></div>
+                        <div id="utf_single_listingmap" data-latitude="36.778259" data-longitude="-119.417931"
+                             data-map-icon="im im-icon-Hamburger"></div>
                         <a href="#" id="utf_street_view_btn">Street View</a>
                     </div>
                 </div>
@@ -169,46 +241,56 @@
                             </div>
                             <div class="col-lg-9">
                                 <div class="row">
-                                    <div class="col-lg-2 review_progres_title"><small><strong>Quality</strong></small></div>
+                                    <div class="col-lg-2 review_progres_title"><small><strong>Quality</strong></small>
+                                    </div>
                                     <div class="col-lg-9">
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar" style="width: 95%"
+                                                 aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="col-lg-1 review_progres_title"><small><strong>77</strong></small></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-2 review_progres_title"><small><strong>Space</strong></small></div>
+                                    <div class="col-lg-2 review_progres_title"><small><strong>Space</strong></small>
+                                    </div>
                                     <div class="col-lg-9">
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar" style="width: 90%"
+                                                 aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="col-lg-1 review_progres_title"><small><strong>15</strong></small></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-2 review_progres_title"><small><strong>Price</strong></small></div>
+                                    <div class="col-lg-2 review_progres_title"><small><strong>Price</strong></small>
+                                    </div>
                                     <div class="col-lg-9">
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar" style="width: 70%"
+                                                 aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="col-lg-1 review_progres_title"><small><strong>18</strong></small></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-2 review_progres_title"><small><strong>Service</strong></small></div>
+                                    <div class="col-lg-2 review_progres_title"><small><strong>Service</strong></small>
+                                    </div>
                                     <div class="col-lg-9">
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar" style="width: 40%"
+                                                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="col-lg-1 review_progres_title"><small><strong>10</strong></small></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-2 review_progres_title"><small><strong>Location</strong></small></div>
+                                    <div class="col-lg-2 review_progres_title"><small><strong>Location</strong></small>
+                                    </div>
                                     <div class="col-lg-9">
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar" style="width: 20%"
+                                                 aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="col-lg-1 review_progres_title"><small><strong>05</strong></small></div>
@@ -219,61 +301,87 @@
                     <div class="comments utf_listing_reviews">
                         <ul>
                             <li>
-                                <div class="avatar"><img src="images/client-avatar1.jpg" alt="" /></div>
+                                <div class="avatar"><img src="images/client-avatar1.jpg" alt=""/></div>
                                 <div class="utf_comment_content">
                                     <div class="utf_arrow_comment"></div>
                                     <div class="utf_star_rating_section" data-rating="5"></div>
                                     <a href="#" class="rate-review">Helpful Review <i class="fa fa-thumbs-up"></i></a>
-                                    <div class="utf_by_comment">Francis Burton<span class="date"><i class="fa fa-clock-o"></i> Jan 05, 2019 - 8:52 am</span> </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat.</p>
+                                    <div class="utf_by_comment">Francis Burton<span class="date"><i
+                                                class="fa fa-clock-o"></i> Jan 05, 2019 - 8:52 am</span></div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar
+                                        neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere
+                                        sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat
+                                        volutpat.</p>
                                 </div>
                             </li>
                             <li>
-                                <div class="avatar"><img src="images/client-avatar2.jpg" alt="" /> </div>
+                                <div class="avatar"><img src="images/client-avatar2.jpg" alt=""/></div>
                                 <div class="utf_comment_content">
                                     <div class="utf_arrow_comment"></div>
                                     <div class="utf_star_rating_section" data-rating="4"></div>
                                     <a href="#" class="rate-review">Helpful Review <i class="fa fa-thumbs-up"></i></a>
-                                    <div class="utf_by_comment">Francis Burton<span class="date"><i class="fa fa-clock-o"></i> Jan 05, 2019 - 8:52 am</span> </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat.</p>
+                                    <div class="utf_by_comment">Francis Burton<span class="date"><i
+                                                class="fa fa-clock-o"></i> Jan 05, 2019 - 8:52 am</span></div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar
+                                        neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere
+                                        sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat
+                                        volutpat.</p>
                                 </div>
                             </li>
                             <li>
-                                <div class="avatar"><img src="images/client-avatar3.jpg" alt="" /> </div>
+                                <div class="avatar"><img src="images/client-avatar3.jpg" alt=""/></div>
                                 <div class="utf_comment_content">
                                     <div class="utf_arrow_comment"></div>
                                     <div class="utf_star_rating_section" data-rating="4"></div>
-                                    <div class="utf_by_comment">Francis Burton<span class="date"><i class="fa fa-clock-o"></i> Jan 05, 2019 - 8:52 am</span> </div>
+                                    <div class="utf_by_comment">Francis Burton<span class="date"><i
+                                                class="fa fa-clock-o"></i> Jan 05, 2019 - 8:52 am</span></div>
                                     <a href="#" class="rate-review">Helpful Review <i class="fa fa-thumbs-up"></i></a>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar
+                                        neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere
+                                        sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat
+                                        volutpat.</p>
                                 </div>
                             </li>
                             <li>
-                                <div class="avatar"><img src="images/client-avatar1.jpg" alt="" /></div>
+                                <div class="avatar"><img src="images/client-avatar1.jpg" alt=""/></div>
                                 <div class="utf_comment_content">
                                     <div class="utf_arrow_comment"></div>
                                     <div class="utf_star_rating_section" data-rating="4.5"></div>
-                                    <div class="utf_by_comment">Francis Burton<span class="date"><i class="fa fa-clock-o"></i> Jan 05, 2019 - 8:52 am</span> </div>
+                                    <div class="utf_by_comment">Francis Burton<span class="date"><i
+                                                class="fa fa-clock-o"></i> Jan 05, 2019 - 8:52 am</span></div>
                                     <a href="#" class="rate-review">Helpful Review <i class="fa fa-thumbs-up"></i></a>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar
+                                        neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere
+                                        sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat
+                                        volutpat.</p>
                                     <div class="review-images utf_gallery_container">
-                                        <a href="images/review-image-01.jpg" class="utf_gallery"><img src="images/review-image-01.jpg" alt=""></a>
-                                        <a href="images/review-image-02.jpg" class="utf_gallery"><img src="images/review-image-02.jpg" alt=""></a>
-                                        <a href="images/review-image-03.jpg" class="utf_gallery"><img src="images/review-image-03.jpg" alt=""></a>
-                                        <a href="images/review-image-01.jpg" class="utf_gallery"><img src="images/review-image-01.jpg" alt=""></a>
-                                        <a href="images/review-image-02.jpg" class="utf_gallery"><img src="images/review-image-02.jpg" alt=""></a>
-                                        <a href="images/review-image-03.jpg" class="utf_gallery"><img src="images/review-image-03.jpg" alt=""></a>
+                                        <a href="images/review-image-01.jpg" class="utf_gallery"><img
+                                                src="images/review-image-01.jpg" alt=""></a>
+                                        <a href="images/review-image-02.jpg" class="utf_gallery"><img
+                                                src="images/review-image-02.jpg" alt=""></a>
+                                        <a href="images/review-image-03.jpg" class="utf_gallery"><img
+                                                src="images/review-image-03.jpg" alt=""></a>
+                                        <a href="images/review-image-01.jpg" class="utf_gallery"><img
+                                                src="images/review-image-01.jpg" alt=""></a>
+                                        <a href="images/review-image-02.jpg" class="utf_gallery"><img
+                                                src="images/review-image-02.jpg" alt=""></a>
+                                        <a href="images/review-image-03.jpg" class="utf_gallery"><img
+                                                src="images/review-image-03.jpg" alt=""></a>
                                     </div>
                                 </div>
                             </li>
                             <li>
-                                <div class="avatar"><img src="images/client-avatar3.jpg" alt="" /> </div>
+                                <div class="avatar"><img src="images/client-avatar3.jpg" alt=""/></div>
                                 <div class="utf_comment_content">
                                     <div class="utf_arrow_comment"></div>
                                     <div class="utf_star_rating_section" data-rating="4"></div>
-                                    <div class="utf_by_comment">Francis Burton<span class="date"><i class="fa fa-clock-o"></i> Jan 05, 2019 - 8:52 am</span> </div>
+                                    <div class="utf_by_comment">Francis Burton<span class="date"><i
+                                                class="fa fa-clock-o"></i> Jan 05, 2019 - 8:52 am</span></div>
                                     <a href="#" class="rate-review">Helpful Review <i class="fa fa-thumbs-up"></i></a>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar
+                                        neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere
+                                        sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat
+                                        volutpat.</p>
                                 </div>
                             </li>
                         </ul>
@@ -318,8 +426,9 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="add-review-photos margin-bottom-30">
-                                <div class="photoUpload"> <span>Upload Photo <i class="sl sl-icon-arrow-up-circle"></i></span>
-                                    <input type="file" class="upload" />
+                                <div class="photoUpload"><span>Upload Photo <i
+                                            class="sl sl-icon-arrow-up-circle"></i></span>
+                                    <input type="file" class="upload"/>
                                 </div>
                             </div>
                         </div>
@@ -353,7 +462,10 @@
 
             <!-- Sidebar -->
             <div class="col-lg-4 col-md-4 margin-top-75 sidebar-search">
-                <div class="verified-badge with-tip margin-bottom-30" data-tip-content="Listing has been verified and belongs business owner or manager."> <i class="sl sl-icon-check"></i> Now Available</div>
+                <div class="verified-badge with-tip margin-bottom-30"
+                     data-tip-content="Listing has been verified and belongs business owner or manager."><i
+                        class="sl sl-icon-check"></i> Now Available
+                </div>
                 <div class="utf_box_widget booking_widget_box">
                     <h3><i class="fa fa-calendar"></i> Booking
                         <div class="price">
@@ -460,7 +572,7 @@
                         </div>
                         <div class="with-forms margin-top-0">
                             <div class="col-lg-12 col-md-12">
-                                <select class="utf_chosen_select_single" >
+                                <select class="utf_chosen_select_single">
                                     <option label="Select Time">Select Time</option>
                                     <option>Lunch</option>
                                     <option>Dinner</option>
@@ -468,13 +580,15 @@
                             </div>
                         </div>
                     </div>
-                    <a href="listing_booking.html" class="utf_progress_button button fullwidth_block margin-top-5">Request Booking</a>
+                    <a href="listing_booking.html" class="utf_progress_button button fullwidth_block margin-top-5">Request
+                        Booking</a>
                     <button class="like-button add_to_wishlist"><span class="like-icon"></span> Add to Wishlist</button>
                     <div class="clearfix"></div>
                 </div>
                 <div class="utf_box_widget margin-top-35">
                     <h3><i class="sl sl-icon-phone"></i> Contact Info</h3>
-                    <div class="utf_hosted_by_user_title"> <a href="#" class="utf_hosted_by_avatar_listing"><img src="images/dashboard-avatar.jpg" alt=""></a>
+                    <div class="utf_hosted_by_user_title"><a href="#" class="utf_hosted_by_avatar_listing"><img
+                                src="images/dashboard-avatar.jpg" alt=""></a>
                         <h4><a href="#">Kathy Brown</a><span>Posted 3 Days Ago</span>
                             <span><i class="sl sl-icon-location"></i> Lonsdale St, Melbourne</span>
                         </h4>
@@ -522,7 +636,9 @@
                         <a href="#" class="utf_coupon_top">
                             <h3>Book Now & Get 50% Discount</h3>
                             <div class="utf_coupon_expires_date">Date of Expires 05/08/2019</div>
-                            <div class="utf_coupon_used"><strong>How to use?</strong> Just show us this coupon on a screen</div>
+                            <div class="utf_coupon_used"><strong>How to use?</strong> Just show us this coupon on a
+                                screen
+                            </div>
                         </a>
                         <div class="utf_coupon_bottom">
                             <p>Coupon Code</p>
@@ -555,7 +671,8 @@
                                 <input name="phone" type="text" placeholder="Phone" required="">
                             </div>
                             <div class="col-md-12">
-                                <textarea name="comments" cols="40" rows="2" id="comments" placeholder="Your Message" required=""></textarea>
+                                <textarea name="comments" cols="40" rows="2" id="comments" placeholder="Your Message"
+                                          required=""></textarea>
                             </div>
                         </div>
                         <input type="submit" class="submit button" id="submit" value="Contact Agent">
@@ -563,11 +680,12 @@
                 </div>
                 <div class="utf_box_widget opening-hours margin-top-35">
                     <h3><i class="sl sl-icon-info"></i> Google AdSense</h3>
-                    <span><img src="images/google_adsense.jpg" alt="" /></span>
+                    <span><img src="images/google_adsense.jpg" alt=""/></span>
                 </div>
                 <div class="utf_box_widget margin-top-35">
                     <h3><i class="sl sl-icon-phone"></i> Quick Contact to Help?</h3>
-                    <p>Excepteur sint occaecat non proident, sunt in culpa officia deserunt mollit anim id est laborum.</p>
+                    <p>Excepteur sint occaecat non proident, sunt in culpa officia deserunt mollit anim id est
+                        laborum.</p>
                     <ul class="utf_social_icon rounded">
                         <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
                         <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
@@ -575,7 +693,8 @@
                         <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
                         <li><a class="instagram" href="#"><i class="icon-instagram"></i></a></li>
                     </ul>
-                    <a class="utf_progress_button button fullwidth_block margin-top-5" href="contact.html">Contact Us</a>
+                    <a class="utf_progress_button button fullwidth_block margin-top-5" href="contact.html">Contact
+                        Us</a>
                 </div>
                 <div class="utf_box_widget listing-share margin-top-35 margin-bottom-40 no-border">
                     <h3><i class="sl sl-icon-pin"></i> Bookmark Listing</h3>
@@ -591,7 +710,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="utf_box_widget opening-hours review-avg-wrapper margin-top-35">
-                    <h3><i class="sl sl-icon-star"></i>  Rating Average </h3>
+                    <h3><i class="sl sl-icon-star"></i> Rating Average </h3>
                     <div class="box-inner">
                         <div class="rating-avg-wrapper text-theme clearfix">
                             <div class="rating-avg">4.8</div>
@@ -637,13 +756,17 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="simple_slick_carousel_block utf_dots_nav">
-                            <div class="utf_carousel_item"> <a href="listings_single_page_1.html" class="utf_listing_item-container compact">
-                                    <div class="utf_listing_item"> <img src="images/utf_listing_item-01.jpg" alt=""> <span class="tag"><i class="im im-icon-Chef-Hat"></i> Restaurant</span> <span class="featured_tag">Featured</span>
+                            <div class="utf_carousel_item"><a href="listings_single_page_1.html"
+                                                              class="utf_listing_item-container compact">
+                                    <div class="utf_listing_item"><img src="images/utf_listing_item-01.jpg" alt="">
+                                        <span class="tag"><i class="im im-icon-Chef-Hat"></i> Restaurant</span> <span
+                                            class="featured_tag">Featured</span>
                                         <span class="utf_open_now">Open Now</span>
                                         <div class="utf_listing_item_content">
                                             <div class="utf_listing_prige_block">
                                                 <span class="utf_meta_listing_price"><i class="fa fa-tag"></i> $25 - $55</span>
-                                                <span class="utp_approve_item"><i class="utf_approve_listing"></i></span>
+                                                <span class="utp_approve_item"><i
+                                                        class="utf_approve_listing"></i></span>
                                             </div>
                                             <h3>Chontaduro Barcelona</h3>
                                             <span><i class="sl sl-icon-location"></i> The Ritz-Carlton, Hong Kong</span>
@@ -658,8 +781,10 @@
                                 </a>
                             </div>
 
-                            <div class="utf_carousel_item"> <a href="listings_single_page_1.html" class="utf_listing_item-container compact">
-                                    <div class="utf_listing_item"> <img src="images/utf_listing_item-02.jpg" alt=""> <span class="tag"><i class="im im-icon-Electric-Guitar"></i> Events</span>
+                            <div class="utf_carousel_item"><a href="listings_single_page_1.html"
+                                                              class="utf_listing_item-container compact">
+                                    <div class="utf_listing_item"><img src="images/utf_listing_item-02.jpg" alt="">
+                                        <span class="tag"><i class="im im-icon-Electric-Guitar"></i> Events</span>
                                         <div class="utf_listing_item_content">
                                             <div class="utf_listing_prige_block">
                                                 <span class="utf_meta_listing_price"><i class="fa fa-tag"></i> $45 - $70</span>
@@ -677,8 +802,10 @@
                                 </a>
                             </div>
 
-                            <div class="utf_carousel_item"> <a href="listings_single_page_1.html" class="utf_listing_item-container compact">
-                                    <div class="utf_listing_item"> <img src="images/utf_listing_item-03.jpg" alt=""> <span class="tag"><i class="im im-icon-Hotel"></i> Hotels</span>
+                            <div class="utf_carousel_item"><a href="listings_single_page_1.html"
+                                                              class="utf_listing_item-container compact">
+                                    <div class="utf_listing_item"><img src="images/utf_listing_item-03.jpg" alt="">
+                                        <span class="tag"><i class="im im-icon-Hotel"></i> Hotels</span>
                                         <span class="utf_closed">Closed</span>
                                         <div class="utf_listing_item_content">
                                             <div class="utf_listing_prige_block">
@@ -697,12 +824,15 @@
                                 </a>
                             </div>
 
-                            <div class="utf_carousel_item"> <a href="listings_single_page_1.html" class="utf_listing_item-container compact">
-                                    <div class="utf_listing_item"> <img src="images/utf_listing_item-04.jpg" alt=""> <span class="tag"><i class="im im-icon-Dumbbell"></i> Fitness</span>
+                            <div class="utf_carousel_item"><a href="listings_single_page_1.html"
+                                                              class="utf_listing_item-container compact">
+                                    <div class="utf_listing_item"><img src="images/utf_listing_item-04.jpg" alt="">
+                                        <span class="tag"><i class="im im-icon-Dumbbell"></i> Fitness</span>
                                         <div class="utf_listing_item_content">
                                             <div class="utf_listing_prige_block">
                                                 <span class="utf_meta_listing_price"><i class="fa fa-tag"></i> $45 - $70</span>
-                                                <span class="utp_approve_item"><i class="utf_approve_listing"></i></span>
+                                                <span class="utp_approve_item"><i
+                                                        class="utf_approve_listing"></i></span>
                                             </div>
                                             <h3>Ruby Beauty Center</h3>
                                             <span><i class="sl sl-icon-location"></i> The Ritz-Carlton, Hong Kong</span>
@@ -717,8 +847,11 @@
                                 </a>
                             </div>
 
-                            <div class="utf_carousel_item"> <a href="listings_single_page_1.html" class="utf_listing_item-container compact">
-                                    <div class="utf_listing_item"> <img src="images/utf_listing_item-05.jpg" alt=""> <span class="tag"><i class="im im-icon-Hotel"></i> Hotels</span> <span class="featured_tag">Featured</span>
+                            <div class="utf_carousel_item"><a href="listings_single_page_1.html"
+                                                              class="utf_listing_item-container compact">
+                                    <div class="utf_listing_item"><img src="images/utf_listing_item-05.jpg" alt="">
+                                        <span class="tag"><i class="im im-icon-Hotel"></i> Hotels</span> <span
+                                            class="featured_tag">Featured</span>
                                         <span class="utf_closed">Closed</span>
                                         <div class="utf_listing_item_content">
                                             <div class="utf_listing_prige_block">
@@ -737,13 +870,16 @@
                                 </a>
                             </div>
 
-                            <div class="utf_carousel_item"> <a href="listings_single_page_1.html" class="utf_listing_item-container compact">
-                                    <div class="utf_listing_item"> <img src="images/utf_listing_item-06.jpg" alt=""> <span class="tag"><i class="im im-icon-Chef-Hat"></i> Restaurant</span>
+                            <div class="utf_carousel_item"><a href="listings_single_page_1.html"
+                                                              class="utf_listing_item-container compact">
+                                    <div class="utf_listing_item"><img src="images/utf_listing_item-06.jpg" alt="">
+                                        <span class="tag"><i class="im im-icon-Chef-Hat"></i> Restaurant</span>
                                         <span class="utf_open_now">Open Now</span>
                                         <div class="utf_listing_item_content">
                                             <div class="utf_listing_prige_block">
                                                 <span class="utf_meta_listing_price"><i class="fa fa-tag"></i> $25 - $45</span>
-                                                <span class="utp_approve_item"><i class="utf_approve_listing"></i></span>
+                                                <span class="utp_approve_item"><i
+                                                        class="utf_approve_listing"></i></span>
                                             </div>
                                             <h3>Fairmont Pacific Rim</h3>
                                             <span><i class="sl sl-icon-location"></i> The Ritz-Carlton, Hong Kong</span>

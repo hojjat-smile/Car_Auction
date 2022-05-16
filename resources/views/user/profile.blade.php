@@ -40,7 +40,7 @@
                         <div class="row with-forms">
                             <div class="col-md-6">
                                 <h5>First Name</h5>
-                                @dd($user->firstname)
+
                                 <input type="text" name="firstname" value="{{$user->firstname}}">
                             </div>
                             <div class="col-md-6">

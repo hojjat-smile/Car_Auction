@@ -10,6 +10,9 @@
                         class="sl sl-icon-magnifier-add"></i>Profile</a></li>
 
             <li class="{{ request()->is('user-panel/my-favorite') ? 'active' : '' }}"><a
+                    href="{{route('user.add-ads')}}"><i
+                        class="sl sl-icon-magnifier-add"></i>Add Ads</a></li>
+            <li class="{{ request()->is('user-panel/my-favorite') ? 'active' : '' }}"><a
                     href="{{route('user.my-favorite')}}"><i
                         class="sl sl-icon-magnifier-add"></i>My Favorite</a></li>
 

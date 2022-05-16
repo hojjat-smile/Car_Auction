@@ -51,8 +51,8 @@
         <div class="col-lg-2 col-md-6">
             <div class="utf_dashboard_stat color-2">
                 <div class="utf_dashboard_stat_content">
-                    <h4>{{\App\Models\Ads::all()->count()}}</h4>
-                    <span>Number of auctions</span>
+                    <h4>{{$auction->count()}}</h4>
+                    <span>Number of Auctions Sell</span>
                 </div>
                 <div class="utf_dashboard_stat_icon"><i class="im im-icon-Add-UserStar"></i></div>
             </div>
@@ -61,171 +61,16 @@
         <div class="col-lg-2 col-md-6">
             <div class="utf_dashboard_stat color-3">
                 <div class="utf_dashboard_stat_content">
-                    <h4>9128</h4>
-                    <span>Expired Listings</span>
+                    <h4>{{$normal->count()}}</h4>
+                    <span>Number of Normal Sell</span>
                 </div>
                 <div class="utf_dashboard_stat_icon"><i class="im im-icon-Align-JustifyRight"></i></div>
-            </div>
-        </div>
-
-        <div class="col-lg-2 col-md-6">
-            <div class="utf_dashboard_stat color-4">
-                <div class="utf_dashboard_stat_content">
-                    <h4>572</h4>
-                    <span>New Feedbacks</span>
-                </div>
-                <div class="utf_dashboard_stat_icon"><i class="im im-icon-Diploma"></i></div>
-            </div>
-        </div>
-
-        <div class="col-lg-2 col-md-6">
-            <div class="utf_dashboard_stat color-5">
-                <div class="utf_dashboard_stat_content">
-                    <h4>572</h4>
-                    <span>Total Views</span>
-                </div>
-                <div class="utf_dashboard_stat_icon"><i class="im im-icon-Eye-Visible"></i></div>
-            </div>
-        </div>
-
-        <div class="col-lg-2 col-md-6">
-            <div class="utf_dashboard_stat color-6">
-                <div class="utf_dashboard_stat_content">
-                    <h4>572</h4>
-                    <span>Total Reviews</span>
-                </div>
-                <div class="utf_dashboard_stat_icon"><i class="im im-icon-Star"></i></div>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-6 col-md-12">
-            <div class="utf_dashboard_list_box with-icons margin-top-20">
-                <h4>Recent Activities</h4>
-                <ul>
-                    <li>
-                        <i class="utf_list_box_icon sl sl-icon-layers"></i> Peter Parker Left A Review 5.0 On <strong><a
-                                href="#"> Restaurant</a></strong> <a href="#" class="close-list-item"><i
-                                class="fa fa-close"></i></a>
-                    </li>
-                    <li>
-                        <i class="utf_list_box_icon sl sl-icon-star"></i> Your Listing <strong><a href="#">Local
-                                Service</a></strong> Has Been Approved<a href="#" class="close-list-item"><i
-                                class="fa fa-close"></i></a>
-                    </li>
-                    <li>
-                        <i class="utf_list_box_icon sl sl-icon-heart"></i> Someone Bookmarked Your <strong><a href="#">Listing</a></strong>
-                        Restaurant <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-                    <li>
-                        <i class="utf_list_box_icon sl sl-icon-star"></i> Your Listing <strong><a href="#">Local
-                                Service</a></strong> Has Been Approved<a href="#" class="close-list-item"><i
-                                class="fa fa-close"></i></a>
-                    </li>
-                    <li>
-                        <i class="utf_list_box_icon sl sl-icon-heart"></i> Someone Bookmarked Your <strong><a href="#">Listing</a></strong>
-                        Restaurant <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-                    <li>
-                        <i class="utf_list_box_icon sl sl-icon-layers"></i> Peter Parker Left A Review 5.0 On <strong><a
-                                href="#"> Restaurant</a></strong> <a href="#" class="close-list-item"><i
-                                class="fa fa-close"></i></a>
-                    </li>
-                    <li>
-                        <i class="utf_list_box_icon sl sl-icon-star"></i> Someone Bookmarked Your <strong><a href="#">Listing</a></strong>
-                        Restaurant <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-                    <li>
-                        <i class="utf_list_box_icon sl sl-icon-layers"></i> Peter Parker Left A Review 5.0 On <strong><a
-                                href="#"> Restaurant</a></strong> <a href="#" class="close-list-item"><i
-                                class="fa fa-close"></i></a>
-                    </li>
-                    <li>
-                        <i class="utf_list_box_icon sl sl-icon-star"></i> Your Listing <strong><a href="#">Local
-                                Service</a></strong> Has Been Approved<a href="#" class="close-list-item"><i
-                                class="fa fa-close"></i></a>
-                    </li>
-                    <li>
-                        <i class="utf_list_box_icon sl sl-icon-heart"></i> Someone Bookmarked Your <strong><a href="#">Listing</a></strong>
-                        Restaurant <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-            <div class="utf_pagination_container_part margin-top-30 margin-bottom-30">
-                <nav class="pagination">
-                    <ul>
-                        <li><a href="#"><i class="sl sl-icon-arrow-left"></i></a></li>
-                        <li><a href="#" class="current-page">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-12">
-            <div class="utf_dashboard_list_box invoices with-icons margin-top-20">
-                <h4>All Order Invoices</h4>
-                <ul>
-                    <li><i class="utf_list_box_icon sl sl-icon-doc"></i> <strong>Premium Plan <span
-                                class="paid">Paid</span></strong>
-                        <ul>
-                            <li><span>Order Number:-</span> 004128641</li>
-                            <li><span>Date:-</span> 12 Jan 2019</li>
-                        </ul>
-                        <div class="buttons-to-right"><a href="dashboard_invoice.html" class="button gray"><i
-                                    class="sl sl-icon-printer"></i> Invoice</a></div>
-                    </li>
-                    <li><i class="utf_list_box_icon sl sl-icon-doc"></i> <strong>Platinum Plan <span
-                                class="paid">Paid</span></strong>
-                        <ul>
-                            <li><span>Order Number:-</span> 004312641</li>
-                            <li><span>Date:-</span> 12 Jan 2019</li>
-                        </ul>
-                        <div class="buttons-to-right"><a href="dashboard_invoice.html" class="button gray"><i
-                                    class="sl sl-icon-printer"></i> Invoice</a></div>
-                    </li>
-                    <li><i class="utf_list_box_icon sl sl-icon-doc"></i> <strong>Platinum Plan <span
-                                class="paid">Paid</span></strong>
-                        <ul>
-                            <li><span>Order Number:-</span> 004312641</li>
-                            <li><span>Date:-</span> 12 Jan 2019</li>
-                        </ul>
-                        <div class="buttons-to-right"><a href="dashboard_invoice.html" class="button gray"><i
-                                    class="sl sl-icon-printer"></i> Invoice</a></div>
-                    </li>
-                    <li><i class="utf_list_box_icon sl sl-icon-doc"></i> <strong>Basic Plan <span
-                                class="unpaid">Unpaid</span></strong>
-                        <ul>
-                            <li><span>Order Number:-</span> 004031281</li>
-                            <li><span>Date:-</span> 12 Jan 2019</li>
-                        </ul>
-                        <div class="buttons-to-right"><a href="dashboard_invoice.html" class="button gray"><i
-                                    class="sl sl-icon-printer"></i> Invoice</a></div>
-                    </li>
-                    <li><i class="utf_list_box_icon sl sl-icon-doc"></i> <strong>Basic Plan <span
-                                class="unpaid">Unpaid</span></strong>
-                        <ul>
-                            <li><span>Order Number:-</span> 004031281</li>
-                            <li><span>Date:-</span> 12 Jan 2019</li>
-                        </ul>
-                        <div class="buttons-to-right"><a href="dashboard_invoice.html" class="button gray"><i
-                                    class="sl sl-icon-printer"></i> Invoice</a></div>
-                    </li>
-                    <li><i class="utf_list_box_icon sl sl-icon-doc"></i> <strong>Basic Plan <span
-                                class="unpaid">Unpaid</span></strong>
-                        <ul>
-                            <li><span>Order Number:-</span> 004031281</li>
-                            <li><span>Date:-</span> 12 Jan 2019</li>
-                        </ul>
-                        <div class="buttons-to-right"><a href="dashboard_invoice.html" class="button gray"><i
-                                    class="sl sl-icon-printer"></i> Invoice</a></div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
         <div class="col-lg-12 col-md-12 mb-4">
             <div class="utf_dashboard_list_box table-responsive recent_booking">
                 <h4>Recent Booking</h4>
@@ -233,82 +78,47 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th>#</th>
                             <th>Image</th>
-                            <th>Name</th>
-                            <th>Booking Date</th>
-                            <th>Payment Type</th>
-                            <th>Status</th>
-                            <th>View Booking</th>
+                            <th>Marker</th>
+                            <th>Model</th>
+                            <th>Year</th>
+                            <th>Country</th>
+                            <th>City</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Mileage</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><img alt="" class="img-fluid rounded-circle shadow-lg"
-                                     src="{{asset('assets/web/images/thumb-1.jpg')}}" width="50" height="50"></td>
-                            <td>Kathy Brown</td>
-                            <td>12 Jan 2019</td>
-                            <td>Paypal</td>
-                            <td><span class="badge badge-pill badge-primary text-uppercase">Booked</span></td>
-                            <td><a href="dashboard_bookings.html" class="button gray"><i class="fa fa-eye"></i> View</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><img alt="" class="img-fluid rounded-circle shadow-lg"
-                                     src="{{asset('assets/web/images/thumb-2.jpg')}}" width="50" height="50"></td>
-                            <td>Kathy Brown</td>
-                            <td>12 Jan 2019</td>
-                            <td>Credit Card</td>
-                            <td><span class="badge badge-pill badge-primary text-uppercase">Booked</span></td>
-                            <td><a href="dashboard_bookings.html" class="button gray"><i class="fa fa-eye"></i> View</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td><img alt="" class="img-fluid rounded-circle shadow-lg"
-                                     src="{{asset('assets/web/images/thumb-3.jpg')}}" width="50" height="50"></td>
-                            <td>Kathy Brown</td>
-                            <td>12 Jan 2019</td>
-                            <td>Paypal</td>
-                            <td><span class="badge badge-pill badge-danger text-uppercase">Pending</span></td>
-                            <td><a href="dashboard_bookings.html" class="button gray"><i class="fa fa-eye"></i> View</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td><img alt="" class="img-fluid rounded-circle shadow-lg"
-                                     src="{{asset('assets/web/images/thumb-1.jpg')}}" width="50" height="50"></td>
-                            <td>Kathy Brown</td>
-                            <td>12 Jan 2019</td>
-                            <td>Paypal</td>
-                            <td><span class="badge badge-pill badge-danger text-uppercase">Pending</span></td>
-                            <td><a href="dashboard_bookings.html" class="button gray"><i class="fa fa-eye"></i> View</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td><img alt="" class="img-fluid rounded-circle shadow-lg"
-                                     src="{{asset('assets/web/images/thumb-2.jpg')}}" width="50" height="50"></td>
-                            <td>Kathy Brown</td>
-                            <td>12 Jan 2019</td>
-                            <td>Paypal</td>
-                            <td><span class="badge badge-pill badge-danger text-uppercase">Pending</span></td>
-                            <td><a href="dashboard_bookings.html" class="button gray"><i class="fa fa-eye"></i> View</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td><img alt="" class="img-fluid rounded-circle shadow-lg"
-                                     src="{{asset('assets/web/images/thumb-3.jpg')}}" width="50" height="50"></td>
-                            <td>Kathy Brown</td>
-                            <td>12 Jan 2019</td>
-                            <td>Paypal</td>
-                            <td><span class="badge badge-pill badge-canceled text-uppercase">Canceled</span></td>
-                            <td><a href="dashboard_bookings.html" class="button gray"><i class="fa fa-eye"></i> View</a>
-                            </td>
-                        </tr>
+                        @foreach($ads as $ad)
+                            <tr>
+
+                                <td><img width="70px" height="70px" src="{{asset($ad->image->image)}}" alt=""></td>
+
+                                <td>{{$ad->maker->title}}</td>
+                                <td>{{$ad->model->title}}</td>
+                                <td>{{$ad->year}}</td>
+                                <td>{{$ad->country->title}}</td>
+                                <td>{{$ad->city->title}}</td>
+                                <td>{{$ad->user->username}}</td>
+                                <td>{{$ad->user->email}}</td>
+                                <td>{{$ad->mileage}}</td>
+
+
+
+                                <td>
+                                    <a href="{{route('admin.edit-ads',$ad->id)}}" class="button ">Edit</a>
+                                    <a href="{{route('admin.delete-ads',$ad->id)}}" class="button ">Delete</a>
+                                    <a href="{{route('admin.view-ads',$ad->id)}}" class="button  ">View</a>
+                                    <a href="{{route('admin.publish-ads',$ad->id)}}" class="button ">Publish</a>
+                                    <a href="{{route('admin.add-ads')}}" class="button ">Add</a>
+                                </td>
+
+
+
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

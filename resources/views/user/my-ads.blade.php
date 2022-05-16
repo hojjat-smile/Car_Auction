@@ -20,48 +20,43 @@
                 <tr>
 
                     <th>Image</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Address One</th>
-                    <th>Address Two</th>
+                    <th>Marker</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Country</th>
                     <th>City</th>
-                    <th>Post Code</th>
-                    <th>Tele Phone</th>
+                    <th>Username</th>
                     <th>Email</th>
-                    <th>Member Number</th>
-                    <th>Seller Code</th>
-                    <th>Collection Address</th>
-                    <th>Collection City</th>
-                    <th>Collection Telephone</th>
                     <th>Mileage</th>
+                    <th>Action</th>
 
                 </tr>
                 </thead>
                 <tbody>
                 @foreach(\App\Models\Ads::all() as $ad)
-                <tr>
+                    <tr>
 
-                    <td><img style="width: 500% ;height: 500%" src="{{asset($ad->image->image)}}" alt=""></td>
-                    <td>{{$ad->firstname}}</td>
-                    <td>{{$ad->lastname}}</td>
-                    <td>{{$ad->addressone}}</td>
-                    <td>{{$ad->addresstwo}}</td>
-                    <td>{{$ad->city}}</td>
-                    <td>{{$ad->postcode}}</td>
-                    <td>{{$ad->telephone}}</td>
-                    <td>{{$ad->email}}</td>
-                    <td>{{$ad->membernumber}}</td>
-                    <td>{{$ad->sellercode}}</td>
-                    <td>{{$ad->collectionaddress}}</td>
-                    <td>{{$ad->collection_city}}</td>
-                    <td>{{$ad->collection_telephone}}</td>
-                    <td>{{$ad->mileage}}</td>
-                    <td><a href="{{route('user.edit-ads',$ad->id)}}" class="button gray"><i class="fa fa-eye"></i>Edit</a>
+                        <td><img  src="{{asset($ad->image->image)}}" alt=""></td>
 
+                        <td>{{$ad->maker->title}}</td>
+                        <td>{{$ad->model->title}}</td>
+                        <td>{{$ad->year}}</td>
+                        <td>{{$ad->country->title}}</td>
+                        <td>{{$ad->city->title}}</td>
+                        <td>{{$ad->user->username}}</td>
+                        <td>{{$ad->user->email}}</td>
+                        <td>{{$ad->mileage}}</td>
 
-                </tr>
+                        <td>
+                            <a href="{{route('user.edit-ads',$ad->id)}}" class="button ">Edit</a>
+                            <a href="{{route('user.delete-ads',$ad->id)}}" class="button ">Delete</a>
+                        </td>
+
+                    </tr>
 
                 @endforeach
+                </tbody>
+
                 </tbody>
             </table>
         </div>
@@ -73,3 +68,10 @@
 @section('script')
 
 @endsection
+
+
+
+
+
+
+

@@ -19,12 +19,16 @@ class IndexController extends Controller
     }
 
 
-    public function singlePage()
+    public function singlePage($adsId)
     {
 
+        $ad = Ads::find($adsId);
 
-        return view('web.single-page');
+        $user = User::find($ad->user_id);
+
+        return view('web.single-page',compact('ad','user'));
     }
+
 
 
     public function aboutUs()
@@ -60,16 +64,16 @@ class IndexController extends Controller
     {
 
 
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'mobile' => 'required',
-            'username' => 'required|unique:users',
-            'email' => 'required',
-            'password' => 'required',
-            'password2' => 'required',
-
-        ]);
+//        $request->validate([
+//            'first_name' => 'required',
+//            'last_name' => 'required',
+//            'mobile' => 'required',
+//            'username' => 'required|unique:users',
+//            'email' => 'required',
+//            'password' => 'required',
+//            'password_confirm' => 'required',
+//
+//        ]);
 
         $pass = bcrypt($request['password']);
 
@@ -81,6 +85,9 @@ class IndexController extends Controller
                 'companyname' => $request['company_name'],
                 'username' => $request['username'],
                 'email' => $request['email'],
+                'country_id' => $request['country_id'],
+                'state_id' => $request['state_id'],
+                'city_id' => $request['city_id'],
                 'password' => $pass,
                 'usertype' => 'seller',
 
@@ -118,6 +125,17 @@ class IndexController extends Controller
     public function vehicle_search()
     {
         return view('web.vehicle_search');
+
+
+    }
+
+
+    public function findCar()
+    {
+
+
+
+        return view('web.find-car');
 
 
     }

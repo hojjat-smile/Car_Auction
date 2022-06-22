@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ads;
+use App\Models\Packages;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,12 +61,8 @@ class IndexController extends Controller
         return view('admin.settings');
     }
 
-    public function membership()
-    {
 
 
-        return view('admin.membership');
-    }
 
     public function transManage()
     {
@@ -117,8 +114,7 @@ class IndexController extends Controller
         $pass = Hash::make($request['password']);
 
 
-
-        if($request->filled('password')){
+        if ($request->filled('password')) {
             $user->update([
                 'password' => $pass,
             ]);

@@ -7,9 +7,11 @@ use App\Http\Controllers\Admin\InfoAboutUsController;
 use App\Http\Controllers\Admin\RulesController;
 use App\Http\Controllers\User\AdsController as UserAdsController;
 use App\Http\Controllers\admin\AdsController as AdminAdsController;
+use App\Http\Controllers\User\AuctionController as UserAuctionController;
 use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\User\MembershipController;
-use App\Http\Controllers\User\ProfileController  as UserProfileController;
+use App\Http\Controllers\Admin\MembershipController as AdminMembershipController;
+use App\Http\Controllers\User\ProfileController as UserProfileController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\Web\CarsListController;
@@ -62,11 +64,19 @@ Route::prefix('user-panel')->name('user.')->middleware('auth', 'checkUser')->gro
     //membership
     Route::get('/membership', [MembershipController::class, 'membership'])->name('membership');
 
+    //auction
+    Route::get('/my-auction', [UserAuctionController::class, 'myAuction'])->name('my-auction');
+    Route::get('/add-auction', [UserAuctionController::class, 'addAuction'])->name('add-auction');
+    Route::post('/add-auction-post', [UserAuctionController::class, 'addAuctionPost'])->name('add-auction-post');
+    Route::get('/edit-auction/{itemId}', [UserAuctionController::class, 'editAuction'])->name('edit-auction');
+    Route::post('/edit-auction-post/{itemId}', [UserAuctionController::class, 'editAuctionPost'])->name('edit-auction-post');
+    Route::get('/delete-auction/{itemId}', [UserAuctionController::class, 'deleteAuction'])->name('delete-auction');
+
 
     // add ads
+    Route::get('/my-ads', [UserAdsController::class, 'myAds'])->name('my-ads');
     Route::get('/add-ads', [UserAdsController::class, 'addAds'])->name('add-ads');
     Route::post('/add-ads-post', [UserAdsController::class, 'addAdsPost'])->name('add-ads-post');
-    Route::get('/my-ads', [UserAdsController::class, 'myAds'])->name('my-ads');
     Route::get('/edit-ads/{adId}', [UserAdsController::class, 'editAds'])->name('edit-ads');
     Route::get('/delete-ads/{adId}', [UserAdsController::class, 'deleteAds'])->name('delete-ads');
     Route::post('/ads-update/{adId}', [UserAdsController::class, 'editAdsUpdate'])->name('ads-update');
@@ -78,10 +88,10 @@ Route::prefix('user-panel')->name('user.')->middleware('auth', 'checkUser')->gro
     //favorite
     Route::get('/my-favorite', [FavoriteController::class, 'myFavorite'])->name('my-favorite');
     Route::get('/add-favorite/{adsId}', [FavoriteController::class, 'addFavorite'])->name('add-favorite');
+    Route::get('/delete-favorite/{adsId}', [FavoriteController::class, 'deleteFavorite'])->name('delete-favorite');
 
     Route::get('/bid-now/{adsId}', [FavoriteController::class, 'bidNow'])->name('bid-now');
     Route::post('/bid-now-submit/{ads}', [FavoriteController::class, 'bidNowSubmit'])->name('bid-now-submit');
-
 
 
 });
@@ -92,7 +102,15 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
     Route::get('/dashboard', [AdminIndexController::class, 'dashboard'])->name('dashboard');
     Route::get('/package-management', [AdminIndexController::class, 'packageManagement'])->name('package-management');
 
-    Route::get('/membership', [AdminIndexController::class, 'membership'])->name('membership');
+    //membership
+    Route::get('/membership', [AdminMembershipController::class, 'membership'])->name('membership');
+    Route::get('/memberships-add', [AdminMembershipController::class, 'membershipsAdd'])->name('memberships-add');
+    Route::post('/memberships-add-post', [AdminMembershipController::class, 'membershipsAddPost'])->name('memberships-add-post');
+    Route::get('/memberships-edit/{itemId}', [AdminMembershipController::class, 'membershipsEdit'])->name('memberships-edit');
+    Route::post('/memberships-edit-post/{itemId}', [AdminMembershipController::class, 'membershipsEditPost'])->name('memberships-edit-post');
+    Route::get('/memberships-delete/{itemId}', [AdminMembershipController::class, 'membershipsDelete'])->name('memberships-delete');
+
+
     Route::get('/trans-manage', [AdminIndexController::class, 'transManage'])->name('trans-manage');
 
 
@@ -116,11 +134,9 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
     Route::get('/profile', [AdminProfileController::class, 'profile'])->name('profile');
     Route::post('/profile', [AdminProfileController::class, 'profileUpdate'])->name('profile-update');
 
-
     //rules
     Route::get('/rules', [RulesController::class, 'rules'])->name('rules');
     Route::post('/rules-post/{itemId}', [RulesController::class, 'rulesPost'])->name('rules-post');
-
 
     //aboutUs
     Route::get('/about-us', [AboutUsController::class, 'aboutUs'])->name('about-us');

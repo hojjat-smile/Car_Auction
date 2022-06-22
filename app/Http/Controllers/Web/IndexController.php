@@ -8,6 +8,7 @@ use App\Models\Ads;
 use App\Models\ContactUs;
 use App\Models\InfoAboutUs;
 use App\Models\Maker;
+use App\Models\Packages;
 use App\Models\Rules;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,9 +24,9 @@ class IndexController extends Controller
     {
 
         $ads = Ads::orderBy('view', 'desc')->get();
+        $packages = Packages::all();
 
-
-        return view('web.index', compact('ads'));
+        return view('web.index', compact('ads','packages'));
     }
 
 

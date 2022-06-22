@@ -31,28 +31,20 @@
 
                                 @foreach($maker as $row)
                                     @foreach($row->ads as $ads)
-
-
                                         @if($ads->is_published == 1)
 
                                             <tbody>
                                             <tr>
-
                                                 <td>
                                                     <img class="image-style"
                                                          src="{{asset($ads->image->image)}}">
                                                 </td>
-
                                                 <td> {{$ads->maker->title}}
                                                     {{$ads->model->title}} </td>
-
-
                                                 <td>
                                                     <p>Odometer</p> {{substr($ads->odometer,0,15)." and......"}}
 
                                                 </td>
-
-
                                                 <td>{{substr($ads->damage->title,0,10)."......"}}</td>
                                                 <td>{{$ads->type_sell}}</td>
                                                 <td>
@@ -61,27 +53,20 @@
                                                     <a href="{{route('user.bid-now',$ads->id)}}"><span
                                                             class="table-action-icon fa fa-legal icon-legal table-action-icon"></span></a>
                                                 </td>
-
-
                                             </tr>
-
                                             </tbody>
-                            @endif
 
-
-
-                            @endforeach
-                            @endforeach
-
+                                        @endif
+                                    @endforeach
+                                @endforeach
                             </table>
-
                         </div>
                     </div>
                 </div>
             @endif
+
             <div class="row">
                 @if($maker ==null)
-
                     <div class="col-lg-3 col-md-4 margin-top-75 sidebar-search">
                         <div class="utf_box_widget booking_widget_box margin-bottom-50">
                             <h3>Filter</h3>
@@ -213,7 +198,7 @@
 
                                     </div>
 
-                                    <button class="button submit"> Search </button>
+                                    <button class="button submit"> Search</button>
                                 </form>
 
                             </div>
@@ -247,7 +232,8 @@
                                             <tr>
 
                                                 <td>
-                                                    <img src="{{asset($ads->image->image)}}" style="width: 100px;border-radius: 5px;" />
+                                                    <img src="{{asset($ads->image->image)}}"
+                                                         style="width: 100px;border-radius: 5px;"/>
                                                 </td>
 
                                                 <td> {{$ads->maker->title}}

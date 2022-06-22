@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Ads;
 use App\Models\Favorite;
+use App\Models\Packages;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +23,8 @@ class MembershipController extends Controller
     public function membership()
     {
 
-
-        return view('user.membership');
+        $packages = Packages::all();
+        return view('user.membership',compact('packages'));
     }
 }
 

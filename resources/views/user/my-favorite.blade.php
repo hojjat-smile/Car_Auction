@@ -12,41 +12,39 @@
 
 
     <div class="container">
-
-        <div class="dashboard-list-box table-responsive invoices with-icons">
+        <div class="dashboard-list-box table-responsive invoices with-icons margin-top-50">
             <table class="table table-hover">
                 <thead>
                 <tr>
-
-                    <th>Image</th>
+                    <th>ID</th>
                     <th>Lot Info</th>
                     <th>Price</th>
-
-
+                    <th>Action</th>
                 </tr>
                 </thead>
                 @foreach($favorites as $favorite)
-                    @if($favorite->ads != null)
-                        @foreach($favorite->ads as $ads)
 
-                            <tbody>
 
-                            <tr>
-                                <td>
-                                    <img width="160" height="100" src="{{asset($ads->image->image)}}">
-                                </td>
-                                <td><p>Model Name:</p> {{$ads->maker->title}} {{$ads->model->title}} {{$ads->year}}
-                                </td>
+                    <tbody>
 
-                                <td>{{$ads->current_bid}}
-                                </td>
-                            </tr>
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
 
-                            </tbody>
-                        @endforeach
 
-                    @endif
+                        <td><p>Model
+                                Name:</p> {{$favorite->ads->maker->title}} {{$favorite->ads->model->title}} {{$favorite->ads->year}}
+                        </td>
+
+                        <td>{{$favorite->ads->current_bid}}</td>
+
+                        <td><a href="{{route('user.delete-favorite',$favorite->id)}}" class="button red">Delete</a></td>
+
+                    </tr>
+
+                    </tbody>
                 @endforeach
+
+
             </table>
         </div>
 

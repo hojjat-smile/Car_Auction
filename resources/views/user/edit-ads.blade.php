@@ -38,254 +38,113 @@
                       enctype="multipart/form-data">
                     @csrf
 
-
                     <div class="col-md-6">
-                        <h5>Car Type:</h5>
+                        <lable>Car Type:</lable>
+                        <select id="car_type_id" name="car_type_id">
 
-                        <select name="car_type_id" id="car_type_id">
-                        @foreach(\App\Models\CarType::all() as $carType)
+                            @foreach(\App\Models\CarType::all() as $carType)
+                                <option value="{{$carType->id}}" {{$ads->car_type_id == $carType->id ? 'selected' : '' }}>{{ $carType->title }}</option>
+                            @endforeach
 
-                            <option
-                                value="{{$carType->id}}" {{$ads->car_type_id == $carType->id ? 'selected' : '' }}>{{ $carType->title }}</option>
-
-
-                        @endforeach
                         </select>
+
                         @error('car_type_id')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Odometer</h5>
-                        <input type="number" name="odometer" value="{{$ads->odometer}}">
-                        @error('odometer')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
+                        <lable>Make:</lable>
+                        <select id="makerChange" name="maker_id">
 
-                    <div class="col-md-6">
-                        <h5>VRN</h5>
-                        <input type="text" name="vrn" value="{{$ads->vrn}}">
-                        @error('vrn')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-
-
-                    <div class="col-md-6">
-                        <h5>Primary Damage</h5>
-                        <select name="primary_damage_id">
-                            @foreach(\App\Models\PrimaryDamage::all() as $damage)
-
+                            @foreach(\App\Models\Maker::all() as $maker)
                                 <option
-                                    value="{{$damage->id}}" {{$ads->primary_damage_id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
+                                    value="{{$maker->id}}" {{$ads->maker_id == $maker->id ? 'selected' : '' }}>{{ $maker->title }}</option>
+                            @endforeach
 
+                        </select>
 
+                        @error('maker_id')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <lable>Model:</lable>
+                        <select id="model_set" name="model_id">
+                            @foreach(\App\Models\ModelCar::all() as $model)
+                                <option
+                                    value="{{$model->id}}" {{$ads->model_id == $model->id ? 'selected' : '' }}>{{ $model->title }}</option>
                             @endforeach
                         </select>
 
-                        @error('primary_damage_id')
+                        @error('model_id')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Secondary Damage</h5>
-                        <select name="secondary_damage_id">
+                        <lable>Colour</lable>
+                        <select name="colour_id">
 
-                            @foreach(\App\Models\SecondaryDamage::all() as $damage)
-
-                                <option
-                                    value="{{$damage->id}}" {{$ads->secondary_damage_id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
-
-
+                            @foreach(\App\Models\Colour::all() as $color)
+                                <option value="{{$color->id}}" {{$ads->colour_id == $color->id ? 'selected' : '' }}>{{ $color->title }}</option>
                             @endforeach
                         </select>
 
-                        @error('secondary_damage_id')
+                        @error('colour_id')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Additional Damage</h5>
-                        <select  name="additional_damage_id">
+                        <lable>Category:</lable>
+                        <select name="category_id">
 
-                            @foreach(\App\Models\AdditionalDamage::all() as $damage)
-
-                                <option
-                                    value="{{$damage->id}}" {{$ads->additional_damage_id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
-
-
+                            @foreach(\App\Models\Categories::all() as $category)
+                                <option value="{{$category->id}}" {{$ads->category_id == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
                             @endforeach
                         </select>
 
-                        @error('additional_damage_id')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>VIN</h5>
-                        <input type="text" name="vin" value="{{$ads->vin}}">
-
-                        @error('vin')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>Body Style</h5>
-                        <input type="text" name="body_style" value="{{$ads->body_style}}">
-
-                        @error('body_style')
+                        @error('category_id')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
 
                     <div class="col-md-6">
 
-                        <div>
-                            <lable>Colour</lable>
-                            <select type="text" name="colour_id">
+                        <lable>Condition:</lable>
 
-                                @foreach(\App\Models\Colour::all() as $color)
+                        <select name="condition_id">
+                            <option value="{{1}}">All</option>
+                            <option value="{{2}}">Used</option>
+                            <option value="{{3}}">Salvage</option>
+                        </select>
 
-                                    <option
-                                        value="{{$color->id}}" {{$ads->colour_id == $color->id ? 'selected' : '' }}>{{ $color->title }}</option>
-
-
-                                @endforeach
-                            </select>
-
-                            @error('colour_id')
-                            <small class="text-danger"> {{$message}}</small>
-                            @enderror
-
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div>
-                            <lable>TypeSell</lable>
-                            <input type="text" name="type_sell" value="{{$ads->type_sell}}">
-
-                            @error('type_sell')
-                            <small class="text-danger"> {{$message}}</small>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div>
-                            <lable>Engine type</lable>
-                            <input type="text" name="engine_type" value="{{$ads->engine_type}}">
-
-                            @error('engine_type')
-                            <small class="text-danger"> {{$message}}</small>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>Transmission</h5>
-                        <input type="text" name="transmission" value="{{$ads->transmission}}">
-
-                        @error('transmission')
+                        @error('condition_id')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
+
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Drive</h5>
-                        <input type="text" name="drive" value="{{$ads->drive}}">
 
-                        @error('drive')
+                        <lable>Engine type</lable>
+
+                        <input type="text" name="engine_type" value="{{$ads->engine_type}}">
+
+                        @error('engine_type')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
+
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Fuel</h5>
-                        <input type="text" name="fuel" value="{{$ads->fuel}}">
-
-                        @error('fuel')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>Keys</h5>
-                        <input type="text" name="keys" value="{{$ads->keys}}">
-
-                        @error('keys')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>V5 Notes</h5>
-                        <input type="text" name="v_five_notes" value="{{$ads->v_five_notes}}">
-
-                        @error('v_five_notes')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>VAT</h5>
-                        <input type="text" name="vat" value="{{$ads->vat}}">
-
-                        @error('vat')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>Additional Info</h5>
-                        <input type="text" name="additional_info" value="{{$ads->additional_info}}">
-
-                        @error('additional_info')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-                    <div class="col-md-6">
-                        <h5>Bid Status:</h5>
-                        <input type="text" name="bid_status" value="{{$ads->bid_status}}">
-
-                        @error('bid_status')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>Sale Status:</h5>
-                        <input type="text" name="sale_status" value="{{$ads->sale_status}}">
-
-                        @error('sale_status')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>Current Bid:</h5>
-                        <input type="text" name="current_bid" value="{{$ads->current_bid}}">
-
-                        @error('current_bid')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>Year:</h5>
+                        <lable>Year:</lable>
                         <select name="year">
 
                             @foreach($time as $row)
-
-                                <option value="{{ $row }}" {{$ads->year == $row ? 'selected' : '' }}>{{ $row }}</option>
-
+                                <option value="{{$row}}" {{$ads->year == $row ? 'selected' : '' }}>{{ $row }}</option>
                             @endforeach
 
                         </select>
@@ -296,12 +155,10 @@
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Country:</h5>
+                        <lable>Country:</lable>
                         <select name="country_id">
-
                             @foreach(\App\Models\Country::all() as $country)
-                                <option
-                                    value="{{ $country->id }}" {{$ads->country_id == $country->id ? 'selected' : '' }}>{{ $country->title }}</option>
+                                <option value="{{$country->id}}" {{$ads->country->id == $country->id ? 'selected' : '' }}>{{ $country->title }}</option>
                             @endforeach
                         </select>
 
@@ -311,14 +168,11 @@
                     </div>
 
                     <div class="col-md-6">
-                        <h5>City Name:</h5>
+                        <lable>City Name:</lable>
                         <select type="text" name="city_id">
 
                             @foreach(\App\Models\City::all() as $city)
-
-
-                                <option
-                                    value="{{ $city->id }}" {{$ads->city_id == $city->id ? 'selected' : '' }}>{{ $city->title }}</option>
+                                <option value="{{$city->id}}" {{$ads->city->id == $city->id ? 'selected' : '' }}>{{ $city->title }}</option>
                             @endforeach
                         </select>
 
@@ -328,13 +182,12 @@
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Damage :</h5>
+                        <lable>Damage :</lable>
                         <select name="damage_id">
 
                             @foreach(\App\Models\DamageType::all() as $damage)
+                                <option value="{{$damage->id}}" {{$ads->damage->id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
 
-                                <option
-                                    value="{{ $damage->id }}" {{$ads->damage_id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
 
                             @endforeach
                         </select>
@@ -345,81 +198,92 @@
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Make:</h5>
-                        <select id="makerChange" name="maker_id">
-
-                            @foreach(\App\Models\Maker::all() as $maker)
-
-                                <option
-                                    value="{{ $maker->id }}" {{$ads->maker_id == $maker->id ? 'selected' : '' }}>{{ $maker->title }}</option>
-
-                            @endforeach
-                        </select>
-
-                        @error('maker_id')
+                        <lable>Odometer</lable>
+                        <input type="number" name="odometer" value="{{$ads->odometer}}">
+                        @error('odometer')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Model:</h5>
-                        <select id="model_set" name="model_id">
+                        <lable>Primary Damage</lable>
+                        <select name="primary_damage_id">
 
-                            @foreach(\App\Models\ModelCar::all() as $model)
-
-                                <option
-                                    value="{{ $model->id }}" {{$ads->model_id == $model->id ? 'selected' : '' }}>{{ $model->title }}</option>
-
+                            @foreach(\App\Models\PrimaryDamage::all() as $damage)
+                                <option value="{{$damage->id}}" {{$ads->damage->id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
                             @endforeach
-
-
                         </select>
 
-                        @error('model_id')
+                        @error('primary_damage')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Condition:</h5>
-                        <select name="condition_id">
+                        <lable>Body Style</lable>
+                        <input type="text" name="body_style" value="{{$ads->body_style}}">
 
-                            @foreach(\App\Models\Condition::all() as $cond)
-                                <option
-                                    value="{{ $cond->id }}" {{$ads->condition_id == $cond->id ? 'selected' : '' }}>{{ $cond->title }}</option>
-
-                            @endforeach
-
-
-                        </select>
-
-                        @error('condition_id')
+                        @error('body_style')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Category:</h5>
-                        <select name="category_id">
+                        <lable>Transmission</lable>
+                        <input type="text" name="transmission"  value="{{$ads->transmission}}">
 
-                            @foreach(\App\Models\Categories::all() as $category)
-
-
-                                <option
-                                    value="{{ $category->id }}" {{$ads->category_id == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
-
-                            @endforeach
-                        </select>
-
-                        @error('category_id')
+                        @error('transmission')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
 
+                    <div class="col-md-6">
+                        <lable>Fuel</lable>
+                        <input type="text" name="fuel"  value="{{$ads->fuel}}">
 
+                        @error('fuel')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
 
                     <div class="col-md-6">
-                        <h5>Base Price:</h5>
+                        <lable>Keys</lable>
+                        <input type="text" name="keys"  value="{{$ads->keys}}">
+
+                        @error('keys')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <lable>V5 Notes</lable>
+                        <input type="text" name="v_five_notes" value="{{$ads->v_five_notes}}">
+
+                        @error('v_five_notes')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <lable>Additional Info</lable>
+                        <input type="text" name="additional_info" value="{{$ads->additional_info}}">
+
+                        @error('additional_info')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <lable>Current Bid:</lable>
+                        <input type="text" name="current_bid" value="{{$ads->current_bid}}">
+
+                        @error('current_bid')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <lable>Base Price:</lable>
                         <input type="text" name="base_price" value="{{$ads->auction->base_price}}">
 
                         @error('base_price')
@@ -428,7 +292,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Rough Price:</h5>
+                        <lable>Rough Price:</lable>
                         <input type="text" name="rough_price" value="{{$ads->auction->rough_price}}">
 
                         @error('rough_price')
@@ -436,35 +300,13 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6">
-                        <h5>Buy Now:</h5>
-                        <input type="text" name="buy_now" value="{{$ads->auction->buy_now}}">
-
-                        @error('buy_now')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>Sale Date:</h5>
-                        <input type="date" name="sale_date" value="{{$ads->auction->sale_date}}">
-
-                        @error('sale_date')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
+                    <div class="col-md-12">
+                        <button type="submit" class="button preview"> Submit</button>
                     </div>
 
 
-                    <div class="col-md-6">
-                        <h5>Image</h5>
-                        <input type="file" name="image" value="{{asset($ads->image->image)}}">
-
-                        @error('image')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-                    <button type="submit" class="button preview"> Submit</button>
                 </form>
+
             </div>
         </div>
 

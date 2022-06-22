@@ -5,19 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Favorite extends Model
+class Packages extends Model
 {
     use HasFactory;
 
-    protected $table = 'favorite';
+    protected $table = 'packages';
     protected $fillable = [
-        'user_id',
-        'ads_id',
+        'title',
+        'period',
+        'description',
+        'price',
     ];
 
 
-public function ads(){
+}
 
-    return $this->hasOne(Ads::class , 'id','ads_id');
-}
-}
+
+
+
+
+
+
+
+
+
+/*
+
+*/

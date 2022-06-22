@@ -1,7 +1,7 @@
 @extends('user.layout.layout')
 
 @section('title')
-    Add Ads
+    Edit Auction
 @endsection
 
 
@@ -16,11 +16,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Add Car</h2>
+                    <h2>Edit Auctuion</h2>
                     <nav id="breadcrumbs">
                         <ul>
                             <li><a href="index_1.html">Home</a></li>
-                            <li>Add Car</li>
+                            <li>Edit Auctuion</li>
                         </ul>
                     </nav>
                 </div>
@@ -34,98 +34,16 @@
             <div class="col-lg-12">
                 <div id="utf_add_listing_part">
 
-                    <div class="add_utf_listing_sectio-top-45">
-                        <div>
-                            <h3> Sell Vehicles with Copart's patented auction platform</h3>
-                        </div>
-                        <div class="row with-forms">
-                            <p>Copart are global experts in vehicle remarketing, handling more than 400,000 vehicles per
-                                year through our online auctions in the UK alone.
-
-                                We provide a dedicated service to the motor industry across the UK, from franchised
-                                garages to independent traders.
-
-                                We sell vehicles on behalf of motor traders via our online vehicle auctions, giving them
-                                access to thousands of potential buyers every day. </p>
-                        </div>
-                    </div>
-
-                    <div class="add_utf_listing_sectio-top-45">
-                        <div>
-                            <h3>We specialise in selling:</h3>
-                        </div>
-                        <div class="row with-forms">
-                            <p>Used vehicles
-                                High mileage vehicles
-                                Classics
-                                Ageing stock
-                                Accident damaged vehicles
-                                Vehicles with mechanical issues / non-runners </p>
-                        </div>
-                    </div>
-
-                    <div class="add_utf_listing_sectio-top-45">
-                        <div>
-                            <h3>We specialise in selling:</h3>
-                        </div>
-                        <div>
-                            <p>Used vehicles
-                                High mileage vehicles
-                                Classics
-                                Ageing stock
-                                Accident damaged vehicles
-                                Vehicles with mechanical issues / non-runners
-                                We market your vehicle to the right audiences within our global buyer base to ensure a
-                                competitive auction, with 96% of vehicles viewed within 24 hours of being added to our
-                                website.
-
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="add_utf_listing_sectio-top-45">
-                        <div>
-                            <h3>Benefits of Selling at a Copart auction</h3>
-                        </div>
-                        <div>
-                            <p>Quick turnaround times
-                                Sell to global buyers in over 110 countries
-                                30+ years industry experience
-                                We average over 2,000 attendees per auction lane
-                                Over 2 million website visits each month
-                                Conveniently sell online through our daily online auctions
-                                415 acres of secure nationwide facilities to store your vehicles
-                                300+ transporters in our owned transport fleet able to collect any kind of vehicle
-                                within 2 days of assignment
-                                Our continual investment in our people and our technology is focused on providing the
-                                highest level of customer service to both you and your vehicles, so you can enjoy
-                                maximum returns.
-
-                                How do I start selling?
-                                Simply complete our online consignment form and enter your vehicle into an auction
-                                (terms and conditions apply).
-
-                                Once you have submitted your form, you will be assigned a dedicated Copart contact who
-                                will be able to support you with the process of selling your vehicle at auction.
-
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-fs-12">
-            <div class="col-lg-12">
-                <div id="utf_add_listing_part">
                     <div class="add_utf_listing_section margin-top-45">
                         <div class="utf_add_listing_part_headline_part">
                             <h3>Sell Your Car in a Copart Auction</h3>
                         </div>
+
+
                         <div class="row with-forms">
 
-                            <form id="addCarForm" action="{{route('user.add-ads-post')}}"
-                                  method="post" enctype="multipart/form-data">
+                            <form id="addCarForm" action="{{route('user.edit-auction-post',$ads->id)}}" method="post"
+                                  enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="col-md-6">
@@ -133,9 +51,9 @@
                                     <select id="car_type_id" name="car_type_id">
 
                                         @foreach(\App\Models\CarType::all() as $carType)
-                                            <option value="{{$carType->id}}">{{$carType->title}}</option>
-
+                                            <option value="{{$carType->id}}" {{$ads->car_type_id == $carType->id ? 'selected' : '' }}>{{ $carType->title }}</option>
                                         @endforeach
+
                                     </select>
 
                                     @error('car_type_id')
@@ -148,9 +66,10 @@
                                     <select id="makerChange" name="maker_id">
 
                                         @foreach(\App\Models\Maker::all() as $maker)
-                                            <option value="{{$maker->id}}">{{$maker->title}}</option>
-
+                                            <option
+                                                value="{{$maker->id}}" {{$ads->maker_id == $maker->id ? 'selected' : '' }}>{{ $maker->title }}</option>
                                         @endforeach
+
                                     </select>
 
                                     @error('maker_id')
@@ -162,8 +81,8 @@
                                     <lable>Model:</lable>
                                     <select id="model_set" name="model_id">
                                         @foreach(\App\Models\ModelCar::all() as $model)
-                                            <option value="{{$model->id}}">{{$model->title}}</option>
-
+                                            <option
+                                                value="{{$model->id}}" {{$ads->model_id == $model->id ? 'selected' : '' }}>{{ $model->title }}</option>
                                         @endforeach
                                     </select>
 
@@ -177,7 +96,7 @@
                                     <select name="colour_id">
 
                                         @foreach(\App\Models\Colour::all() as $color)
-                                            <option value="{{$color->id}}">{{{$color->title}}}</option>
+                                            <option value="{{$color->id}}" {{$ads->colour_id == $color->id ? 'selected' : '' }}>{{ $color->title }}</option>
                                         @endforeach
                                     </select>
 
@@ -191,8 +110,7 @@
                                     <select name="category_id">
 
                                         @foreach(\App\Models\Categories::all() as $category)
-
-                                            <option value="{{$category->id}}">{{$category->title}}</option>
+                                            <option value="{{$category->id}}" {{$ads->category_id == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
                                         @endforeach
                                     </select>
 
@@ -202,27 +120,31 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <lable>Condition:</lable>
-                                    <select name="condition_id">
 
+                                    <lable>Condition:</lable>
+
+                                    <select name="condition_id">
                                         <option value="{{1}}">All</option>
                                         <option value="{{2}}">Used</option>
                                         <option value="{{3}}">Salvage</option>
-
                                     </select>
 
                                     @error('condition_id')
                                     <small class="text-danger"> {{$message}}</small>
                                     @enderror
+
                                 </div>
 
                                 <div class="col-md-6">
+
                                     <lable>Engine type</lable>
-                                    <input type="text" name="engine_type" value="{{old('engine_type')}}">
+
+                                    <input type="text" name="engine_type" value="{{$ads->engine_type}}">
 
                                     @error('engine_type')
                                     <small class="text-danger"> {{$message}}</small>
                                     @enderror
+
                                 </div>
 
                                 <div class="col-md-6">
@@ -230,9 +152,7 @@
                                     <select name="year">
 
                                         @foreach($time as $row)
-
-                                            <option value="{{$row}}">{{$row}}</option>
-
+                                            <option value="{{$row}}" {{$ads->year == $row ? 'selected' : '' }}>{{ $row }}</option>
                                         @endforeach
 
                                     </select>
@@ -245,10 +165,8 @@
                                 <div class="col-md-6">
                                     <lable>Country:</lable>
                                     <select name="country_id">
-
                                         @foreach(\App\Models\Country::all() as $country)
-                                            <option value="{{$country->id}}">{{$country->title}}</option>
-
+                                            <option value="{{$country->id}}" {{$ads->country->id == $country->id ? 'selected' : '' }}>{{ $country->title }}</option>
                                         @endforeach
                                     </select>
 
@@ -262,9 +180,7 @@
                                     <select type="text" name="city_id">
 
                                         @foreach(\App\Models\City::all() as $city)
-
-                                            <option value="{{$city->id}}">{{$city->title}}</option>
-
+                                            <option value="{{$city->id}}" {{$ads->city->id == $city->id ? 'selected' : '' }}>{{ $city->title }}</option>
                                         @endforeach
                                     </select>
 
@@ -278,7 +194,9 @@
                                     <select name="damage_id">
 
                                         @foreach(\App\Models\DamageType::all() as $damage)
-                                            <option value="{{$damage->id}}">{{$damage->title}}</option>
+                                            <option value="{{$damage->id}}" {{$ads->damage->id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
+
+
                                         @endforeach
                                     </select>
 
@@ -289,7 +207,7 @@
 
                                 <div class="col-md-6">
                                     <lable>Odometer</lable>
-                                    <input type="number" name="odometer" value="{{old('odometer')}}">
+                                    <input type="number" name="odometer" value="{{$ads->odometer}}">
                                     @error('odometer')
                                     <small class="text-danger"> {{$message}}</small>
                                     @enderror
@@ -300,8 +218,7 @@
                                     <select name="primary_damage_id">
 
                                         @foreach(\App\Models\PrimaryDamage::all() as $damage)
-
-                                            <option value="{{$damage->id}}">{{$damage->title}}</option>
+                                            <option value="{{$damage->id}}" {{$ads->damage->id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
                                         @endforeach
                                     </select>
 
@@ -312,7 +229,7 @@
 
                                 <div class="col-md-6">
                                     <lable>Body Style</lable>
-                                    <input type="text" name="body_style" value="{{old('body_style')}}">
+                                    <input type="text" name="body_style" value="{{$ads->body_style}}">
 
                                     @error('body_style')
                                     <small class="text-danger"> {{$message}}</small>
@@ -321,7 +238,7 @@
 
                                 <div class="col-md-6">
                                     <lable>Transmission</lable>
-                                    <input type="text" name="transmission" value="{{old('transmission')}}">
+                                    <input type="text" name="transmission"  value="{{$ads->transmission}}">
 
                                     @error('transmission')
                                     <small class="text-danger"> {{$message}}</small>
@@ -330,7 +247,7 @@
 
                                 <div class="col-md-6">
                                     <lable>Fuel</lable>
-                                    <input type="text" name="fuel" value="{{old('fuel')}}">
+                                    <input type="text" name="fuel"  value="{{$ads->fuel}}">
 
                                     @error('fuel')
                                     <small class="text-danger"> {{$message}}</small>
@@ -339,7 +256,7 @@
 
                                 <div class="col-md-6">
                                     <lable>Keys</lable>
-                                    <input type="text" name="keys" value="{{old('keys')}}">
+                                    <input type="text" name="keys"  value="{{$ads->keys}}">
 
                                     @error('keys')
                                     <small class="text-danger"> {{$message}}</small>
@@ -348,7 +265,7 @@
 
                                 <div class="col-md-6">
                                     <lable>V5 Notes</lable>
-                                    <input type="text" name="v_five_notes" value="{{old('v_five_notes')}}">
+                                    <input type="text" name="v_five_notes" value="{{$ads->v_five_notes}}">
 
                                     @error('v_five_notes')
                                     <small class="text-danger"> {{$message}}</small>
@@ -357,7 +274,7 @@
 
                                 <div class="col-md-6">
                                     <lable>Additional Info</lable>
-                                    <input type="text" name="additional_info" value="{{old('additional_info')}}">
+                                    <input type="text" name="additional_info" value="{{$ads->additional_info}}">
 
                                     @error('additional_info')
                                     <small class="text-danger"> {{$message}}</small>
@@ -366,9 +283,27 @@
 
                                 <div class="col-md-6">
                                     <lable>Current Bid:</lable>
-                                    <input type="text" name="current_bid" value="{{old('current_bid')}}">
+                                    <input type="text" name="current_bid" value="{{$ads->current_bid}}">
 
                                     @error('current_bid')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
+                                    <lable>Base Price:</lable>
+                                    <input type="text" name="base_price" value="{{$ads->auction->base_price}}">
+
+                                    @error('base_price')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
+                                    <lable>Rough Price:</lable>
+                                    <input type="text" name="rough_price" value="{{$ads->auction->rough_price}}">
+
+                                    @error('rough_price')
                                     <small class="text-danger"> {{$message}}</small>
                                     @enderror
                                 </div>
@@ -377,11 +312,15 @@
                                     <button type="submit" class="button preview"> Submit</button>
                                 </div>
 
+
                             </form>
 
                         </div>
+
+
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -443,7 +382,12 @@
                 category: {
                     required: true,
                 },
-
+                base_price: {
+                    required: true,
+                },
+                rough_price: {
+                    required: true,
+                },
                 car_type_id: {
                     required: true,
                 },

@@ -178,6 +178,9 @@
                     </table>
 
                 </div>
+
+                <a href="{{route('user.add-favorite',$ads->id)}}" class="button red">Add to favorite</a>
+
             </div>
 
         </div>

@@ -48,7 +48,18 @@ class FavoriteController extends Controller
         return redirect()->route('web.find-car');
     }
 
+    public function deleteFavorite($itemId)
+    {
 
+
+
+
+        $fav = Favorite::find($itemId);
+
+        $fav->delete();
+
+        return redirect()->route('user.my-favorite');
+    }
 
     public function bidNow(Request $request, $adsId)
     {

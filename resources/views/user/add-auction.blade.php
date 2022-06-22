@@ -1,7 +1,7 @@
 @extends('user.layout.layout')
 
 @section('title')
-    Add Ads
+    Add Auction
 @endsection
 
 
@@ -38,6 +38,7 @@
                         <div>
                             <h3> Sell Vehicles with Copart's patented auction platform</h3>
                         </div>
+
                         <div class="row with-forms">
                             <p>Copart are global experts in vehicle remarketing, handling more than 400,000 vehicles per
                                 year through our online auctions in the UK alone.
@@ -49,11 +50,11 @@
                                 access to thousands of potential buyers every day. </p>
                         </div>
                     </div>
-
                     <div class="add_utf_listing_sectio-top-45">
                         <div>
                             <h3>We specialise in selling:</h3>
                         </div>
+
                         <div class="row with-forms">
                             <p>Used vehicles
                                 High mileage vehicles
@@ -63,11 +64,11 @@
                                 Vehicles with mechanical issues / non-runners </p>
                         </div>
                     </div>
-
                     <div class="add_utf_listing_sectio-top-45">
                         <div>
                             <h3>We specialise in selling:</h3>
                         </div>
+
                         <div>
                             <p>Used vehicles
                                 High mileage vehicles
@@ -82,11 +83,11 @@
                             </p>
                         </div>
                     </div>
-
                     <div class="add_utf_listing_sectio-top-45">
                         <div>
                             <h3>Benefits of Selling at a Copart auction</h3>
                         </div>
+
                         <div>
                             <p>Quick turnaround times
                                 Sell to global buyers in over 110 countries
@@ -111,6 +112,7 @@
                             </p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -118,14 +120,17 @@
         <div class="col-fs-12">
             <div class="col-lg-12">
                 <div id="utf_add_listing_part">
+
                     <div class="add_utf_listing_section margin-top-45">
                         <div class="utf_add_listing_part_headline_part">
                             <h3>Sell Your Car in a Copart Auction</h3>
                         </div>
+
+
                         <div class="row with-forms">
 
-                            <form id="addCarForm" action="{{route('user.add-ads-post')}}"
-                                  method="post" enctype="multipart/form-data">
+                            <form id="addCarForm" action="{{route('user.add-auction-post')}}" method="post"
+                                  enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="col-md-6">
@@ -134,8 +139,8 @@
 
                                         @foreach(\App\Models\CarType::all() as $carType)
                                             <option value="{{$carType->id}}">{{$carType->title}}</option>
-
                                         @endforeach
+
                                     </select>
 
                                     @error('car_type_id')
@@ -149,8 +154,8 @@
 
                                         @foreach(\App\Models\Maker::all() as $maker)
                                             <option value="{{$maker->id}}">{{$maker->title}}</option>
-
                                         @endforeach
+
                                     </select>
 
                                     @error('maker_id')
@@ -373,15 +378,37 @@
                                     @enderror
                                 </div>
 
+                                <div class="col-md-6">
+                                    <lable>Base Price:</lable>
+                                    <input type="text" name="base_price" value="{{old('base_price')}}">
+
+                                    @error('base_price')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
+                                    <lable>Rough Price:</lable>
+                                    <input type="text" name="rough_price" value="{{old('rough_price')}}">
+
+                                    @error('rough_price')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
                                 <div class="col-md-12">
                                     <button type="submit" class="button preview"> Submit</button>
                                 </div>
 
+
                             </form>
 
                         </div>
+
+
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -443,7 +470,12 @@
                 category: {
                     required: true,
                 },
-
+                base_price: {
+                    required: true,
+                },
+                rough_price: {
+                    required: true,
+                },
                 car_type_id: {
                     required: true,
                 },

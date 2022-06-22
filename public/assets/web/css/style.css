@@ -79,3 +79,28 @@ textarea:-ms-input-placeholder {color:#828282;}
     color: #F00;
     background-color: #FFF;
 }
+
+.table-action-icon{
+    font-size: 20px;
+
+}
+.icon-favorite {
+    color: #F00;
+}
+
+.icon-legal {
+    color: #4b2d01;
+}
+
+.hyperlink-style{
+    color: blue;
+    font-weight: bold;
+}
+
+.image-style{
+    width: 200px;
+    height: 150px;
+}
+
+
+

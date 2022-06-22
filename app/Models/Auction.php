@@ -9,12 +9,13 @@ class Auction extends Model
 {
     use HasFactory;
 
-    protected $table = 'ads';
+    protected $table = 'auction';
     protected $fillable = [
+        'base_price',
+        'rough_price',
+        'buy_now',
+        'sale_date',
         'ads_id',
-        'bid_status',
-        'sale_status',
-        'current_bid',
     ];
 
 

@@ -15,6 +15,7 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="{{asset('assets/web/css/stylesheet.css')}}">
     <link rel="stylesheet" href="{{asset('assets/web/css/mmenu.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
     <link rel="stylesheet" href="{{asset('assets/web/css/style.css')}}">
 
 
@@ -179,6 +180,44 @@
 <script src="{{asset('assets/web/scripts/extensions/revolution.extension.parallax.min.js')}}"></script>
 <script src="{{asset('assets/web/scripts/extensions/revolution.extension.slideanims.min.js')}}"></script>
 <script src="{{asset('assets/web/scripts/extensions/revolution.extension.video.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+
+@if(session('message'))
+    <div class="card-header justify-content-center">
+        <p style="background-color: #fd8e8e" class="text-white text-center ">{{session('message')}}</p>
+    </div>
+@endif
+
+
+@if(Session::has('Error'))
+
+    <script>
+        $.toast({
+            heading: 'Error',
+            text: '{{ Session::get('Error') }}',
+            icon: 'error',
+            position: 'bottom-right',
+            loader: true,        // Change it to false to disable loader
+            loaderBg: '#9EC600'  // To change the background
+        })
+    </script>
+
+@endif
+
+@if(Session::has('Success'))
+
+    <script>
+        $.toast({
+            heading: 'Success',
+            text: '{{ Session::get('Success') }}',
+            icon: 'info',
+            position: 'bottom-right',
+            loader: true,        // Change it to false to disable loader
+            loaderBg: '#9EC600'  // To change the background
+        })
+    </script>
+
+@endif
 
 
 </body>

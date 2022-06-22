@@ -52,12 +52,12 @@
         <div class="utf_dashboard_content">
 
             @yield('main')
+
         </div>
 
 
     </div>
-
-    {{--    @include('components.admin.footer')--}}
+    @include('components.admin.footer')
 
 
 </div>

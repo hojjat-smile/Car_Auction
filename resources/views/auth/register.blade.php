@@ -13,14 +13,29 @@
 
 @section('main')
     <div class="container">
-        <div class="tab_content">
+        <div class="login_holder">
+            <h1>
+                Register
+            </h1>
+            <div class="tab_content">
             <form action="{{route('register')}}" id="addUser" method="post" class="register"
                   enctype="multipart/form-data">
                 @csrf
 
                 <p class="utf_row_form utf_form_wide_block">
+                    <label for="image">
+                        <input type="file" class="input-text" name="image" id="image" value="{{old('image')}}"
+                               placeholder="image"/>
+
+                        @error('first_name')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+
+                    </label>
+                </p>
+                <p class="utf_row_form utf_form_wide_block">
                     <label for="first_name">
-                        <input type="text" class="input-text" name="first_name" id="first_name" value=""
+                        <input type="text" class="input-text" name="firstname" id="first_name" value="{{old('first_name')}}"
                                placeholder="First Name"/>
 
                         @error('first_name')
@@ -32,7 +47,7 @@
 
                 <p class="utf_row_form utf_form_wide_block">
                     <label for="last_name">
-                        <input type="text" class="input-text" name="last_name" id="last_name" value=""
+                        <input type="text" class="input-text" name="lastname" id="last_name" value="{{old('last_name')}}"
                                placeholder="Last Name"/>
 
                         @error('last_name')
@@ -44,7 +59,7 @@
 
                 <p class="utf_row_form utf_form_wide_block">
                     <label for="mobile">
-                        <input type="number" class="input-text" name="mobile" id="mobile" value=""
+                        <input type="number" class="input-text" name="mobile" id="mobile" value="{{old('mobile')}}"
                                placeholder="Mobile"/>
 
                         @error('mobile')
@@ -56,7 +71,7 @@
 
                 <p class="utf_row_form utf_form_wide_block">
                     <label for="company_name">
-                        <input type="text" class="input-text" name="company_name" id="company_name" value=""
+                        <input type="text" class="input-text" name="company_name" id="company_name" value="{{old('company_name')}}"
                                placeholder="Company Name (optional)"/>
 
                         @error('company_name')
@@ -68,7 +83,7 @@
 
                 <p class="utf_row_form utf_form_wide_block">
                     <label for="username">
-                        <input type="text" class="input-text" name="username" id="username" value=""
+                        <input type="text" class="input-text" name="username" id="username" value="{{old('username')}}"
                                placeholder="Username"/>
 
                         @error('username')
@@ -80,8 +95,8 @@
 
 
                 <p class="utf_row_form utf_form_wide_block">
-                    <label for="username">
-                        <select class="input-text" name="country_id" id="username" value="">
+                    <label for="country">
+                        <select class="input-text" name="country_id" id="country" >
                             @foreach(\App\Models\Country::all() as $country)
                                 <option value="{{$country->id}}">{{$country->title}}</option>
                             @endforeach
@@ -112,7 +127,7 @@
 
                 <p class="utf_row_form utf_form_wide_block">
                     <label for="email2">
-                        <input type="email" class="input-text" name="email" id="email2" value=""
+                        <input type="email" class="input-text" name="email" id="email2"
                                placeholder="Email"/>
 
                         @error('email')
@@ -124,7 +139,7 @@
 
                 <p class="utf_row_form utf_form_wide_block">
                     <label for="password1">
-                        <input class="input-text" type="password" name="password" id="password1"
+                        <input class="input-text" type="text" name="password" id="password1"
                                placeholder="Password"/>
 
                         @error('password')
@@ -135,11 +150,11 @@
                 </p>
 
                 <p class="utf_row_form utf_form_wide_block">
-                    <label for="password_confirm">
-                        <input class="input-text" type="password" name="password_confirm" id="password_confirm"
+                    <label for="password_confirmation">
+                        <input class="input-text" type="text" name="password_confirmation" id="password_confirmation"
                                placeholder="Confirm Password"/>
 
-                        @error('password_confirm')
+                        @error('confirmed')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
 
@@ -148,6 +163,7 @@
                 <input type="submit" class="button border fw margin-top-10" name="register"
                        value="Register"/>
             </form>
+        </div>
         </div>
     </div>
 

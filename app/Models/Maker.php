@@ -14,9 +14,16 @@ class Maker extends Model
         'title',
     ];
 
-    public function  model(){
+    public function model()
+    {
 
-        return $this->hasMany(ModelCar::class,'make_id','id');
+        return $this->hasMany(ModelCar::class, 'make_id', 'id');
+    }
+
+    public function ads()
+    {
+
+        return $this->hasMany(Ads::class, 'maker_id', 'id');
     }
 
 }

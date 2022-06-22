@@ -125,10 +125,24 @@
 
                         <div class="row with-forms">
 
-                            <form id="addCarForm" action="{{route('user.add-ads-post',$userId->id)}}" method="post"
+                            <form id="addCarForm" action="{{route('user.add-ads-post')}}" method="post"
                                   enctype="multipart/form-data">
                                 @csrf
 
+                                <div class="col-md-6">
+                                    <h5>Car Type:</h5>
+                                    <select id="car_type_id" name="car_type_id">
+
+                                        @foreach(\App\Models\CarType::all() as $carType)
+                                            <option value="{{$carType->id}}">{{$carType->title}}</option>
+
+                                        @endforeach
+                                    </select>
+
+                                    @error('car_type_id')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
 
                                 <div class="col-md-6">
                                     <h5>Make:</h5>
@@ -278,13 +292,6 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6">
-                                    <h5>Highlights</h5>
-                                    <input type="text" name="highlights" value="{{old('highlights')}}">
-                                    @error('highlights')
-                                    <small class="text-danger"> {{$message}}</small>
-                                    @enderror
-                                </div>
 
                                 <div class="col-md-6">
                                     <h5>Primary Damage</h5>
@@ -329,14 +336,6 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6">
-                                    <h5>Est Retail Value</h5>
-                                    <input type="text" name="est_retail_value" value="{{old('est_retail_value')}}">
-
-                                    @error('est_retail_value')
-                                    <small class="text-danger"> {{$message}}</small>
-                                    @enderror
-                                </div>
 
                                 <div class="col-md-6">
                                     <h5>VIN</h5>
@@ -484,6 +483,50 @@
                                     @enderror
                                 </div>
 
+
+
+
+
+
+
+                                <div class="col-md-6">
+                                    <h5>Base Price:</h5>
+                                    <input type="text" name="base_price" value="{{old('base_price')}}">
+
+                                    @error('base_price')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
+                                    <h5>Rough Price:</h5>
+                                    <input type="text" name="rough_price" value="{{old('rough_price')}}">
+
+                                    @error('rough_price')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
+                                    <h5>Buy Now:</h5>
+                                    <input type="text" name="buy_now" value="{{old('buy_now')}}">
+
+                                    @error('buy_now')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
+                                    <h5>Sale Date:</h5>
+                                    <input type="date" name="sale_date" value="{{old('sale_date')}}">
+
+                                    @error('sale_date')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+
+
                                 <div class="col-md-6">
                                     <h5>Image</h5>
                                     <input type="file" name="image" value="{{old('image')}}">
@@ -492,6 +535,7 @@
                                     <small class="text-danger"> {{$message}}</small>
                                     @enderror
                                 </div>
+
 
                                 <button type="submit" class="button preview"> Submit</button>
                             </form>
@@ -577,9 +621,7 @@
                         required: true,
                     },
 
-                    highlights: {
-                        required: true,
-                    },
+
 
                     primary_damage: {
                         required: true,
@@ -593,9 +635,6 @@
                         required: true,
                     },
 
-                    est_retail_value: {
-                        required: true,
-                    },
 
                     vin: {
                         required: true,

@@ -41,10 +41,14 @@
         <div class="col-lg-2 col-md-6">
             <div class="utf_dashboard_stat color-1">
                 <div class="utf_dashboard_stat_content">
-                    <h4>{{\App\Models\Ads::all()->count()}}</h4>
-                    <span>Number of Ads</span>
+
+
+                    <h4>{{$ads->count()}}</h4>
+
+
+                    <span>Ads All</span>
                 </div>
-                <div class="utf_dashboard_stat_icon"><i class="im im-icon-Map2"></i></div>
+                <div class="utf_dashboard_stat_icon"><i class="im im-icon-Add-Bag"></i></div>
             </div>
         </div>
 
@@ -52,7 +56,7 @@
             <div class="utf_dashboard_stat color-2">
                 <div class="utf_dashboard_stat_content">
                     <h4>{{$auction->count()}}</h4>
-                    <span>Number of Auctions Sell</span>
+                    <span>Auctions Sell</span>
                 </div>
                 <div class="utf_dashboard_stat_icon"><i class="im im-icon-Add-UserStar"></i></div>
             </div>
@@ -62,7 +66,7 @@
             <div class="utf_dashboard_stat color-3">
                 <div class="utf_dashboard_stat_content">
                     <h4>{{$normal->count()}}</h4>
-                    <span>Number of Normal Sell</span>
+                    <span>Normal Sell</span>
                 </div>
                 <div class="utf_dashboard_stat_icon"><i class="im im-icon-Align-JustifyRight"></i></div>
             </div>
@@ -73,11 +77,12 @@
 
         <div class="col-lg-12 col-md-12 mb-4">
             <div class="utf_dashboard_list_box table-responsive recent_booking">
-                <h4>Recent Booking</h4>
+                <h4>Recent ads</h4>
                 <div class="dashboard-list-box table-responsive invoices with-icons">
                     <table class="table table-hover">
                         <thead>
                         <tr>
+
                             <th>Image</th>
                             <th>Marker</th>
                             <th>Model</th>
@@ -86,15 +91,20 @@
                             <th>City</th>
                             <th>Username</th>
                             <th>Email</th>
-                            <th>Mileage</th>
                             <th>Action</th>
+
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($ads as $ad)
+
+                            @if($ad != null)
+
                             <tr>
 
-                                <td><img width="70px" height="70px" src="{{asset($ad->image->image)}}" alt=""></td>
+                                @if($ad->image != null)
+                                    <td><img width="70px" height="70px" src="{{asset($ad->image->image)}}" alt=""></td>
+                                @endif
 
                                 <td>{{$ad->maker->title}}</td>
                                 <td>{{$ad->model->title}}</td>
@@ -103,21 +113,17 @@
                                 <td>{{$ad->city->title}}</td>
                                 <td>{{$ad->user->username}}</td>
                                 <td>{{$ad->user->email}}</td>
-                                <td>{{$ad->mileage}}</td>
-
-
 
                                 <td>
-                                    <a href="{{route('admin.edit-ads',$ad->id)}}" class="button ">Edit</a>
-                                    <a href="{{route('admin.delete-ads',$ad->id)}}" class="button ">Delete</a>
-                                    <a href="{{route('admin.view-ads',$ad->id)}}" class="button  ">View</a>
-                                    <a href="{{route('admin.publish-ads',$ad->id)}}" class="button ">Publish</a>
-                                    <a href="{{route('admin.add-ads')}}" class="button ">Add</a>
+                                    <a href="{{route('user.edit-ads',$ad->id)}}" class="button yellow ">Edit</a>
+                                    <a href="{{route('user.delete-ads',$ad->id)}}" class="button ">Delete</a>
+
+
                                 </td>
 
-
-
                             </tr>
+                            @endif
+
                         @endforeach
                         </tbody>
                     </table>

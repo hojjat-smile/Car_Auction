@@ -19,9 +19,21 @@
                         @csrf
 
                         <div class="row">
+
+                            <div class="control-group col-4">
+                                <label for="image">User Name</label>
+
+                                <img width="200px" height="200px" src="{{asset($user->image)}}" alt="">
+                                <input type="file" id="image" class="form-control" name="image"
+
+                                @error('image')
+                                <small class="text-danger"> {{$message}}</small>
+                                @enderror
+
+                            </div>
                             <div class="control-group col-12">
-                                <label for="username">User Name</label>
-                                <input type="text" id="username" class="form-control" name="username"
+                                <label for="username1">User Name</label>
+                                <input type="text" id="username1" class="form-control" name="username"
                                        placeholder="Enter first name" value="{{$user->username}}">
 
                                 @error('username')
@@ -29,6 +41,7 @@
                                 @enderror
 
                             </div>
+
                             <div class="control-group col-12">
                                 <label for="firstname">Firstname</label>
                                 <input type="text" id="firstname" class="form-control" name="firstname"
@@ -125,55 +138,41 @@
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/jquery.validate.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/additional-methods.min.js')}}"></script>
 
-{{--    <script>--}}
+    <script>
 
-{{--        $("#editUser").validate({--}}
+        $("#editUser").validate({
 
-{{--            errorClass: "error-message",--}}
+            errorClass: "error-message",
 
-{{--            rules: {--}}
-{{--                firstname: {--}}
-{{--                    required: true,--}}
-{{--                },--}}
+            rules: {
+                firstname: {
+                    required: true,
+                },
 
-{{--                lastname: {--}}
-{{--                    required: true,--}}
-{{--                },--}}
+                lastname: {
+                    required: true,
+                },
 
-{{--                mobile: {--}}
-{{--                    required: true,--}}
-{{--                },--}}
-
-
-{{--                username: {--}}
-{{--                    required: true,--}}
-{{--                    remote: {--}}
-{{--                        url: "user_availability.php",--}}
-{{--                        type: "post",--}}
-{{--                        data:--}}
-{{--                            {--}}
-{{--                                register: function () {--}}
-{{--                                    return $('#editUser :input[name="username"]').val();--}}
-{{--                                }--}}
-{{--                            }--}}
-{{--                    }--}}
-{{--                },--}}
+                mobile: {
+                    required: true,
+                },
 
 
-{{--                email: {--}}
-{{--                    required: true,--}}
-{{--                },--}}
+                username: {
+                    required: true,
+
+                },
+
+
+                email: {
+                    required: true,
+                },
 
 
 
-{{--            },--}}
-{{--            messages: {--}}
-{{--                username: {--}}
-{{--                    required: "Please enter your login.",--}}
-{{--                    remote: jQuery.validator.format("{0} is already taken.")--}}
-{{--                }--}}
-{{--            }--}}
-{{--        });--}}
-{{--    </script>--}}
+            },
+           
+        });
+    </script>
 
 @endsection

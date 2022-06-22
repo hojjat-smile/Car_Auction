@@ -3,9 +3,17 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutUs;
 use App\Models\Ads;
+use App\Models\ContactUs;
+use App\Models\InfoAboutUs;
+use App\Models\Maker;
+use App\Models\Rules;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class IndexController extends Controller
 {
@@ -14,121 +22,117 @@ class IndexController extends Controller
     public function index()
     {
 
+        $ads = Ads::orderBy('view', 'desc')->get();
 
-        return view('web.index');
+
+        return view('web.index', compact('ads'));
+    }
+
+
+    public function search(Request $request)
+    {
+
+
+
+//        $maker = Maker::where('title', 'LIKE', '%' . $request->search . '%')->get();
+
+
+        $search = $request->search;
+
+
+
+        $maker = Ads::whereHas(
+            'makers', function (Builder $query ,$search) {
+            $query->where('title', 'LIKE', '%' . $search . '%');
+        }
+
+        )->orWhereHas(
+            'models', function (Builder $query ,$search) {
+            $query->where('title', 'LIKE', '%' . $search . '%');
+
+        })->get();
+
+
+        return view('web.find-car', compact( 'maker'));
     }
 
 
     public function singlePage($adsId)
     {
 
-        $ad = Ads::find($adsId);
+        $ads = Ads::find($adsId);
+        $ads->update([
+            'view' => $ads->view + 1,
+        ]);
 
-        $user = User::find($ad->user_id);
+        $user = User::find($ads->user_id);
+        $userAds = User::find(Auth::user()->id);
 
-        return view('web.single-page',compact('ad','user'));
+        return view('web.single-page', compact('ads', 'user', 'userAds'));
     }
-
 
 
     public function aboutUs()
     {
 
 
-        return view('web.about-us');
+        $about = AboutUs::find(1);
+
+        return view('web.about-us', compact('about'));
     }
 
-    public function contact()
+    public function contactSendMessage(Request $request)
+    {
+
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+
+        ContactUs::create([
+            'first_name' => $request['first_name'],
+            'last_name' => $request['last_name'],
+            'email' => $request['email'],
+            'subject' => $request['subject'],
+            'message' => $request['message'],
+        ]);
+
+
+        return redirect()->route('web.contact');
+    }
+
+    public function contact(Request $request)
     {
 
 
-        return view('web.contact');
+        $info = InfoAboutUs::find(1);
+
+        return view('web.contact', compact('info'));
     }
 
-    public function roles()
+    public function rules()
     {
 
+        $rules = Rules::find(1);
 
-        return view('web.roles');
+
+        return view('web.rules', compact('rules'));
     }
 
 
-    public function registerPage()
-    {
-
-
-        return view('web.register');
-    }
-
-    public function register(Request $request)
-    {
-
-
-//        $request->validate([
-//            'first_name' => 'required',
-//            'last_name' => 'required',
-//            'mobile' => 'required',
-//            'username' => 'required|unique:users',
-//            'email' => 'required',
-//            'password' => 'required',
-//            'password_confirm' => 'required',
-//
-//        ]);
-
-        $pass = bcrypt($request['password']);
-
-        if ($request->has('company_name')) {
-            User::Create([
-                'firstname' => $request['first_name'],
-                'lastname' => $request['last_name'],
-                'mobile' => $request['mobile'],
-                'companyname' => $request['company_name'],
-                'username' => $request['username'],
-                'email' => $request['email'],
-                'country_id' => $request['country_id'],
-                'state_id' => $request['state_id'],
-                'city_id' => $request['city_id'],
-                'password' => $pass,
-                'usertype' => 'seller',
-
-            ]);
-
-        } elseif (!$request->has('company_name')) {
-            User::Create([
-                'firstname' => $request['first_name'],
-                'lastname' => $request['last_name'],
-                'mobile' => $request['mobile'],
-                'companyname' => $request['company_name'],
-                'username' => $request['username'],
-                'email' => $request['email'],
-                'password' => $pass,
-                'usertype' => 'member',
-            ]);
-        }
-
-
-        return redirect()->route('web.index');
-    }
-
-
-    public function loginPage()
-    {
-
-        return view('web.login');
-    }
-
-    public function login(Request $request)
-    {
-
-        return redirect()->route('web.login');
-    }
     public function vehicle_search()
     {
         return view('web.vehicle_search');
 
 
     }
-    public function workings(){
+
+    public function workings()
+    {
 
 
         return view('web.how-works');
@@ -138,9 +142,42 @@ class IndexController extends Controller
     public function findCar()
     {
 
+        $time = [];
+        $date = Carbon::now();
+        $i = 10;
+        while ($i >= 0) {
+            $num = (int)($date->format('Y')) - $i;
+            array_push($time, $num);
+            $i--;
+        }
+
+        $maker = null;
+
+        return view('web.find-car', compact('time','maker'));
+
+    }
 
 
-        return view('web.find-car');
+    public function searchCar(Request $request)
+    {
+
+
+        $search = Ads::where(['year' => $request['year'],
+            'maker_id' => $request['maker_id'],
+            'model_id' => $request['model_id'],
+            'category_id' => $request['category_id']])->get();
+
+
+        $time = [];
+        $date = Carbon::now();
+        $i = 10;
+        while ($i >= 0) {
+            $num = (int)($date->format('Y')) - $i;
+            array_push($time, $num);
+            $i--;
+        }
+
+        return view('web.vehicle_search', compact('time', 'search'));
 
 
     }

@@ -22,6 +22,7 @@ class User extends Authenticatable
         'firstname',
         'lastname',
         'mobile',
+        'image',
         'username',
         'email',
         'companyname',
@@ -59,4 +60,6 @@ class User extends Authenticatable
 
         return $this->hasOne(City::class,'id','city_id');
     }
+
+
 }

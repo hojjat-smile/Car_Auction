@@ -27,19 +27,34 @@
 
     <div class="container margin-bottom-75 ">
 
-
         <div class="add_utf_listing_section margin-top-45">
             <div class="utf_add_listing_part_headline_part">
                 <h3>Sell Your Car in a Copart Auction</h3>
             </div>
 
-            {{--            @dump($errors)--}}
 
             <div class="row with-forms">
                 <form id="addCarForm" action="{{route('user.ads-update',$ads->id)}}" method="post"
                       enctype="multipart/form-data">
                     @csrf
 
+
+                    <div class="col-md-6">
+                        <h5>Car Type:</h5>
+
+                        <select name="car_type_id" id="car_type_id">
+                        @foreach(\App\Models\CarType::all() as $carType)
+
+                            <option
+                                value="{{$carType->id}}" {{$ads->car_type_id == $carType->id ? 'selected' : '' }}>{{ $carType->title }}</option>
+
+
+                        @endforeach
+                        </select>
+                        @error('car_type_id')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
 
                     <div class="col-md-6">
                         <h5>Odometer</h5>
@@ -56,13 +71,8 @@
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
-                    <div class="col-md-6">
-                        <h5>Highlights</h5>
-                        <input type="text" name="highlights" value="{{$ads->highlights}}">
-                        @error('highlights')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
+
+
 
                     <div class="col-md-6">
                         <h5>Primary Damage</h5>
@@ -101,7 +111,7 @@
 
                     <div class="col-md-6">
                         <h5>Additional Damage</h5>
-                        <select type="text" name="additional_damage_id">
+                        <select  name="additional_damage_id">
 
                             @foreach(\App\Models\AdditionalDamage::all() as $damage)
 
@@ -118,15 +128,6 @@
                     </div>
 
                     <div class="col-md-6">
-                        <h5>Est Retail Value</h5>
-                        <input type="text" name="est_retail_value" value="{{$ads->est_retail_value}}">
-
-                        @error('est_retail_value')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
                         <h5>VIN</h5>
                         <input type="text" name="vin" value="{{$ads->vin}}">
 
@@ -134,7 +135,6 @@
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
-
 
                     <div class="col-md-6">
                         <h5>Body Style</h5>
@@ -163,6 +163,7 @@
                             @error('colour_id')
                             <small class="text-danger"> {{$message}}</small>
                             @enderror
+
                         </div>
                     </div>
 
@@ -188,7 +189,6 @@
                         </div>
                     </div>
 
-
                     <div class="col-md-6">
                         <h5>Transmission</h5>
                         <input type="text" name="transmission" value="{{$ads->transmission}}">
@@ -207,7 +207,6 @@
                         @enderror
                     </div>
 
-
                     <div class="col-md-6">
                         <h5>Fuel</h5>
                         <input type="text" name="fuel" value="{{$ads->fuel}}">
@@ -216,7 +215,6 @@
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
-
 
                     <div class="col-md-6">
                         <h5>Keys</h5>
@@ -227,7 +225,6 @@
                         @enderror
                     </div>
 
-
                     <div class="col-md-6">
                         <h5>V5 Notes</h5>
                         <input type="text" name="v_five_notes" value="{{$ads->v_five_notes}}">
@@ -237,7 +234,6 @@
                         @enderror
                     </div>
 
-
                     <div class="col-md-6">
                         <h5>VAT</h5>
                         <input type="text" name="vat" value="{{$ads->vat}}">
@@ -246,7 +242,6 @@
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
-
 
                     <div class="col-md-6">
                         <h5>Additional Info</h5>
@@ -422,6 +417,44 @@
                     </div>
 
 
+
+                    <div class="col-md-6">
+                        <h5>Base Price:</h5>
+                        <input type="text" name="base_price" value="{{$ads->auction->base_price}}">
+
+                        @error('base_price')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>Rough Price:</h5>
+                        <input type="text" name="rough_price" value="{{$ads->auction->rough_price}}">
+
+                        @error('rough_price')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>Buy Now:</h5>
+                        <input type="text" name="buy_now" value="{{$ads->auction->buy_now}}">
+
+                        @error('buy_now')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>Sale Date:</h5>
+                        <input type="date" name="sale_date" value="{{$ads->auction->sale_date}}">
+
+                        @error('sale_date')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+
                     <div class="col-md-6">
                         <h5>Image</h5>
                         <input type="file" name="image" value="{{asset($ads->image->image)}}">
@@ -430,14 +463,10 @@
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
-
                     <button type="submit" class="button preview"> Submit</button>
                 </form>
             </div>
-
-
         </div>
-
 
     </div>
 
@@ -456,99 +485,124 @@
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/jquery.validate.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/additional-methods.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/messages_fa.min.js')}}"></script>
-
     <script>
 
-        // $("#addCarForm").validate({
-        //
-        //     errorClass: "error-message",
-        //
-        //     rules: {
-        //
-        //         category_id: {
-        //             required: true,
-        //         },
-        //
-        //         odometer: {
-        //             required: true,
-        //         },
-        //
-        //         vrn: {
-        //             required: true,
-        //         },
-        //
-        //         highlights: {
-        //             required: true,
-        //         },
-        //
-        //         primary_damage: {
-        //             required: true,
-        //         },
-        //
-        //         secondary_damage: {
-        //             required: true,
-        //         },
-        //
-        //         additional_damage: {
-        //             required: true,
-        //         },
-        //
-        //         est_retail_value: {
-        //             required: true,
-        //         },
-        //
-        //         vin: {
-        //             required: true,
-        //         },
-        //
-        //         body_style: {
-        //             required: true,
-        //         },
-        //
-        //         colour_id: {
-        //             required: true,
-        //         },
-        //
-        //         type: {
-        //             required: true,
-        //         },
-        //
-        //         engine_type: {
-        //             required: true,
-        //         },
-        //
-        //         transmission: {
-        //             required: true,
-        //         },
-        //
-        //         drive: {
-        //             required: true,
-        //         },
-        //
-        //         fuel: {
-        //             required: true,
-        //         },
-        //
-        //         keys: {
-        //             required: true,
-        //         },
-        //
-        //         v_five_notes: {
-        //             required: true,
-        //         },
-        //
-        //         additional_info: {
-        //             required: true,
-        //         },
-        //
-        //         vat: {
-        //             required: true,
-        //         },
-        //         // image: {
-        //         //     required: true,
-        //         // },
-        //
-        //     }
-        // });
+        $(document).ready(function () {
+            // for order to persons
+
+            $('#makerChange').on('change', function () {
+
+                var make_id = $(this).val();
+
+                var models = @json(\App\Models\ModelCar::all());
+
+                var modelsForSelect = [];
+
+                models.forEach(model => {
+
+                    if (model.make_id == make_id) {
+                        modelsForSelect.push(model);
+                    }
+                });
+
+                $("#model_set").find("option").remove();
+
+                modelsForSelect.forEach(model => {
+
+                    var option = $("<option />", {
+                        value: model.id,
+                        text: model.title,
+                    })
+
+                    $("#model_set").append(option);
+                });
+
+            });
+        });
+    </script>
+    <script>
+
+        $("#addCarForm").validate({
+
+            errorClass: "error-message",
+
+            rules: {
+
+                category_id: {
+                    required: true,
+                },
+
+                odometer: {
+                    required: true,
+                },
+
+                vrn: {
+                    required: true,
+                },
+
+
+                primary_damage: {
+                    required: true,
+                },
+
+                secondary_damage: {
+                    required: true,
+                },
+
+                additional_damage: {
+                    required: true,
+                },
+
+
+                vin: {
+                    required: true,
+                },
+
+                body_style: {
+                    required: true,
+                },
+
+                colour_id: {
+                    required: true,
+                },
+
+                type: {
+                    required: true,
+                },
+
+                engine_type: {
+                    required: true,
+                },
+
+                transmission: {
+                    required: true,
+                },
+
+                drive: {
+                    required: true,
+                },
+
+                fuel: {
+                    required: true,
+                },
+
+                keys: {
+                    required: true,
+                },
+
+                v_five_notes: {
+                    required: true,
+                },
+
+                additional_info: {
+                    required: true,
+                },
+
+                vat: {
+                    required: true,
+                },
+
+            }
+        });
     </script>
 @endsection

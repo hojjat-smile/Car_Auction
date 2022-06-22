@@ -9,59 +9,81 @@
 
 @section('main')
 
+
+
     <div class="utf_dashboard_list_box table-responsive recent_booking">
-        <h4>Member Info</h4>
+        <h4>Users Info</h4>
         <div class="dashboard-list-box table-responsive invoices with-icons">
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>#</th>
-
+                    <th>Image</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Mobile</th>
                     <th>Company Name</th>
-                    <th>Profile</th>
+                    <th>Activity</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    @foreach($persons as $person)
+                @foreach($users as $user)
+                    <tr>
 
-                        @if($person->deleted == 'alive')
-                            <td>{{$person->id}}</td>
+                        @if($user->usertype != 'admin')
 
-                            <td>{{ $person->firstname }}</td>
-                            <td> {{ $person->lastname }}</td>
-                            <td>{{$person->email}}</td>
-                            <td>{{$person->mobile}}</td>
-                            <td>{{$person->companyname}}</td>
+                            @if($user->deleted == 'alive')
+
+                                @if($user->image != null)
+
+                                    <td><img width="100" height="100" src="{{asset($user->image)}}" alt=""></td>
+                                @else
+                                    <td>not found image</td>
+                                @endif
 
 
+                                <td>{{ $user->firstname }}</td>
+                                <td> {{ $user->lastname }}</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->mobile}}</td>
+                                <td>{{$user->companyname}}</td>
 
+                                <td>
+                                    @if($user->activity == 'active')
+                                        <a href="{{route('admin.user-active',$user->id )}}" class="button green">
 
-                            <td><a href="{{route('admin.user-active',$person->id )}}" class="button ">
+                                            Deactivate</a>
 
-                                    @if($person->activity != 'active')
-                                        Deactivate
+                                    @elseif($user->activity == 'deactivate')
+                                        <a href="{{route('admin.user-active',$user->id )}}" class="button ">
 
-                                    @elseif($person->activity != 'deactivate')
-
-                                        Active
-                                    @endif</a>
+                                            Active</a>
+                                </td>
+                            @endif
                             <td>
-                                <a href="{{route('admin.user-deleted',$person->id )}}" class="button ">Delete</a>
+
+                                <form onsubmit="return confirm('Do you really want to Delete the user?');"
+                                      action="{{route('admin.user-deleted',$user->id )}}">
+
+                                    <button class="button submit">Delete</button>
+
+                                </form>
+
                             </td>
-                            <td><a href="{{route('admin.user-edit',$person->id )}}" class="button ">Edit</a>
+                            <td><a href="{{route('admin.user-edit',$user->id )}}" class="button yellow ">Edit</a>
                             </td>
                         @endif
-                </tr>
+                        @endif
+                    </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+
+
 
 
 @endsection

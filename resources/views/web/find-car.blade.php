@@ -7,231 +7,222 @@
 
 @section('main')
 
+    <div class="findCar">
+        <div class="container">
+            @if($maker !=null)
+                <div class="col-md-12">
+                    <div class="utf_dashboard_list_box table-responsive recent_booking">
+                        <h4>Recent Booking</h4>
+                        <div class="dashboard-list-box table-responsive invoices with-icons">
+                            <table class="table table-hover">
+
+                                <thead>
+                                <tr>
+
+                                    <th>Image</th>
+                                    <th>Lot Info</th>
+                                    <th>Vehicle Info</th>
+                                    <th>Condition</th>
+                                    <th>Sale Info</th>
+                                    <th>Action</th>
+
+                                </tr>
+                                </thead>
+
+                                @foreach($maker as $row)
+                                    @foreach($row->ads as $ads)
+
+
+                                        @if($ads->is_published == 1)
+
+                                            <tbody>
+                                            <tr>
+
+                                                <td>
+                                                    <img class="image-style"
+                                                         src="{{asset($ads->image->image)}}">
+                                                </td>
+
+                                                <td> {{$ads->maker->title}}
+                                                    {{$ads->model->title}} </td>
+
+
+                                                <td>
+                                                    <p>Odometer</p> {{substr($ads->odometer,0,15)." and......"}}
+
+                                                </td>
+
+
+                                                <td>{{substr($ads->damage->title,0,10)."......"}}</td>
+                                                <td>{{$ads->type_sell}}</td>
+                                                <td>
+                                                    <a href="{{route('user.add-favorite',$ads->id)}}"> <span
+                                                            class="table-action-icon icon-favorite icon-material-outline-favorite text-danger"></span></a>
+                                                    <a href="{{route('user.bid-now',$ads->id)}}"><span
+                                                            class="table-action-icon fa fa-legal icon-legal table-action-icon"></span></a>
+                                                </td>
+
+
+                                            </tr>
+
+                                            </tbody>
+                            @endif
 
 
 
-    <!-- Dashboard -->
-    <div>
+                            @endforeach
+                            @endforeach
 
-        <div>
+                            </table>
 
-            <div class="container">
-                <div class="row">
+                        </div>
+                    </div>
+                </div>
+            @endif
+            <div class="row">
+                @if($maker ==null)
 
-                    <!-- Sidebar -->
-                    <div class="col-lg-4 col-md-4 margin-top-75 sidebar-search">
-
-                        <div class="utf_box_widget booking_widget_box">
-                            <h3><i class="fa fa-calendar"></i> Booking
-                                <div class="price">
-                                    <span>185$<small>person</small></span>
-                                </div>
-                            </h3>
+                    <div class="col-lg-3 col-md-4 margin-top-75 sidebar-search">
+                        <div class="utf_box_widget booking_widget_box margin-bottom-50">
+                            <h3>Filter</h3>
                             <div class="row with-forms margin-top-0">
-                                <div class="col-lg-12 col-md-12 select_date_box">
-                                    <input type="text" id="date-picker" placeholder="Select Date" readonly="readonly">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="panel-dropdown time-slots-dropdown">
-                                        <a href="#">Choose Time Slot...</a>
-                                        <div class="panel-dropdown-content padding-reset">
-                                            <div class="panel-dropdown-scrollable">
-                                                <div class="time-slot">
-                                                    <input type="radio" name="time-slot" id="time-slot-1">
-                                                    <label for="time-slot-1">
-                                                        <strong><span>1</span> : 8:00 AM - 8:30 AM</strong>
-                                                    </label>
-                                                </div>
 
-                                                <div class="time-slot">
-                                                    <input type="radio" name="time-slot" id="time-slot-2">
-                                                    <label for="time-slot-2">
-                                                        <strong><span>2</span> : 8:30 AM - 9:00 AM</strong>
-                                                    </label>
-                                                </div>
+                                <form action="{{route('web.search-car')}}" method="post">
+                                    @csrf
 
-                                                <div class="time-slot">
-                                                    <input type="radio" name="time-slot" id="time-slot-3">
-                                                    <label for="time-slot-3">
-                                                        <strong><span>3</span> : 9:00 AM - 9:30 AM</strong>
-                                                    </label>
-                                                </div>
+                                    <div class="col-md-12 margin-bottom-15">
 
-                                                <div class="time-slot">
-                                                    <input type="radio" name="time-slot" id="time-slot-4">
-                                                    <label for="time-slot-4">
-                                                        <strong><span>4</span> : 9:30 AM - 10:00 AM</strong>
-                                                    </label>
-                                                </div>
+                                        <h5>Condition</h5>
 
-                                                <div class="time-slot">
-                                                    <input type="radio" name="time-slot" id="time-slot-5">
-                                                    <label for="time-slot-5">
-                                                        <strong><span>5</span> : 10:00 AM - 10:30 AM</strong>
-                                                    </label>
-                                                </div>
+                                        <ul style="display: flex;padding: 0">
+                                            <li>
+                                                <button type="button" name="all" class="button">All</button>
+                                            </li>
+                                            <li>
+                                                <button type="button" name="used" class="button">Used</button>
+                                            </li>
+                                            <li>
+                                                <button type="button" name="salvage" class="button">Salvage</button>
+                                            </li>
+                                        </ul>
 
-                                                <div class="time-slot">
-                                                    <input type="radio" name="time-slot" id="time-slot-6">
-                                                    <label for="time-slot-6">
-                                                        <strong><span>6</span> : 13:00 PM - 13:30 PM</strong>
-                                                    </label>
-                                                </div>
-
-                                                <div class="time-slot">
-                                                    <input type="radio" name="time-slot" id="time-slot-7">
-                                                    <label for="time-slot-7">
-                                                        <strong><span>7</span> : 13:30 PM - 14:00 PM</strong>
-                                                    </label>
-                                                </div>
-
-                                                <div class="time-slot">
-                                                    <input type="radio" name="time-slot" id="time-slot-8">
-                                                    <label for="time-slot-8">
-                                                        <strong><span>8</span> : 14:00 PM - 14:30 PM</strong>
-                                                    </label>
-                                                </div>
-
-                                                <div class="time-slot">
-                                                    <input type="radio" name="time-slot" id="time-slot-9">
-                                                    <label for="time-slot-9">
-                                                        <strong><span>9</span> : 15:00 PM - 15:30 PM</strong>
-                                                    </label>
-                                                </div>
-
-                                                <div class="time-slot">
-                                                    <input type="radio" name="time-slot" id="time-slot-10">
-                                                    <label for="time-slot-10">
-                                                        <strong><span>10</span> : 16:00 PM - 16:30 PM</strong>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="panel-dropdown">
-                                        <a href="#">Guests <span class="qtyTotal" name="qtyTotal">1</span></a>
-                                        <div class="panel-dropdown-content">
-                                            <div class="qtyButtons">
-                                                <div class="qtyTitle">Adults</div>
-                                                <input type="text" name="qtyInput" value="1">
-                                            </div>
-                                            <div class="qtyButtons">
-                                                <div class="qtyTitle">Childrens</div>
-                                                <input type="text" name="qtyInput" value="1">
-                                            </div>
-                                        </div>
+
+                                    <div class="com-md-12 margin-bottom-15">
+                                        <h5>Years</h5>
+
+                                        <label>From</label>
+                                        <select name="year">
+                                            @foreach($time as $row)
+
+                                                <option value="{{$row}}">{{$row}}</option>
+                                            @endforeach
+                                        </select>
+
+                                        <label>To</label>
+
+                                        <select name="year">
+                                            @foreach($time as $row)
+                                                <option value="{{$row}}">{{$row}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                </div>
 
-                                <div class="col-md-12">
-                                    <h5>Country:</h5>
-                                    <select name="country">
-
-                                        <option value="{{2013}}">2013</option>
-                                        <option value="{{2014}}">2014</option>
-                                        <option value="{{2015}}">2015</option>
-                                        <option value="{{2016}}">2016</option>
-                                        <option value="{{2017}}">2017</option>
-                                        <option value="{{2018}}">2018</option>
-                                        <option value="{{2019}}">2019</option>
-                                        <option value="{{2020}}">2020</option>
-                                        <option value="{{2021}}">2021</option>
-                                        <option value="{{2022}}">2022</option>
-                                    </select>
+                                    <div class="com-md-12 margin-bottom-15">
+                                        <h5>Country</h5>
 
 
-                                </div>
+                                        <select name="country">
 
-                                <div class="col-md-12">
-                                    <h5>Country:</h5>
-                                    <select name="country">
+                                            @foreach(\App\Models\Country::all() as $country)
+                                                <option value="{{$country->id}}">{{$country->title}}</option>
 
-                                        @foreach(\App\Models\Country::all() as $country)
-                                            <option value="{{$country->id}}">{{$country->title}}</option>
+                                            @endforeach
+                                        </select>
 
-                                        @endforeach
-                                    </select>
-                                </div>
+                                    </div>
 
-                                <div class="col-md-12">
-                                    <h5>City Name:</h5>
-                                    <select name="city_id">
+                                    <div class="com-md-12 margin-bottom-15">
 
-                                        @foreach(\App\Models\City::all() as $city)
+                                        <h5>City</h5>
 
-                                            <option value="{{$city->id}}">{{$city->title}}</option>
+                                        <select name="city_id">
 
-                                        @endforeach
-                                    </select>
+                                            @foreach(\App\Models\City::all() as $city)
 
+                                                <option value="{{$city->id}}">{{$city->title}}</option>
 
-                                </div>
+                                            @endforeach
+                                        </select>
 
-                                <div class="col-md-12">
-                                    <h5>Damage :</h5>
-                                    <select name="damage_id">
+                                    </div>
 
-                                        @foreach(\App\Models\DamageType::all() as $damage)
-                                            <option value="{{$damage->id}}">{{$damage->title}}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="com-md-12 margin-bottom-15">
 
+                                        <h5>Damage</h5>
 
-                                </div>
+                                        <select name="damage_id">
 
-                                <div class="col-md-12">
-                                    <h5>Make:</h5>
-                                    <select id="makerChange" name="maker_id">
+                                            @foreach(\App\Models\DamageType::all() as $damage)
+                                                <option value="{{$damage->id}}">{{$damage->title}}</option>
+                                            @endforeach
+                                        </select>
 
-                                        @foreach(\App\Models\Maker::all() as $maker)
-                                            <option value="{{$maker->id}}">{{$maker->title}}</option>
+                                    </div>
 
-                                        @endforeach
-                                    </select>
+                                    <div class="com-md-12 margin-bottom-15">
 
+                                        <h5>Make</h5>
 
-                                </div>
+                                        <select id="makerChange" name="maker_id">
 
-                                <div class="col-md-12">
-                                    <h5>Model:</h5>
-                                    <select id="model_set" name="country">
+                                            @foreach(\App\Models\Maker::all() as $maker)
+                                                <option value="{{$maker->id}}">{{$maker->title}}</option>
 
-                                        @foreach(\App\Models\ModelCar::all() as $model)
-                                            <option value="{{$model->id}}">{{$model->title}}</option>
+                                            @endforeach
+                                        </select>
 
-                                        @endforeach
+                                    </div>
 
+                                    <div class="com-md-12 margin-bottom-15">
 
-                                    </select>
+                                        <h5>Model</h5>
 
-                                </div>
+                                        <select id="model_set" name="model_id">
 
-                                <div class="col-md-12">
-                                    <h5>Categories:</h5>
-                                    <select name="country">
+                                            @foreach(\App\Models\ModelCar::all() as $model)
+                                                <option value="{{$model->id}}">{{$model->title}}</option>
 
-                                        @foreach(\App\Models\Categories::all() as $country)
-                                            <option value="{{$country->id}}">{{$country->title}}</option>
+                                            @endforeach
 
-                                        @endforeach
-                                    </select>
-                                </div>
+                                        </select>
 
+                                    </div>
+
+                                    <div class="com-md-12 margin-bottom-15">
+
+                                        <h5>Categories</h5>
+
+                                        <select name="category">
+
+                                            @foreach(\App\Models\Categories::all() as $category)
+                                                <option value="{{$category->id}}">{{$category->title}}</option>
+
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+
+                                    <button class="button submit"> Search </button>
+                                </form>
 
                             </div>
-                            <a href="listing_booking.html"
-                               class="utf_progress_button button fullwidth_block margin-top-5">Request
-                                Booking</a>
-                            <button class="like-button add_to_wishlist"><span class="like-icon"></span> Add to Wishlist
-                            </button>
-                            <div class="clearfix"></div>
+
+
                         </div>
                     </div>
 
-                    <div class="col-lg-8 col-md-8 mb-4">
+                    <div class="col-lg-9 col-md-8  margin-top-75">
                         <div class="utf_dashboard_list_box table-responsive recent_booking">
                             <h4>Recent Booking</h4>
                             <div class="dashboard-list-box table-responsive invoices with-icons">
@@ -244,63 +235,95 @@
                                         <th>Vehicle Info</th>
                                         <th>Condition</th>
                                         <th>Sale Info</th>
-                                        <th>Bids</th>
+                                        <th>Action</th>
 
                                     </tr>
                                     </thead>
                                     @foreach(\App\Models\Ads::all() as $ads)
-                                        <tbody>
-                                        <tr>
 
-                                            <td>
-                                                <img src="{{asset($ads->image->image)}}">
-                                            </td>
+                                        @if($ads->is_published == 1)
 
-                                            <td><p>Model Name:</p> {{$ads->maker->title}} {{$ads->model->title}} {{$ads->year}}</td>
+                                            <tbody>
+                                            <tr>
 
+                                                <td>
+                                                    <img src="{{asset($ads->image->image)}}" style="width: 100px;border-radius: 5px;" />
+                                                </td>
 
-                                            <td>
-                                                <li>
-                                                    <p>Odometer</p> : {{$ads->odometer}}
-                                                    <p>Estimated Retail Value:</p> {{$ads->est_retail_value}}
-                                                </li>
-                                            </td>
+                                                <td> {{$ads->maker->title}}
+                                                    {{$ads->model->title}} </td>
 
 
-                                            <td>{{$ads->category->title}} , {{$ads->condition->title}}
-                                                , {{$ads->damage->title}}</td>
-                                            <td>{{$ads->type_sell}}</td>
-                                            <td>{{$ads->type_sell}}</td>
+                                                <td>
+                                                    <p>Odometer</p> {{substr($ads->odometer,0,15)." and......"}}
 
-                                        </tr>
+                                                </td>
 
-                                        </tbody>
+
+                                                <td>{{substr($ads->damage->title,0,10)."......"}}</td>
+                                                <td>{{$ads->type_sell}}</td>
+                                                <td>
+                                                    <a href="{{route('user.add-favorite',$ads->id)}}"> <span
+                                                            class="table-action-icon icon-favorite icon-material-outline-favorite text-danger"></span></a>
+                                                    <a href="{{route('user.bid-now',$ads->id)}}"><span
+                                                            class="table-action-icon fa fa-legal icon-legal table-action-icon"></span></a>
+                                                </td>
+
+
+                                            </tr>
+
+                                            </tbody>
+                                        @endif
                                     @endforeach
                                 </table>
                             </div>
                         </div>
                     </div>
 
-
-                    <div class="col-md-12">
-                        <div class="footer_copyright_part">Copyright © 2019 All Rights Reserved.</div>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
-
     </div>
-
-
-
-
-
-
-
 
 @endsection
 
 
 @section('script')
 
+    <script src="{{asset('assets//web/scripts/jquery.min.js')}}"></script>
+    <script>
+
+        $(document).ready(function () {
+            // for order to persons
+
+            $('#makerChange').on('change', function () {
+
+                var make_id = $(this).val();
+
+                var models = @json(\App\Models\ModelCar::all());
+
+                var modelsForSelect = [];
+
+                models.forEach(model => {
+
+                    if (model.make_id == make_id) {
+                        modelsForSelect.push(model);
+                    }
+                });
+
+                $("#model_set").find("option").remove();
+
+                modelsForSelect.forEach(model => {
+
+                    var option = $("<option />", {
+                        value: model.id,
+                        text: model.title,
+                    })
+
+                    $("#model_set").append(option);
+                });
+
+            });
+        });
+    </script>
 @endsection

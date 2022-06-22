@@ -15,11 +15,9 @@ class Ads extends Model
         'user_id',
         'odometer',
         'vrn',
-        'highlights',
         'primary_damage_id',
         'secondary_damage_id',
         'additional_damage_id',
-        'est_retail_value',
         'vin',
         'body_style',
         'colour_id',
@@ -44,8 +42,8 @@ class Ads extends Model
         'category_id',
         'condition_id',
         'is_published',
-        'mileage',
-
+        'view',
+        'car_type_id',
     ];
 
 
@@ -106,6 +104,18 @@ class Ads extends Model
     }
 
 
+    public function makers()
+    {
+        return $this->hasMany(Maker::class, 'id', 'maker_id');
+    }
+
+
+    public function models()
+    {
+        return $this->hasMany(ModelCar::class, 'id', 'model_id');
+    }
+
+
     public function primaryDamage()
     {
         return $this->hasOne(PrimaryDamage::class, 'id', 'primary_damage_id');
@@ -121,6 +131,16 @@ class Ads extends Model
     public function secondaryDamage()
     {
         return $this->hasOne(SecondaryDamage::class, 'id', 'secondary_damage_id');
+    }
+
+    public function auction()
+    {
+        return $this->hasOne(Auction::class, 'ads_id', 'id');
+    }
+
+    public function carType()
+    {
+        return $this->hasOne(CarType::class, 'id', 'car_type_id');
     }
 
 

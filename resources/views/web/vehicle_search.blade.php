@@ -1,7 +1,5 @@
 @extends('web.layout.layout')
 
-
-
 @section('css')
 
 @endsection
@@ -9,239 +7,202 @@
 
 @section('main')
 
-<div class="container">
-     
-    <div class="blog-page">
-      <div class="row with forms">
-        <div class="col-lg-4 col-md-4">
-          <div class="sidebar right"> 
-            <div class="utf_box_widget">
-              <h3><i class="sl sl-icon-magnifier"></i> Search Filters</h3>
-              <div class="form-group">
-
-
-<div class = "container">
-
-<label>all<input type="radio" name="category[]" value="Laravel"> </label>
-
-<label>Used<input type="radio" name="category[]" value="JQuery"></label>
-
-
-<label> Salvage<input type="radio" name="category[]" value="Bootstrap"></label>
-</div>
 
 
 
+    <!-- Dashboard -->
+    <div>
+
+        <div>
+
+            <div class="container">
+                <div class="row">
 
 
+                    <!-- Sidebar -->
+                    <div class="col-lg-4 col-md-4 margin-top-75 sidebar-search">
+
+                        <div class="utf_box_widget booking_widget_box">
+                            <h3><i class="fa fa-calendar"></i> Booking
+                                <div class="price">
+                                    <span>185$<small>person</small></span>
+                                </div>
+                            </h3>
+                            <div class="row with-forms margin-top-0">
+
+                                <form action="{{route('web.search-car')}}" method="post">
+                                    @csrf
 
 
+                                    <div class="col-lg-12 col-md-12 select_date_box">
+                                        <input type="text" id="date-picker" placeholder="Select Date"
+                                               readonly="readonly">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
 
-</div> 
 
-              
+                                    <div class="col-md-12">
+                                        <h5>Year:</h5>
+                                        <select name="year">
+                                            @foreach($time as $row)
+
+                                                <option value="{{$row}}">{{$row}}</option>
+                                            @endforeach
+
+                                        </select>
 
 
-            
-              
-            
-              <div class="utf_search_blog_input">
+                                    </div>
 
-              
-  
-              
-   
-              
-                
-                
-                
-                 <div class="custom-select">
-                
-                 <select>
-                  <option value="0">Maker</option>
-                  <option value="1">Audi</option>
-                  <option value="2">BMW</option>
-                  <option value="3">Citroen</option>
-                  <option value="4">Ford</option>
-                  <option value="5">Honda</option>
-                  <option value="6">Jaguar</option>
-                  <option value="7">Land Rover</option>
-                  <option value="8">Mercedes</option>
-                  <option value="9">Mini</option>
-                  <option value="10">Nissan</option>
-                  <option value="11">Toyota</option>
-                  <option value="12">Volvo</option>
-                </select>
-                  </div>
-                  <div class="custom-select">
-                  
-                <select>
-                  <option value="0">Model </option>
-                  <option value="1">Audi</option>
-                  <option value="2">BMW</option>
-                  <option value="3">Citroen</option>
-                  <option value="4">Ford</option>
-                  <option value="5">Honda</option>
-                  <option value="6">Jaguar</option>
-                  <option value="7">Land Rover</option>
-                  <option value="8">Mercedes</option>
-                  <option value="9">Mini</option>
-                  <option value="10">Nissan</option>
-                  <option value="11">Toyota</option>
-                  <option value="12">Volvo</option>
-                </select>
-                  </div>
-                  <div class="custom-select">
-                <select>
-                
-                  <option value="0">Location </option>
-                  <option value="1">Audi</option>
-                  <option value="2">BMW</option>
-                  <option value="3">Citroen</option>
-                  <option value="4">Ford</option>
-                  <option value="5">Honda</option>
-                  <option value="6">Jaguar</option>
-                  <option value="7">Land Rover</option>
-                  <option value="8">Mercedes</option>
-                  <option value="9">Mini</option>
-                  <option value="10">Nissan</option>
-                  <option value="11">Toyota</option>
-                  <option value="12">Volvo</option>
-                </select>
-                  </div>
-                  <div class="custom-select">
-                <select>
-                
-                  <option value="0">Category </option>
-                  <option value="1">Audi</option>
-                  <option value="2">BMW</option>
-                  <option value="3">Citroen</option>
-                  <option value="4">Ford</option>
-                  <option value="5">Honda</option>
-                  <option value="6">Jaguar</option>
-                  <option value="7">Land Rover</option>
-                  <option value="8">Mercedes</option>
-                  <option value="9">Mini</option>
-                  <option value="10">Nissan</option>
-                  <option value="11">Toyota</option>
-                  <option value="12">Volvo</option>
-                </select>
-                  </div>
-                  <div class="custom-select">
-                <select>
-                
-                  <option value="0">Damage Type </option>
-                  <option value="1">Audi</option>
-                  <option value="2">BMW</option>
-                  <option value="3">Citroen</option>
-                  <option value="4">Ford</option>
-                  <option value="5">Honda</option>
-                  <option value="6">Jaguar</option>
-                  <option value="7">Land Rover</option>
-                  <option value="8">Mercedes</option>
-                  <option value="9">Mini</option>
-                  <option value="10">Nissan</option>
-                  <option value="11">Toyota</option>
-                  <option value="12">Volvo</option>
-                </select>
-                  </div>
-                  <strong>Mileage range:</strong>
-        <!-- declaration for first field -->
-        <input type="text" class="form-control 
-                input-sm" value="" placeholder ="min" />
-  
-        <!-- reducong the gap between them to zero -->
-        <span class="input-group-btn" 
-            style="width:0px align:center;">to</span>
-  
-        <!-- declaration for second field -->
-        <input type="text" class="form-control 
-                input-sm" value="" placeholder ="max" />
+                                    <div class="col-md-12">
+                                        <h5>Country:</h5>
+                                        <select name="country">
+
+                                            @foreach(\App\Models\Country::all() as $country)
+                                                <option value="{{$country->id}}">{{$country->title}}</option>
+
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <h5>City Name:</h5>
+                                        <select name="city_id">
+
+                                            @foreach(\App\Models\City::all() as $city)
+
+                                                <option value="{{$city->id}}">{{$city->title}}</option>
+
+                                            @endforeach
+                                        </select>
+
+
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <h5>Damage :</h5>
+                                        <select name="damage_id">
+
+                                            @foreach(\App\Models\DamageType::all() as $damage)
+                                                <option value="{{$damage->id}}">{{$damage->title}}</option>
+                                            @endforeach
+                                        </select>
+
+
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <h5>Make:</h5>
+                                        <select id="makerChange" name="maker_id">
+
+                                            @foreach(\App\Models\Maker::all() as $maker)
+                                                <option value="{{$maker->id}}">{{$maker->title}}</option>
+
+                                            @endforeach
+                                        </select>
+
+
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <h5>Model:</h5>
+                                        <select id="model_set" name="model_id">
+
+                                            @foreach(\App\Models\ModelCar::all() as $model)
+                                                <option value="{{$model->id}}">{{$model->title}}</option>
+
+                                            @endforeach
+
+
+                                        </select>
+
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <h5>Categories:</h5>
+                                        <select name="category">
+
+                                            @foreach(\App\Models\Categories::all() as $category)
+                                                <option value="{{$category->id}}">{{$category->title}}</option>
+
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <button class="button submit"> Search
+                                    </button>
+                                </form>
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    @if($search != null)
+                        <div class="col-lg-8 col-md-8 mb-4">
+                            <div class="utf_dashboard_list_box table-responsive recent_booking">
+                                <h4>Recent Booking</h4>
+                                <div class="dashboard-list-box table-responsive invoices with-icons">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+
+                                            <th>Image</th>
+                                            <th>Lot Info</th>
+                                            <th>Vehicle Info</th>
+                                            <th>Condition</th>
+                                            <th>Sale Info</th>
+                                            <th>Action</th>
+
+                                        </tr>
+                                        </thead>
+                                        @foreach($search as $ads)
+                                            <tbody>
+                                            <tr>
+
+                                                <td>
+                                                    <img src="{{asset($ads->image->image)}}">
+                                                </td>
+
+                                                <td> {{$ads->maker->title}}
+                                                    {{$ads->model->title}} </td>
+
+
+                                                <td>
+                                                    <p>Odometer</p> {{substr($ads->odometer,0,15)." and......"}}
+
+                                                </td>
+
+
+                                                <td>{{substr($ads->damage->title,0,10)."......"}}</td>
+                                                <td>{{$ads->type_sell}}</td>
+                                                <td>
+                                                    <a href="{{route('user.add-favorite',$ads->id)}}"> <span
+                                                            class="table-action-icon icon-favorite icon-material-outline-favorite text-danger"></span></a>
+                                                    <a href="{{route('user.bid-now',$ads->id)}}"><span
+                                                            class="table-action-icon fa fa-legal icon-legal table-action-icon"></span></a>
+                                                </td>
+
+
+                                            </tr>
+
+                                            </tbody>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="col-md-12">
+                        <div class="footer_copyright_part">Copyright © 2019 All Rights Reserved.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-                 
-                 <div class="input-group">
-      <strong>  Year range:
-</strong>        <!-- declaration for first field -->
-        <input type="text" class="form-control 
-                input-sm" value="" placeholder ="starting point"  />
-  
-        <!-- reducong the gap between them to zero -->
-        <span class="input-group-btn" 
-            style="width:0px align:center;"> to</span>
-  
-        <!-- declaration for second field -->
-        <input type="text" class="form-control 
-                input-sm" value="" placeholder ="ending point"  />
-    </div>
-                <button class="button fullwidth_block margin-top-5">Update</button>
-              
-            </div>
-              
-              
-        
-              
-              
-              <div class="clearfix"></div>
-            </div>
-            
-			
-			
-           
-			
-			
-				
-            <div class="clearfix"></div>            
-          </div>
-        </div>
-        <!-- The loop and retrieval of data would occur here -->
-        <!-- data is read from the database and put into this section -->
-        <div class= "col-lg-8 col-md-8">
-            <div class="row">
-          <div class="col-lg-6 col-md-12"> <a href="listings_single_page_1.html" class="utf_listing_item-container" data-marker-id="1">
-            <div class="utf_listing_item"> <img src="images/utf_listing_item-01.jpg" alt=""> <span class="tag"><i class="im im-icon-Hotel"></i> Hotels</span> <span class="featured_tag">Featured</span>
-			  <span class="utf_closed">Closed</span>
-              <div class="utf_listing_item_content"> 
-				<div class="utf_listing_prige_block">							
-					<span class="utf_meta_listing_price"><i class="fa fa-tag"></i> $45 - $70</span>					
-					<span class="utp_approve_item"><i class="utf_approve_listing"></i></span>
-				</div>
-                <h3>Chontaduro Barcelona</h3>
-                <span><i class="sl sl-icon-location"></i> The Ritz-Carlton, Hong Kong</span>                               
-				<span><i class="sl sl-icon-phone"></i> (415) 796-3633</span>
-              </div>
-            </div>
-			<div class="utf_star_rating_section" data-rating="4.5">
-			  <div class="utf_counter_star_rating">(4.5)</div>
-			  <span class="utf_view_count"><i class="fa fa-eye"></i> 822+</span>
-			  <span class="like-icon"></span>
-			</div>
-            </a> 
-		  </div>
-          
-        </div>
-        </div>
-        <!-- the loop would end here -->
-        <div class="clearfix"></div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="utf_pagination_container_part margin-top-20 margin-bottom-70">
-              <nav class="pagination">
-                <ul>
-                  <li><a href="#"><i class="sl sl-icon-arrow-left"></i></a></li>
-                  <li><a href="#" class="current-page">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
 
 
 
@@ -249,23 +210,10 @@
 
 
 
-
-
-
-
-
-
-
-		
-        
-  
 
 @endsection
 
 
-
 @section('script')
-
-
 
 @endsection

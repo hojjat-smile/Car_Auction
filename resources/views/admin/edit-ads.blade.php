@@ -39,6 +39,22 @@
                       enctype="multipart/form-data">
                     @csrf
 
+                    <div class="col-md-6">
+                        <h5>Car Type:</h5>
+
+                        <select name="car_type_id" id="car_type_id">
+                        @foreach(\App\Models\CarType::all() as $carType)
+
+                            <option
+                                value="{{$carType->id}}" {{$ads->car_type_id == $carType->id ? 'selected' : '' }}>{{ $carType->title }}</option>
+
+
+                        @endforeach
+                        </select>
+                        @error('car_type_id')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
 
                     <div class="col-md-6">
                         <h5>Odometer</h5>
@@ -55,13 +71,7 @@
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
-                    <div class="col-md-6">
-                        <h5>Highlights</h5>
-                        <input type="text" name="highlights" value="{{$ads->highlights}}">
-                        @error('highlights')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
+
 
                     <div class="col-md-6">
                         <h5>Primary Damage</h5>
@@ -116,14 +126,6 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6">
-                        <h5>Est Retail Value</h5>
-                        <input type="text" name="est_retail_value" value="{{$ads->est_retail_value}}">
-
-                        @error('est_retail_value')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
 
                     <div class="col-md-6">
                         <h5>VIN</h5>
@@ -416,9 +418,51 @@
                     </div>
 
 
+
+
+
+                    <div class="col-md-6">
+                        <h5>Base Price:</h5>
+                        <input type="text" name="base_price" value="{{$ads->auction->base_price}}">
+
+                        @error('base_price')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>Rough Price:</h5>
+                        <input type="text" name="rough_price" value="{{$ads->auction->rough_price}}">
+
+                        @error('rough_price')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>Buy Now:</h5>
+                        <input type="text" name="buy_now" value="{{$ads->auction->buy_now}}">
+
+                        @error('buy_now')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>Sale Date:</h5>
+                        <input type="date" name="sale_date" value="{{$ads->auction->sale_date}}">
+
+                        @error('sale_date')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+
+
+
                     <div class="col-md-6">
                         <h5>Image</h5>
-                        <input type="file" name="image" value="{{asset($ads->image->image)}}">
+                        <input type="file" name="image" value="{{asset($ads->image->image ?? null)}}">
 
                         @error('image')
                         <small class="text-danger"> {{$message}}</small>
@@ -447,7 +491,6 @@
     <script src="{{asset('assets//web/scripts/jquery.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/jquery.validate.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/additional-methods.min.js')}}"></script>
-    <script src="{{asset('assets//web/scripts/plugins/jquery-validate/messages_fa.min.js')}}"></script>
 
 
     <script>
@@ -546,9 +589,7 @@
                     required: true,
                 },
 
-                mileage: {
-                    required: true,
-                },
+
 
                 'collection-telephone': {
                     required: true,

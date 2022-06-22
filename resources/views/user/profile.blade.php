@@ -17,14 +17,18 @@
                     <div class="utf_add_listing_part_headline_part">
                         <h3>Sell Your Car in a Copart Auction</h3>
                     </div>
-                    <form action="{{route('user.profile-update',$user->id)}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('user.profile-update')}}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row with-forms">
 
-                            <div class="col-md-12">
+                            <div class="col-md-2">
                                 <h5>Image Profile</h5>
+
+                                <img style="width: 100px; height: 100px " src="{{asset($user->image)}}" alt="">
                                 <input type="file" name="image">
+
+
                             </div>
                         </div>
 

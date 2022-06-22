@@ -8,7 +8,7 @@
 
 @section('main')
 
-   
+
         <div class="row">
             <div class="col-lg-4">
                 <div class="utf_dashboard_stat color-1">
@@ -24,7 +24,7 @@
                 <div class="utf_dashboard_stat color-2">
                     <div class="utf_dashboard_stat_content">
                         <h4>{{$auction->count()}}</h4>
-                        <span>Auctions Sell</span>
+                        <span>All Acutions</span>
                     </div>
                     <div class="utf_dashboard_stat_icon"><i class="im im-icon-Add-UserStar"></i></div>
                 </div>
@@ -33,8 +33,8 @@
             <div class="col-lg-4">
                 <div class="utf_dashboard_stat color-3">
                     <div class="utf_dashboard_stat_content">
-                        <h4>{{$normal->count()}}</h4>
-                        <span>Normal Sell</span>
+                        <h4>{{\App\Models\User::where("usertype","user")->count()}}</h4>
+                        <span>All Users</span>
                     </div>
                     <div class="utf_dashboard_stat_icon"><i class="im im-icon-Align-JustifyRight"></i></div>
                 </div>

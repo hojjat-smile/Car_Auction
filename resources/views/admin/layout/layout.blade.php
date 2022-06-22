@@ -35,7 +35,7 @@
 
 <div class="wrapper">
 
-    <header id="header_part" class="fixed fullwidth_block dashboard">
+    <header id="header_part" class="fixed dashboard">
 
         @include('components.admin.header')
 

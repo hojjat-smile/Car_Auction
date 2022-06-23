@@ -51,6 +51,8 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
+
+                                <th>ID</th>
                                 <th>Image</th>
                                 <th>Marker</th>
                                 <th>Model</th>
@@ -60,16 +62,14 @@
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Action</th>
+
                             </tr>
                             </thead>
                             <tbody>
-
-
-
                             @foreach($ads as $ad)
                                 @if($ad != null)
-
                                     <tr>
+                                        <td>{{$loop->iteration}}</td>
                                         @if($ad->image != null)
                                             <td><img width="70px" height="70px" src="{{asset($ad->image->image)}}"
                                                      alt=""></td>
@@ -100,10 +100,7 @@
 
                                     </tr>
                                 @endif
-
                             @endforeach
-
-
                             </tbody>
                         </table>
                     </div>

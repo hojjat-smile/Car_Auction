@@ -1,5 +1,8 @@
 @extends('admin.layout.layout')
 
+@section('title')
+    Edit Auction
+@endsection
 
 
 @section('css')
@@ -8,22 +11,6 @@
 
 
 @section('main')
-
-    <div id="titlebar" class="gradient">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Add Car</h2>
-                    <nav id="breadcrumbs">
-                        <ul>
-                            <li><a href="index_1.html">Home</a></li>
-                            <li>Add Car</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="container margin-bottom-75 ">
 
@@ -34,8 +21,8 @@
             </div>
 
             <div class="row with-forms">
-                <form id="addCarForm" action="{{route('user.add-ads-post')}}"
-                      method="post" enctype="multipart/form-data">
+                <form id="addCarForm" action="{{route('admin.edit-auction-post',$ads->id)}}" method="post"
+                      enctype="multipart/form-data">
                     @csrf
 
                     <div class="col-md-6">
@@ -43,9 +30,10 @@
                         <select id="car_type_id" name="car_type_id">
 
                             @foreach(\App\Models\CarType::all() as $carType)
-                                <option value="{{$carType->id}}">{{$carType->title}}</option>
-
+                                <option
+                                    value="{{$carType->id}}" {{$ads->car_type_id == $carType->id ? 'selected' : '' }}>{{ $carType->title }}</option>
                             @endforeach
+
                         </select>
 
                         @error('car_type_id')
@@ -58,9 +46,10 @@
                         <select id="makerChange" name="maker_id">
 
                             @foreach(\App\Models\Maker::all() as $maker)
-                                <option value="{{$maker->id}}">{{$maker->title}}</option>
-
+                                <option
+                                    value="{{$maker->id}}" {{$ads->maker_id == $maker->id ? 'selected' : '' }}>{{ $maker->title }}</option>
                             @endforeach
+
                         </select>
 
                         @error('maker_id')
@@ -72,8 +61,8 @@
                         <lable>Model:</lable>
                         <select id="model_set" name="model_id">
                             @foreach(\App\Models\ModelCar::all() as $model)
-                                <option value="{{$model->id}}">{{$model->title}}</option>
-
+                                <option
+                                    value="{{$model->id}}" {{$ads->model_id == $model->id ? 'selected' : '' }}>{{ $model->title }}</option>
                             @endforeach
                         </select>
 
@@ -87,7 +76,8 @@
                         <select name="colour_id">
 
                             @foreach(\App\Models\Colour::all() as $color)
-                                <option value="{{$color->id}}">{{{$color->title}}}</option>
+                                <option
+                                    value="{{$color->id}}" {{$ads->colour_id == $color->id ? 'selected' : '' }}>{{ $color->title }}</option>
                             @endforeach
                         </select>
 
@@ -101,8 +91,8 @@
                         <select name="category_id">
 
                             @foreach(\App\Models\Categories::all() as $category)
-
-                                <option value="{{$category->id}}">{{$category->title}}</option>
+                                <option
+                                    value="{{$category->id}}" {{$ads->category_id == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
                             @endforeach
                         </select>
 
@@ -112,27 +102,41 @@
                     </div>
 
                     <div class="col-md-6">
+
                         <lable>Condition:</lable>
+
                         <select name="condition_id">
-
-                            <option value="{{1}}">All</option>
-                            <option value="{{2}}">Used</option>
-                            <option value="{{3}}">Salvage</option>
-
+                            @if($ads->condition_id ==1)
+                                <option value="{{1}}">All</option>
+                                <option value="{{2}}">Used</option>
+                                <option value="{{3}}">Salvage</option>
+                            @elseif($ads->condition_id ==2)
+                                <option value="{{2}}">Used</option>
+                                <option value="{{1}}">All</option>
+                                <option value="{{3}}">Salvage</option>
+                            @elseif($ads->condition_id ==3)
+                                <option value="{{3}}">Salvage</option>
+                                <option value="{{1}}">All</option>
+                                <option value="{{2}}">Used</option>
+                            @endif
                         </select>
 
                         @error('condition_id')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
+
                     </div>
 
                     <div class="col-md-6">
+
                         <lable>Engine type</lable>
-                        <input type="text" name="engine_type" value="{{old('engine_type')}}">
+
+                        <input type="text" name="engine_type" value="{{$ads->engine_type}}">
 
                         @error('engine_type')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
+
                     </div>
 
                     <div class="col-md-6">
@@ -140,9 +144,7 @@
                         <select name="year">
 
                             @foreach($time as $row)
-
-                                <option value="{{$row}}">{{$row}}</option>
-
+                                <option value="{{$row}}" {{$ads->year == $row ? 'selected' : '' }}>{{ $row }}</option>
                             @endforeach
 
                         </select>
@@ -155,10 +157,9 @@
                     <div class="col-md-6">
                         <lable>Country:</lable>
                         <select name="country_id">
-
                             @foreach(\App\Models\Country::all() as $country)
-                                <option value="{{$country->id}}">{{$country->title}}</option>
-
+                                <option
+                                    value="{{$country->id}}" {{$ads->country->id == $country->id ? 'selected' : '' }}>{{ $country->title }}</option>
                             @endforeach
                         </select>
 
@@ -172,9 +173,8 @@
                         <select type="text" name="city_id">
 
                             @foreach(\App\Models\City::all() as $city)
-
-                                <option value="{{$city->id}}">{{$city->title}}</option>
-
+                                <option
+                                    value="{{$city->id}}" {{$ads->city->id == $city->id ? 'selected' : '' }}>{{ $city->title }}</option>
                             @endforeach
                         </select>
 
@@ -188,7 +188,10 @@
                         <select name="damage_id">
 
                             @foreach(\App\Models\DamageType::all() as $damage)
-                                <option value="{{$damage->id}}">{{$damage->title}}</option>
+                                <option
+                                    value="{{$damage->id}}" {{$ads->damage->id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
+
+
                             @endforeach
                         </select>
 
@@ -199,7 +202,7 @@
 
                     <div class="col-md-6">
                         <lable>Odometer</lable>
-                        <input type="number" name="odometer" value="{{old('odometer')}}">
+                        <input type="number" name="odometer" value="{{$ads->odometer}}">
                         @error('odometer')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
@@ -210,8 +213,8 @@
                         <select name="primary_damage_id">
 
                             @foreach(\App\Models\PrimaryDamage::all() as $damage)
-
-                                <option value="{{$damage->id}}">{{$damage->title}}</option>
+                                <option
+                                    value="{{$damage->id}}" {{$ads->damage->id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
                             @endforeach
                         </select>
 
@@ -222,7 +225,7 @@
 
                     <div class="col-md-6">
                         <lable>Body Style</lable>
-                        <input type="text" name="body_style" value="{{old('body_style')}}">
+                        <input type="text" name="body_style" value="{{$ads->body_style}}">
 
                         @error('body_style')
                         <small class="text-danger"> {{$message}}</small>
@@ -231,7 +234,7 @@
 
                     <div class="col-md-6">
                         <lable>Transmission</lable>
-                        <input type="text" name="transmission" value="{{old('transmission')}}">
+                        <input type="text" name="transmission" value="{{$ads->transmission}}">
 
                         @error('transmission')
                         <small class="text-danger"> {{$message}}</small>
@@ -240,7 +243,7 @@
 
                     <div class="col-md-6">
                         <lable>Fuel</lable>
-                        <input type="text" name="fuel" value="{{old('fuel')}}">
+                        <input type="text" name="fuel" value="{{$ads->fuel}}">
 
                         @error('fuel')
                         <small class="text-danger"> {{$message}}</small>
@@ -249,7 +252,7 @@
 
                     <div class="col-md-6">
                         <lable>Keys</lable>
-                        <input type="text" name="keys" value="{{old('keys')}}">
+                        <input type="text" name="keys" value="{{$ads->keys}}">
 
                         @error('keys')
                         <small class="text-danger"> {{$message}}</small>
@@ -258,7 +261,7 @@
 
                     <div class="col-md-6">
                         <lable>V5 Notes</lable>
-                        <input type="text" name="v_five_notes" value="{{old('v_five_notes')}}">
+                        <input type="text" name="v_five_notes" value="{{$ads->v_five_notes}}">
 
                         @error('v_five_notes')
                         <small class="text-danger"> {{$message}}</small>
@@ -267,7 +270,7 @@
 
                     <div class="col-md-6">
                         <lable>Additional Info</lable>
-                        <input type="text" name="additional_info" value="{{old('additional_info')}}">
+                        <input type="text" name="additional_info" value="{{$ads->additional_info}}">
 
                         @error('additional_info')
                         <small class="text-danger"> {{$message}}</small>
@@ -276,9 +279,27 @@
 
                     <div class="col-md-6">
                         <lable>Current Bid:</lable>
-                        <input type="text" name="current_bid" value="{{old('current_bid')}}">
+                        <input type="text" name="current_bid" value="{{$ads->current_bid}}">
 
                         @error('current_bid')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <lable>Base Price:</lable>
+                        <input type="text" name="base_price" value="{{$ads->auction->base_price}}">
+
+                        @error('base_price')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <lable>Rough Price:</lable>
+                        <input type="text" name="rough_price" value="{{$ads->auction->rough_price}}">
+
+                        @error('rough_price')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
@@ -286,6 +307,7 @@
                     <div class="col-md-12">
                         <button type="submit" class="button preview"> Submit</button>
                     </div>
+
 
                 </form>
             </div>
@@ -413,4 +435,5 @@
             }
         });
     </script>
+
 @endsection

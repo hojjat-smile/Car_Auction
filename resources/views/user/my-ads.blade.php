@@ -22,6 +22,9 @@
 
             <h4>Ads List</h4>
 
+            @if(session()->has('successfully'))
+                <p class="alert alert-success text-center">{{session('successfully')}}</p>
+            @endif
             <div class="dashboard-list-box table-responsive invoices with-icons">
 
                 <table class="table table-hover">

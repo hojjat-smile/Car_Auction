@@ -5,31 +5,27 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Ads;
 use App\Models\Auction;
-use App\Models\Favorite;
-use App\Models\User;
+use App\Models\Image;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
-use App\Models\Image;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 
-class AdsController extends Controller
+class AuctionController extends Controller
 {
 
-    public function adManagement()
+
+    public function myAuction()
     {
 
-
-        return view('admin.ad-management');
+        $ads = Ads::where('type_sell', 'auction')->get();
+        return view('admin.my-auction', compact('ads'));
     }
 
-    public function editAds($adId)
-    {
 
-        $ads = Ads::find($adId);
+    public function addAuction()
+    {
 
         $time = [];
         $date = Carbon::now();
@@ -40,28 +36,15 @@ class AdsController extends Controller
             $i--;
         }
 
-        return view('admin.edit-ads', compact('ads', 'time'));
+        return view('admin.add-auction', compact('time'));
     }
 
-    public function addAdsView()
+
+    public function addAuctionPost(Request $request)
     {
-
-        $time = [];
-        $date = Carbon::now();
-        $i = 10;
-        while ($i >= 0) {
-            $num = (int)($date->format('Y')) - $i;
-            array_push($time, $num);
-            $i--;
-        }
-        return view('admin.add-ads', compact('time'));
-
-    }
-
-    public function addAdsUpdate(Request $request)
-    {
-
         $request->validate([
+            'base_price' => 'required',
+            'rough_price' => 'required',
             'car_type_id' => 'required',
             'maker_id' => 'required',
             'model_id' => 'required',
@@ -86,9 +69,10 @@ class AdsController extends Controller
 
 
 
-        Ads::create([
+        $ads = Ads::create([
             'user_id' => Auth::user()->id,
-            'type_sell' => 'normal',
+            'type_sell' => 'auction',
+            'category' => $request->category,
             'car_type_id' => $request->car_type_id,
             'maker_id' => $request->maker_id,
             'model_id' => $request->model_id,
@@ -111,55 +95,29 @@ class AdsController extends Controller
             'current_bid' => $request->current_bid,
         ]);
 
+        Auction::create([
+            'ads_id' => $ads->id,
+            'base_price' => $request['base_price'],
+            'rough_price' => $request['rough_price'],
+        ]);
+
         session()->flash('successfully','mission accomplished.');
 
-
-        return redirect()->route('admin.ad-management');
+        return redirect()->route('admin.my-auction');
     }
 
-    public function deleteAds($adsId)
-    {
 
-        $ads = Ads::find($adsId);
-
-        $image = Image::find($ads->image->id);
-
-        $image->delete();
-        $ads->delete();
-
-        return redirect()->route('admin.ad-management');
-    }
-
-    public function publishAds(Request $request, $adsId)
-    {
-
-        $ads = Ads::find($adsId);
-
-
-        if ($ads->is_published == 1) {
-
-            $ads->update([
-                'is_published' => 0
-            ]);
-        } else if ($ads->is_published == 0) {
-
-            $ads->update([
-                'is_published' => 1
-            ]);
-
-        }
-
-        return redirect(route('admin.ad-management'));
-    }
-
-    public function viewAds($adsId)
-
+    public function deleteAuction()
     {
 
 
-        $userId = Auth::user()->id;
+        return redirect()->route('admin.my-auction');
+    }
 
+    public function editAuction($itemID)
+    {
 
+        $ads = Ads::find($itemID);
         $time = [];
         $date = Carbon::now();
         $i = 10;
@@ -169,14 +127,14 @@ class AdsController extends Controller
             $i--;
         }
 
-        $ads = Ads::find($adsId);
-        return view('admin.view-ads', compact('ads', 'time'));
+        return view('admin.edit-auction',compact('ads','time'));
     }
 
-    public function editAdsUpdate(Request $request, $adsId)
-
+    public function editAuctionPost(Request $request, $itemID)
     {
         $request->validate([
+            'base_price' => 'required',
+            'rough_price' => 'required',
             'car_type_id' => 'required',
             'maker_id' => 'required',
             'model_id' => 'required',
@@ -199,11 +157,13 @@ class AdsController extends Controller
             'current_bid' => 'required',
         ]);
 
-        $ads = Ads::find($adsId);
+
+        $ads = Ads::find($itemID);
 
         $ads->update([
             'user_id' => Auth::user()->id,
-            'type_sell' => 'normal',
+            'type_sell' => 'auction',
+            'category' => $request->category,
             'car_type_id' => $request->car_type_id,
             'maker_id' => $request->maker_id,
             'model_id' => $request->model_id,
@@ -226,29 +186,16 @@ class AdsController extends Controller
             'current_bid' => $request->current_bid,
         ]);
 
+        $ads->auction->update([
+            'ads_id' => $ads->id,
+            'base_price' => $request['base_price'],
+            'rough_price' => $request['rough_price'],
+        ]);
+
         session()->flash('successfully','mission accomplished.');
 
-        return redirect(route('admin.ad-management'));
+        return redirect()->route('admin.my-auction');
     }
 
-    public function uploadFile($user_id, $file, $oldDir = false)
-    {
-
-
-        $path = "uploads/images" . '/' . $user_id;
-
-        if ($oldDir) {
-            if (file_exists($path)) {
-                File::deleteDirectory(public_path($path));
-            }
-        }
-
-        File::exists($path) or File::makeDirectory($path, 0775, true, true);
-        $document_name = $path . '/' . $file->getClientOriginalName();
-        $file->move($path, $document_name);
-
-        return $document_name;
-
-    }
 
 }

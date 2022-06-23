@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RulesController;
 use App\Http\Controllers\User\AdsController as UserAdsController;
 use App\Http\Controllers\admin\AdsController as AdminAdsController;
 use App\Http\Controllers\User\AuctionController as UserAuctionController;
+use App\Http\Controllers\Admin\AuctionController as AdminAuctionController;
 use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\User\MembershipController;
 use App\Http\Controllers\Admin\MembershipController as AdminMembershipController;
@@ -110,17 +111,28 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
     Route::post('/memberships-edit-post/{itemId}', [AdminMembershipController::class, 'membershipsEditPost'])->name('memberships-edit-post');
     Route::get('/memberships-delete/{itemId}', [AdminMembershipController::class, 'membershipsDelete'])->name('memberships-delete');
 
-
+    //
     Route::get('/trans-manage', [AdminIndexController::class, 'transManage'])->name('trans-manage');
 
 
+    //auction
+    Route::get('/my-auction', [AdminAuctionController::class, 'myAuction'])->name('my-auction');
+    Route::get('/add-auction', [AdminAuctionController::class, 'addAuction'])->name('add-auction');
+    Route::post('/add-auction-post', [AdminAuctionController::class, 'addAuctionPost'])->name('add-auction-post');
+    Route::get('/edit-auction/{itemId}', [AdminAuctionController::class, 'editAuction'])->name('edit-auction');
+    Route::post('/edit-auction-post/{itemId}', [AdminAuctionController::class, 'editAuctionPost'])->name('edit-auction-post');
+    Route::get('/delete-auction/{itemId}', [AdminAuctionController::class, 'deleteAuction'])->name('delete-auction');
+
+
+
+    //ads
     Route::get('/ad-management', [AdminAdsController::class, 'adManagement'])->name('ad-management');
     Route::get('/edit-ads/{adId}', [AdminAdsController::class, 'editAds'])->name('edit-ads');
     Route::post('/ads-update/{adId}', [AdminAdsController::class, 'editAdsUpdate'])->name('ads-update');
     Route::get('/add-ads/', [AdminAdsController::class, 'addAdsView'])->name('add-ads');
     Route::post('/add-ads', [AdminAdsController::class, 'addAdsUpdate'])->name('add-ads-update');
     Route::get('/delete-ads/{adId}', [AdminAdsController::class, 'deleteAds'])->name('delete-ads');
-    Route::get('/view-ads-ads/{adId}', [AdminAdsController::class, 'viewAds'])->name('view-ads');
+    Route::get('/view-ads/{adId}', [AdminAdsController::class, 'viewAds'])->name('view-ads');
     Route::get('/publish-ads/{adId}', [AdminAdsController::class, 'publishAds'])->name('publish-ads');
 
 

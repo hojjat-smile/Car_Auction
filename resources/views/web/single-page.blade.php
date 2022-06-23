@@ -13,11 +13,13 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <img src="{{asset($ads->image->image)}}" style="width: 100%;border-radius: 15px;margin: 0 0 15px;" alt="">
+                    <img src="{{asset($ads->image->image)}}" style="width: 100%;border-radius: 15px;margin: 0 0 15px;"
+                         alt="">
                 </div>
 
                 <div class="col-lg-8">
-                    <p style="padding: 10px; background-color: #0b7bb5; color: white; font-weight: bold">Lot # 31140712:</p>
+                    <p style="padding: 10px; background-color: #0b7bb5; color: white; font-weight: bold">Lot #
+                        31140712:</p>
                     <table class="table table-hover">
 
                         <tr>
@@ -30,38 +32,6 @@
                             <td>{{$ads->odometer}}</td>
 
                         </tr>
-
-                        <tr>
-                            <th>VRN:</th>
-                            <td>{{$ads->vrn}}</td>
-
-                        </tr>
-
-
-
-
-                        <tr>
-                            <th>Secondary Damage::</th>
-                            <td>{{$ads->secondaryDamage->title}}</td>
-
-                        </tr>
-
-
-                        <tr>
-                            <th>Additional Damage::</th>
-                            <td>{{$ads->additionalDamage->title}}</td>
-
-                        </tr>
-
-
-
-
-                        <tr>
-                            <th>VIN:</th>
-                            <td>{{$ads->vin}}</td>
-
-                        </tr>
-
 
                         <tr>
                             <th>Body Style:</th>
@@ -87,11 +57,6 @@
 
                         </tr>
 
-                        <tr>
-                            <th>Drive:</th>
-                            <td>{{$ads->drive}}</td>
-
-                        </tr>
 
                         <tr>
                             <th>Fuel:</th>
@@ -114,13 +79,6 @@
 
 
                         <tr>
-                            <th>VAT to be added to final sale price:</th>
-                            <td>{{$ads->vat}}</td>
-
-                        </tr>
-
-
-                        <tr>
                             <th>V5 Notes:</th>
                             <td>{{$ads->v_five_notes}}</td>
 
@@ -137,7 +95,8 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <p style="padding: 10px; background-color: #0b7bb5; color: white; font-weight: bold">Bid Information</p>
+                    <p style="padding: 10px; background-color: #0b7bb5; color: white; font-weight: bold">Bid
+                        Information</p>
                     <table class="table table-hover">
 
 
@@ -176,10 +135,10 @@
 
 
                     </table>
+                    <a href="{{route('user.add-favorite',$ads->id)}}" class="button red">Add to favorite</a>
 
                 </div>
 
-                <a href="{{route('user.add-favorite',$ads->id)}}" class="button red">Add to favorite</a>
 
             </div>
 

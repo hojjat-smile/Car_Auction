@@ -1,6 +1,10 @@
 @extends('admin.layout.layout')
 
 
+@section('title')
+Add Auction
+@endsection
+
 
 @section('css')
 
@@ -9,24 +13,9 @@
 
 @section('main')
 
-    <div id="titlebar" class="gradient">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Add Car</h2>
-                    <nav id="breadcrumbs">
-                        <ul>
-                            <li><a href="index_1.html">Home</a></li>
-                            <li>Add Car</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <div class="container margin-bottom-75 ">
-
 
         <div class="add_utf_listing_section margin-top-45">
             <div class="utf_add_listing_part_headline_part">
@@ -34,7 +23,7 @@
             </div>
 
             <div class="row with-forms">
-                <form id="addCarForm" action="{{route('user.add-ads-post')}}"
+                <form id="addCarForm" action="{{route('admin.add-ads-post')}}"
                       method="post" enctype="multipart/form-data">
                     @csrf
 
@@ -291,6 +280,7 @@
             </div>
 
         </div>
+
     </div>
 
 @endsection

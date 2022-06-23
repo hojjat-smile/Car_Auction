@@ -1,8 +1,8 @@
 <div id="header" class="not-sticky">
     <div class="container">
         <div class="utf_left_side">
-            <div id="logo"><a href="index_1.html"><img src="{{asset('assets/web/images/logo.png')}}" alt=""></a>
-                <a href="{{route('admin.dashboard')}}" class="dashboard-logo">
+            <div id="logo"><a href="{{route('web.index')}}"><img src="{{asset('assets/web/images/logo.png')}}" alt=""></a>
+                <a href="{{route('web.index')}}" class="dashboard-logo">
                     <img src="{{asset('assets/web/images/logo2.png')}}" alt=""></a></div>
             <div class="mmenu-trigger">
                 <button class="hamburger utfbutton_collapse" type="button">

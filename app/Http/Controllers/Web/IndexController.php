@@ -26,13 +26,12 @@ class IndexController extends Controller
         $ads = Ads::orderBy('view', 'desc')->get();
         $packages = Packages::all();
 
-        return view('web.index', compact('ads','packages'));
+        return view('web.index', compact('ads', 'packages'));
     }
 
 
     public function search(Request $request)
     {
-
 
 
 //        $maker = Maker::where('title', 'LIKE', '%' . $request->search . '%')->get();
@@ -41,35 +40,41 @@ class IndexController extends Controller
         $search = $request->search;
 
 
-
         $maker = Ads::whereHas(
-            'makers', function (Builder $query ,$search) {
+            'makers', function (Builder $query, $search) {
             $query->where('title', 'LIKE', '%' . $search . '%');
         }
 
         )->orWhereHas(
-            'models', function (Builder $query ,$search) {
+            'models', function (Builder $query, $search) {
             $query->where('title', 'LIKE', '%' . $search . '%');
 
         })->get();
 
 
-        return view('web.find-car', compact( 'maker'));
+        return view('web.find-car', compact('maker'));
     }
 
 
     public function singlePage($adsId)
     {
 
-        $ads = Ads::find($adsId);
-        $ads->update([
-            'view' => $ads->view + 1,
-        ]);
+        if (Auth::user()) {
+            $ads = Ads::find($adsId);
+            $ads->update([
+                'view' => $ads->view + 1,
+            ]);
 
-        $user = User::find($ads->user_id);
-        $userAds = User::find(Auth::user()->id);
+            $user = User::find($ads->user_id);
+            $userAds = User::find(Auth::user()->id);
+            $nowDate = Carbon::now();
 
-        return view('web.single-page', compact('ads', 'user', 'userAds'));
+            return view('web.single-page', compact('ads', 'user', 'userAds', 'nowDate'));
+
+        } else {
+
+            return redirect()->route('login');
+        }
     }
 
 
@@ -154,7 +159,7 @@ class IndexController extends Controller
 
         $maker = null;
 
-        return view('web.find-car', compact('time','maker'));
+        return view('web.find-car', compact('time', 'maker'));
 
     }
 

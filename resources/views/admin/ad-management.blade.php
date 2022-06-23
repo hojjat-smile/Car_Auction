@@ -1,6 +1,10 @@
 @extends('admin.layout.layout')
 
 
+@section('title')
+Ads
+@endsection
+
 @section('css')
 
 @endsection
@@ -40,7 +44,7 @@
                 </thead>
                 <tbody>
                 @foreach(\App\Models\Ads::all() as $ad)
-                    
+
                     @if($ad != null)
 
                     <tr>

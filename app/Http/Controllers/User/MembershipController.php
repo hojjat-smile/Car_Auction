@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Ads;
 use App\Models\Favorite;
 use App\Models\Packages;
+use App\Models\Transactions;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,9 @@ class MembershipController extends Controller
     {
 
         $packages = Packages::all();
-        return view('user.membership',compact('packages'));
+        $transactions = Transactions::where('user_id',Auth::user()->id)->get();
+
+        return view('user.membership',compact('packages','transactions'));
     }
 }
 

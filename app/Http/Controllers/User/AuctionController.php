@@ -101,7 +101,7 @@ class AuctionController extends Controller
             'rough_price' => $request['rough_price'],
         ]);
 
-        session()->flash('successful','mission accomplished.');
+        session()->flash('successfully','mission accomplished.');
 
         return redirect()->route('user.my-auction');
     }
@@ -191,7 +191,7 @@ class AuctionController extends Controller
             'base_price' => $request['base_price'],
             'rough_price' => $request['rough_price'],
         ]);
-
+        session()->flash('successfully','mission accomplished.');
         return redirect()->route('user.my-auction');
     }
 

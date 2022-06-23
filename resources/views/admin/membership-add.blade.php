@@ -7,14 +7,7 @@
 @endsection
 
 
-
-
-
-
 @section('main')
-
-
-
 
     <div class="col-fs-12">
         <div class="col-lg-12">
@@ -36,6 +29,7 @@
                                 <p>{{$message}}</p>
                                 @enderror
                             </div>
+
                             <div class="col-md-12">
                                 <h5>Description</h5>
                                 <input type="text" name="description">
@@ -43,26 +37,27 @@
                                 <p>{{$message}}</p>
                                 @enderror
                             </div>
+
                             <div class="col-md-12">
                                 <h5>Period</h5>
-                                <input type="text" name="period">
+                                <input type="text" name="period" placeholder="Number of months">
                                 @error('period')
                                 <p>{{$message}}</p>
                                 @enderror
                             </div>
+
                             <div class="col-md-12">
                                 <h5>Price</h5>
-                                <input type="text" name="price">
+                                <input type="text" name="price" >
                                 @error('price')
                                 <p>{{$message}}</p>
                                 @enderror
                             </div>
+
                             <button type="submit" class="button">Insert</button>
+
                         </div>
-
-
                     </form>
-
                 </div>
             </div>
         </div>

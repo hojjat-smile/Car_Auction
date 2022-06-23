@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AuctionController as AdminAuctionController;
 use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\User\MembershipController;
 use App\Http\Controllers\Admin\MembershipController as AdminMembershipController;
+use App\Http\Controllers\User\OrdersController;
 use App\Http\Controllers\User\ProfileController as UserProfileController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\admin\UsersController;
@@ -61,6 +62,7 @@ Route::prefix('user-panel')->name('user.')->middleware('auth', 'checkUser')->gro
 
     //index
     Route::get('/dashboard', [UserIndexController::class, 'dashboard'])->name('dashboard');
+    Route::get('/order-new/{itemId}', [OrdersController::class, 'orderNew'])->name('order-new');
 
     //membership
     Route::get('/membership', [MembershipController::class, 'membership'])->name('membership');

@@ -119,18 +119,42 @@
 
 
                         @if($userAds->id != $user->id)
-                            <form method="post" action="{{route('user.bid-now-submit',$ads)}}">
-                                @csrf
-                                <tr>
-                                    <th><input type="text" name="price"></th>
-                                </tr>
+                            @if($nowDate < $userAds->membership)
 
-                                <tr>
-                                    <th>
-                                        <button class="button submit form-control">Bid Now</button>
-                                    </th>
-                                </tr>
-                            </form>
+                                <form method="post" action="{{route('user.bid-now-submit',$ads)}}">
+                                    @csrf
+                                    <tr>
+                                        <th>
+                                            <input type="text" name="price">
+                                            @error('price')
+                                            <p>{{$message}}</p>
+                                            @enderror
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <th>
+                                            <button class="button submit form-control">Bid Now</button>
+                                        </th>
+                                    </tr>
+                                </form>
+
+                            @elseif($nowDate > $userAds->membership)
+                                <form action="{{route('user.membership')}}">
+                                    @csrf
+                                    <tr>
+                                        <th><input type="text" name="price">
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <th>
+                                            <button class="button submit form-control">Bid Now</button>
+                                        </th>
+                                    </tr>
+                                </form>
+                            @endif
+
                         @endif
 
 

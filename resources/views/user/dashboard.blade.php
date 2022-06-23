@@ -8,11 +8,8 @@
 
 
 
-
-
-
 @section('main')
-    <!-- Dashboard -->
+
 
     <div id="titlebar" class="dashboard_gradient">
         <div class="row">

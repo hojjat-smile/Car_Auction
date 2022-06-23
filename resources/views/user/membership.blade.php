@@ -12,9 +12,54 @@
 
 
 @section('main')
+    <div class="col-lg-12 col-md-12 mb-4">
+        <div class="utf_dashboard_list_box table-responsive recent_booking">
+            <h4>Recent Ads</h4>
+            <div class="dashboard-list-box table-responsive invoices with-icons">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Price</th>
+                        <th>card_id</th>
+                        <th>card_type</th>
+                        <th>Authority</th>
+                        <th>Pay</th>
+                        <th>Code</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    @foreach($transactions as $transaction)
+
+
+                            <tr>
+
+                                <td>{{$loop->iteration}}</td>
+
+
+                                <td>{{$transaction->price}}</td>
+                                <td>{{$transaction->card_id}}</td>
+                                <td>{{$transaction->card_type}}</td>
+                                <td>{{$transaction->Authority}}</td>
+                                <td>{{$transaction->pay}}</td>
+                                <td>{{$transaction->code}}</td>
+                                <td>{{$transaction->status}}</td>
+
+                            </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <section class="fullwidth_block margin-top-0 padding-top-75 padding-bottom-65" data-background-color="#f9f9f9">
         <div class="container">
+            @if(session()->has('successfully'))
+                <p class=>{{session('successfully')}}</p>
+            @endif
             <div class="row">
                 <div class="col-md-12">
                     <h3 class="headline_part centered margin-bottom-20">Choose Your Plan<span>Discover & connect with top-rated local businesses</span>
@@ -34,7 +79,7 @@
                                 <li>Description: {{$package->description}}</li>
 
                             </ul>
-                            <a class="button" href="#"><i class="sl sl-icon-basket"></i> Order Now</a>
+                            <a class="button" href="{{route('user.order-new',$package->id)}}"><i class="sl sl-icon-basket"></i> Order Now</a>
                         </div>
                     </div>
                     @endforeach

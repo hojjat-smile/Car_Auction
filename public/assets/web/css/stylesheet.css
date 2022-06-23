@@ -13258,7 +13258,7 @@ input:checked + .slider:before {
 
 #color_switcher_preview h2 a {
     background-color: #323232;
-    display: block;
+    display: none;
     height: 50px;
     position: absolute;
     left: -50px;

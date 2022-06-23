@@ -1,5 +1,5 @@
 <div id="header" class="not-sticky">
-    <div class="container">
+    <div class="container-fluid">
         <div class="utf_left_side">
             <div id="logo"><a href="{{route('web.index')}}"><img src="{{asset('assets/web/images/logo.png')}}" alt=""></a>
                 <a href="{{route('web.index')}}" class="dashboard-logo">

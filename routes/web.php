@@ -20,6 +20,7 @@ use App\Http\Controllers\Web\CarsListController;
 use App\Http\Controllers\Web\IndexController;
 use App\Http\Controllers\User\IndexController as UserIndexController;
 use App\Http\Controllers\Admin\IndexController as AdminIndexController;
+use App\Http\Controllers\Web\SinglePageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +38,7 @@ use Illuminate\Support\Facades\Route;
 Route::name('web.')->group(function () {
 
     Route::get('/', [IndexController::class, 'index'])->name('index');
-    Route::get('/single-page/{adsId}', [IndexController::class, 'singlePage'])->name('single-page');
+    Route::get('/single-page/{adsId}', [SinglePageController::class, 'singlePage'])->name('single-page');
     Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('about-us');
     Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
     Route::post('/contact-send-message', [IndexController::class, 'contactSendMessage'])->name('contact-send-message');
@@ -113,7 +114,8 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
     Route::post('/memberships-edit-post/{itemId}', [AdminMembershipController::class, 'membershipsEditPost'])->name('memberships-edit-post');
     Route::get('/memberships-delete/{itemId}', [AdminMembershipController::class, 'membershipsDelete'])->name('memberships-delete');
 
-    //
+
+    //transactions
     Route::get('/trans-manage', [AdminIndexController::class, 'transManage'])->name('trans-manage');
 
 
@@ -125,8 +127,6 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
     Route::post('/edit-auction-post/{itemId}', [AdminAuctionController::class, 'editAuctionPost'])->name('edit-auction-post');
     Route::get('/delete-auction/{itemId}', [AdminAuctionController::class, 'deleteAuction'])->name('delete-auction');
 
-
-
     //ads
     Route::get('/ad-management', [AdminAdsController::class, 'adManagement'])->name('ad-management');
     Route::get('/edit-ads/{adId}', [AdminAdsController::class, 'editAds'])->name('edit-ads');
@@ -137,7 +137,7 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
     Route::get('/view-ads/{adId}', [AdminAdsController::class, 'viewAds'])->name('view-ads');
     Route::get('/publish-ads/{adId}', [AdminAdsController::class, 'publishAds'])->name('publish-ads');
 
-
+    //users
     Route::get('/user-management', [UsersController::class, 'userManagement'])->name('user-management');
     Route::get('/user-edit/{userId}', [UsersController::class, 'editUser'])->name('user-edit');
     Route::post('/user-edit/saved/{userId}', [UsersController::class, 'update'])->name('updated');

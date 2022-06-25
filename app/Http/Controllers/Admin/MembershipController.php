@@ -38,6 +38,7 @@ class MembershipController extends Controller
         return view('admin.membership-add');
     }
 
+
     public function membershipsAddPost(Request $request)
     {
 
@@ -66,6 +67,8 @@ class MembershipController extends Controller
 
         return view('admin.membership-edit',compact('membership'));
     }
+
+
 
     public function membershipsEditPost(Request $request, $itemId)
     {

@@ -24,7 +24,6 @@ class FavoriteController extends Controller
     }
 
 
-
     public function addFavorite(Request $request, $adsId)
     {
 
@@ -52,8 +51,6 @@ class FavoriteController extends Controller
     {
 
 
-
-
         $fav = Favorite::find($itemId);
 
         $fav->delete();
@@ -64,29 +61,46 @@ class FavoriteController extends Controller
     public function bidNow(Request $request, $adsId)
     {
 
-      $ads = Ads::find($adsId);
+        $ads = Ads::find($adsId);
 
 
-        return view('web.single-page',compact('ads'));
+        return view('web.single-page', compact('ads'));
 
     }
 
     public function bidNowSubmit(Request $request, $adsId)
     {
 
-        $user = Auth::user();
-
         $ads = Ads::find($adsId);
-        $auction = Auction::find($ads->auction->id);
 
-        Bids::create([
-            'ads_id' => $adsId,
-            'user_id' => $user->id,
-            'price' => $request['price'],
-            'auction_id' =>$auction->id,
-        ]);
+        $userBid = Ads::where('type_sell', 'auction')
+            ->with(['bid' => function ($query) use ($adsId) {
+            $query->where('user_id', Auth::user()->id)->where('auction_id', $adsId);
+        }])->first();
 
-        return redirect()->route('web.find-car');
+        
+
+
+
+        if ($userBid == null) {
+            Bids::create([
+                'ads_id' => $adsId,
+                'user_id' => Auth::user()->id,
+                'price' => $request['price'],
+                'auction_id' => $ads->auction->id,
+            ]);
+
+            session()->flash('successful', 'mission accomplished');
+
+            return redirect()->route('web.index');
+
+        }
+
+
+        session()->flash('Unsuccessfully', 'You have already bid on this auction');
+
+
+        return redirect()->route('web.index');
 
 
     }

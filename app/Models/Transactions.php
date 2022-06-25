@@ -10,6 +10,7 @@ class Transactions extends Model
     use HasFactory;
 
     protected $table = 'transactions';
+
     protected $fillable = [
         'price',
         'user_id',
@@ -20,6 +21,17 @@ class Transactions extends Model
         'code',
         'status',
     ];
+
+    public function package(){
+
+
+        return $this->hasOne(Packages::class,'id','card_id');
+    }
+    public function user(){
+
+
+        return $this->hasOne(User::class,'id','user_id');
+    }
 }
 
 

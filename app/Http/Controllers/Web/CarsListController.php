@@ -12,7 +12,6 @@ class CarsListController extends Controller
 
     public function categoryList($itemId , $type)
     {
-
         if ($type == 'normal')
         {
             $ads = Ads::where(['category_id'=>$itemId,'type_sell'=> 'auction'])->get();
@@ -26,15 +25,11 @@ class CarsListController extends Controller
             $name = $catId->category->title . '    ' . 'Auction';
 
         }
-
-
         return view('web.cars-list', compact('ads', 'name'));
     }
 
     public function damageList($itemId , $type)
     {
-
-
         if ($type == 'normal')
         {
             $ads = Ads::where(['additional_damage_id'=>$itemId,'type_sell'=> 'normal'])->get();
@@ -46,10 +41,7 @@ class CarsListController extends Controller
             $ads = Ads::where(['additional_damage_id'=>$itemId,'type_sell'=> 'auction'])->get();
             $catId = Ads::where('additional_damage_id', $itemId)->get()->first();
             $name = $catId->additionalDamage->title . '    ' . 'Auction';
-
         }
-
-
         return view('web.cars-list', compact('ads', 'name'));
     }
 
@@ -69,7 +61,6 @@ class CarsListController extends Controller
             $name = $catId->carType->title . '    ' . 'Auction';
 
         }
-
         return view('web.cars-list', compact('ads', 'name'));
     }
 

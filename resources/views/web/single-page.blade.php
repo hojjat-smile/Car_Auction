@@ -93,76 +93,72 @@
 
                     </table>
                 </div>
-
-                <div class="col-lg-4">
-                    <p style="padding: 10px; background-color: #0b7bb5; color: white; font-weight: bold">Bid
-                        Information</p>
-                    <table class="table table-hover">
-
-
-                        <tr>
-                            <th>Bid Status::</th>
-                            <td>{{$ads->category->title}}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Sale Status:</th>
-                            <td>{{$ads->category->title}}</td>
-
-                        </tr>
-
-                        <tr>
-                            <th>Current Bid:</th>
-                            <td>{{$ads->category->title}}</td>
-
-                        </tr>
+                @if($ads->type_sell == 'auction')
+                    <div class="col-lg-4">
+                        <p style="padding: 10px; background-color: #0b7bb5; color: white; font-weight: bold">Bid
+                            Information</p>
+                        <table class="table table-hover">
 
 
-                        @if($userAds->id != $user->id)
-                            @if($nowDate < $userAds->membership)
+                            <tr>
+                                <th>Bid Status::</th>
+                                <td>{{$ads->category->title}}</td>
+                            </tr>
 
-                                <form method="post" action="{{route('user.bid-now-submit',$ads)}}">
-                                    @csrf
-                                    <tr>
-                                        <th>
-                                            <input type="text" name="price">
-                                            @error('price')
-                                            <p>{{$message}}</p>
-                                            @enderror
-                                        </th>
-                                    </tr>
+                            <tr>
+                                <th>Sale Status:</th>
+                                <td>{{$ads->category->title}}</td>
 
-                                    <tr>
-                                        <th>
-                                            <button class="button submit form-control">Bid Now</button>
-                                        </th>
-                                    </tr>
-                                </form>
+                            </tr>
 
-                            @elseif($nowDate > $userAds->membership)
-                                <form action="{{route('user.membership')}}">
-                                    @csrf
-                                    <tr>
-                                        <th><input type="text" name="price">
-                                        </th>
-                                    </tr>
+                            <tr>
+                                <th>Current Bid:</th>
+                                <td>{{$ads->category->title}}</td>
 
-                                    <tr>
-                                        <th>
-                                            <button class="button submit form-control">Bid Now</button>
-                                        </th>
-                                    </tr>
-                                </form>
+                            </tr>
+
+
+                            @if($userAds->id != $user->id)
+                                @if($nowDate < $userAds->membership)
+
+                                    <form method="post" action="{{route('user.bid-now-submit',$ads->id)}}">
+                                        @csrf
+                                        <tr>
+                                            <th>
+                                                <input type="text" name="price">
+                                                @error('price')
+                                                <p>{{$message}}</p>
+                                                @enderror
+                                            </th>
+                                        </tr>
+
+                                        <tr>
+                                            <th>
+                                                <button class="button submit form-control">Bid Now</button>
+                                            </th>
+                                        </tr>
+                                    </form>
+
+                                @elseif($nowDate > $userAds->membership)
+                                    <form action="{{route('user.membership')}}">
+                                        @csrf
+                                        <tr>
+                                            <th><input type="text" name="price">
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <button class="button submit form-control">Bid Now</button>
+                                            </th>
+                                        </tr>
+                                    </form>
+                                @endif
                             @endif
 
-                        @endif
-
-
-                    </table>
-                    <a href="{{route('user.add-favorite',$ads->id)}}" class="button red">Add to favorite</a>
-
-                </div>
-
+                        </table>
+                        <a href="{{route('user.add-favorite',$ads->id)}}" class="button red">Add to favorite</a>
+                    </div>
+                @endif
 
             </div>
 

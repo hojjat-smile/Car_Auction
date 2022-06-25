@@ -17,7 +17,11 @@ class Packages extends Model
         'price',
     ];
 
+    public function transaction()
+    {
 
+        return $this->belongsTo(Transactions::class);
+    }
 }
 
 

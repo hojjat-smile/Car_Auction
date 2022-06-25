@@ -18,8 +18,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class IndexController extends Controller
 {
-
-
     public function index()
     {
 
@@ -28,7 +26,6 @@ class IndexController extends Controller
 
         return view('web.index', compact('ads', 'packages'));
     }
-
 
     public function search(Request $request)
     {
@@ -55,33 +52,8 @@ class IndexController extends Controller
         return view('web.find-car', compact('maker'));
     }
 
-
-    public function singlePage($adsId)
-    {
-
-        if (Auth::user()) {
-            $ads = Ads::find($adsId);
-            $ads->update([
-                'view' => $ads->view + 1,
-            ]);
-
-            $user = User::find($ads->user_id);
-            $userAds = User::find(Auth::user()->id);
-            $nowDate = Carbon::now();
-
-            return view('web.single-page', compact('ads', 'user', 'userAds', 'nowDate'));
-
-        } else {
-
-            return redirect()->route('login');
-        }
-    }
-
-
     public function aboutUs()
     {
-
-
         $about = AboutUs::find(1);
 
         return view('web.about-us', compact('about'));
@@ -129,7 +101,6 @@ class IndexController extends Controller
         return view('web.rules', compact('rules'));
     }
 
-
     public function vehicle_search()
     {
         return view('web.vehicle_search');
@@ -143,7 +114,6 @@ class IndexController extends Controller
 
         return view('web.how-works');
     }
-
 
     public function findCar()
     {
@@ -162,7 +132,6 @@ class IndexController extends Controller
         return view('web.find-car', compact('time', 'maker'));
 
     }
-
 
     public function searchCar(Request $request)
     {
@@ -187,6 +156,5 @@ class IndexController extends Controller
 
 
     }
-
 
 }

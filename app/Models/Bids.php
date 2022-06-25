@@ -16,19 +16,4 @@ class Bids extends Model
         'user_id',
     ];
 
-
-
 }
-
-
-
-
-
-
-
-
-
-
-/*
-
-*/

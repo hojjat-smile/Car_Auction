@@ -12,7 +12,7 @@ class Bids extends Model
     protected $table = 'bids';
     protected $fillable = [
         'price',
-        'auction_id',
+        'ads_id',
         'user_id',
     ];
 

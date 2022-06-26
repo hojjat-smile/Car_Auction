@@ -138,7 +138,7 @@ class Ads extends Model
 
     public function bid()
     {
-        return $this->hasOne(Bids::class, 'auction_id', 'id');
+        return $this->hasOne(Bids::class, 'ads_id', 'id');
     }
 
     public function carType()

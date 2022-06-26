@@ -71,14 +71,17 @@ class FavoriteController extends Controller
     public function bidNowSubmit(Request $request, $adsId)
     {
 
+
         $ads = Ads::find($adsId);
 
-        $userBid = Ads::
+      
+
+        $cond = Bids::where("user_id",Auth::user()->id)->where("ads_is",$adsId)->count();
 
         dd($userBid);
 
 
-        if ($userBid == null) {
+        if (!$cond) {
             Bids::create([
                 'ads_id' => $adsId,
                 'user_id' => Auth::user()->id,

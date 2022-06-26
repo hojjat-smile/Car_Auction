@@ -5,7 +5,11 @@
 @section('main')
 
     <div class="container">
-
+        @if(session()->has('successful'))
+            <p style="background-color: lightgreen" class="text-center margin-top-10">{{session('successful')}}</p>
+        @elseif(session()->has('Unsuccessfully'))
+            <p style="background-color: lightpink" class="text-center margin-top-10">{{session('Unsuccessfully')}}</p>
+        @endif
         <div class="login_holder">
             <h1>
                 Login

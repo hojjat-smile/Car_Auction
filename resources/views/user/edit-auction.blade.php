@@ -292,7 +292,7 @@
 
                                 <div class="col-md-6">
                                     <lable>Base Price:</lable>
-                                    <input type="text" name="base_price" value="{{$ads->auction->base_price}}">
+                                    <input type="text" name="base_price" value="{{$ads->base_price}}">
 
                                     @error('base_price')
                                     <small class="text-danger"> {{$message}}</small>
@@ -301,7 +301,7 @@
 
                                 <div class="col-md-6">
                                     <lable>Rough Price:</lable>
-                                    <input type="text" name="rough_price" value="{{$ads->auction->rough_price}}">
+                                    <input type="text" name="rough_price" value="{{$ads->rough_price}}">
 
                                     @error('rough_price')
                                     <small class="text-danger"> {{$message}}</small>

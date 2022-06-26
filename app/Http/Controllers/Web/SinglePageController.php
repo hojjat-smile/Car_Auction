@@ -23,22 +23,26 @@ class SinglePageController extends Controller
     public function singlePage($adsId)
     {
 
+        if (Auth::check()) {
 
-        $ads = Ads::find($adsId);
-        $ads->update([
-            'view' => $ads->view + 1,
-        ]);
+            $ads = Ads::find($adsId);
+            $ads->update([
+                'view' => $ads->view + 1,
+            ]);
+            
+            $user = User::find($ads->user_id);
+            if(Auth::check()){
+                $userAds = User::find(Auth::user()->id);
+            }else{
+                $userAds = 0;
+            }
 
-        $user = User::find($ads->user_id);
-        if(Auth::check()){
-            $userAds = User::find(Auth::user()->id);
-        }else{
-            $userAds = 0;
+            $nowDate = Carbon::now();
+            return view('web.single-page', compact('ads', 'user', 'userAds', 'nowDate'));
+        } else {
+            session()->flash('Unsuccessfully','To view information, first log in to your account.');
+            return redirect()->route('login');
         }
-        $nowDate = Carbon::now();
-
-        return view('web.single-page', compact('ads', 'user', 'userAds', 'nowDate'));
-
 
     }
 }

@@ -124,7 +124,7 @@
 
                                                     <h3>{{$row->maker->title . $row->model->title }}</h3>
                                                     <span><i class="sl sl-icon-location"></i> {{$row->country->title . '  ' . $row->city->title}}</span>
-                                                    <span><i class="sl sl-icon-phone"></i>${{$row->auction->base_price}}</span>
+                                                    <span><i class="sl sl-icon-phone"></i>${{$row->base_price}}</span>
                                                 </div>
                                             </div>
 
@@ -168,7 +168,7 @@
 
                                                     <h3>{{$row->maker->title . $row->model->title }}</h3>
                                                     <span><i class="sl sl-icon-location"></i> {{$row->country->title . '  ' . $row->city->title}}</span>
-                                                    <span><i class="sl sl-icon-phone"></i>${{$row->auction->base_price}}</span>
+                                                    <span><i class="sl sl-icon-phone"></i>${{$row->base_price}}</span>
                                                 </div>
                                             </div>
 

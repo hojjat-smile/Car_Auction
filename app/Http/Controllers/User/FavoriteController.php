@@ -71,23 +71,20 @@ class FavoriteController extends Controller
     public function bidNowSubmit(Request $request, $adsId)
     {
 
+
         $ads = Ads::find($adsId);
 
-        $userBid = Ads::where('type_sell', 'auction')
-            ->with(['bid' => function ($query) use ($adsId) {
-            $query->where('user_id', Auth::user()->id)->where('auction_id', $adsId);
-        }])->first();
 
-        
+
+        $cond = Bids::where("user_id",Auth::user()->id)->where("ads_id",$adsId)->count();
 
 
 
-        if ($userBid == null) {
+        if (!$cond) {
             Bids::create([
                 'ads_id' => $adsId,
                 'user_id' => Auth::user()->id,
                 'price' => $request['price'],
-                'auction_id' => $ads->auction->id,
             ]);
 
             session()->flash('successful', 'mission accomplished');

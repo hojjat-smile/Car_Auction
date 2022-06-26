@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ads;
-use App\Models\Auction;
-use App\Models\Image;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 
 
 class AuctionController extends Controller
@@ -18,8 +16,10 @@ class AuctionController extends Controller
 
     public function myAuction()
     {
+
         $ads = Ads::where('type_sell', 'auction')->get();
         return view('admin.my-auction', compact('ads'));
+
     }
 
     public function addAuction()
@@ -63,6 +63,7 @@ class AuctionController extends Controller
             'current_bid' => 'required',
             'mainImage' => 'required',
         ]);
+
 
         $ads = Ads::create([
             'user_id' => Auth::user()->id,
@@ -117,7 +118,7 @@ class AuctionController extends Controller
             $i--;
         }
 
-        return view('admin.edit-auction',compact('ads','time'));
+        return view('admin.edit-auction', compact('ads', 'time'));
     }
 
     public function editAuctionPost(Request $request, $itemID)
@@ -182,10 +183,52 @@ class AuctionController extends Controller
             'rough_price' => $request['rough_price'],
         ]);
 
-        session()->flash('successfully','mission accomplished.');
+        session()->flash('successfully', 'mission accomplished.');
 
         return redirect()->route('admin.my-auction');
     }
 
+    public function publishAuction($adsId)
+    {
+        $ads = Ads::find($adsId);
+
+        if ($ads->is_published == 1) {
+
+            $ads->update([
+                'is_published' => 0
+            ]);
+            session()->flash('Error', 'The auction was canceled');
+
+        } else if ($ads->is_published == 0) {
+
+            $ads->update([
+                'is_published' => 1
+            ]);
+            session()->flash('Success', 'The auction was published successfully');
+
+        }
+
+
+        return redirect(route('admin.my-auction'));
+    }
+
+    public function viewAuction($adsId)
+
+    {
+
+        $time = [];
+        $date = Carbon::now();
+        $i = 10;
+        while ($i >= 0) {
+            $num = (int)($date->format('Y')) - $i;
+            array_push($time, $num);
+            $i--;
+        }
+
+        $auction = Ads::find($adsId);
+
+
+        return view('admin.view-auction', compact('auction', 'time'));
+    }
 
 }

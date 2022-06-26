@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('assets/web/css/mmenu.css')}}">
     <link rel="stylesheet" href="{{asset('assets/web/css/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('assets/web/css/style.css')}}" id="colors">
+    <link rel="stylesheet" href="{{asset('assets/web/lib/toast/jquery.toast.min.css')}}" id="colors">
 
     <!-- Google Font -->
     <link
@@ -63,7 +64,7 @@
 </div>
 
 
-@yield('script')
+
 
 <!-- Scripts -->
 <script src="{{asset('assets/web/scripts/jquery-3.4.1.min.js')}}"></script>
@@ -78,19 +79,57 @@
 <script src="{{asset('assets/web/scripts/color_switcher.js')}}"></script>
 <script src="{{asset('assets/web/scripts/jquery_custom.js')}}"></script>
 
-<script>
-    (function ($) {
-        try {
-            var jscr1 = $('.js-scrollbar');
-            if (jscr1[0]) {
-                const ps1 = new PerfectScrollbar('.js-scrollbar');
 
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    })(jQuery);
+
+<script src="{{asset('assets/web/lib/toast/jquery.toast.min.js')}}"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        @if(\Illuminate\Support\Facades\Session::has("Success"))
+        $.toast({
+            heading: 'Success',
+            text: "{{ \Illuminate\Support\Facades\Session::get("Success") }}",
+            icon: 'success',
+        })
+        @endif
+
+        @if(\Illuminate\Support\Facades\Session::has("Error"))
+        $.toast({
+            heading: 'Error',
+            text: "{{ \Illuminate\Support\Facades\Session::get("Error") }}",
+            icon: 'error',
+        })
+        @endif
+
+    });
 </script>
+
+
+<script>
+    $(document).ready(function () {
+
+        @if(\Illuminate\Support\Facades\Session::has("Success"))
+        $.toast({
+            heading: 'Success',
+            text: "{{ \Illuminate\Support\Facades\Session::get("Success") }}",
+            icon: 'success',
+        })
+        @endif
+
+        @if(\Illuminate\Support\Facades\Session::has("Error"))
+        $.toast({
+            heading: 'Error',
+            text: "{{ \Illuminate\Support\Facades\Session::get("Error") }}",
+            icon: 'error',
+        })
+        @endif
+
+    });
+</script>
+
+@yield('script')
 <!-- Style Switcher -->
 <div id="color_switcher_preview">
     <h2>Choose Your Color <a href="#"><i class="fa fa-gear fa-spin (alias)"></i></a></h2>

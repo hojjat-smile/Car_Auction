@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{asset('assets/web/css/mmenu.css')}}">
     <link rel="stylesheet" href="{{asset('assets/web/css/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('assets/web/css/style.css')}}" id="colors">
-
+    <link rel="stylesheet" href="{{asset('assets/web/lib/toast/jquery.toast.min.css')}}" id="colors">
     <!-- Google Font -->
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800&display=swap&subset=latin-ext,vietnamese"
@@ -77,6 +77,33 @@
 <script src="{{asset('assets/web/scripts/tooltips.min.js')}}"></script>
 <script src="{{asset('assets/web/scripts/color_switcher.js')}}"></script>
 <script src="{{asset('assets/web/scripts/jquery_custom.js')}}"></script>
+
+<script src="{{asset('assets/web/lib/toast/jquery.toast.min.js')}}"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        @if(\Illuminate\Support\Facades\Session::has("Success"))
+        $.toast({
+            heading: 'Success',
+            text: "{{ \Illuminate\Support\Facades\Session::get("Success") }}",
+            icon: 'success',
+        })
+        @endif
+
+        @if(\Illuminate\Support\Facades\Session::has("Error"))
+        $.toast({
+            heading: 'Error',
+            text: "{{ \Illuminate\Support\Facades\Session::get("Error") }}",
+            icon: 'error',
+        })
+        @endif
+
+    });
+</script>
+
+
 <script>
     (function ($) {
         try {

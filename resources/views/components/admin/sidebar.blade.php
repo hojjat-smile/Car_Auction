@@ -17,12 +17,12 @@
 
             <li class="{{ request()->is('admin-panel/ad-management') ? 'active' : '' }}">
                 <a href="{{route('admin.ad-management')}}">
-                    <i class="sl sl-icon-Menu"></i>Ads</a>
+                    <i class="sl sl-icon-basket"></i>Ads</a>
             </li>
 
             <li class="{{ request()->is('/my-auction') ? 'active' : '' }}">
                 <a href="{{route('admin.my-auction')}}">
-                    <i class="sl sl-icon-Menu"></i>Auctions</a>
+                    <i class="sl sl-icon-bag"></i>Auctions</a>
             </li>
 
             <li class="{{ request()->is('admin-panel/membership') ? 'active' : '' }}">

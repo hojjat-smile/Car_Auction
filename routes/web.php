@@ -126,6 +126,9 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
     Route::get('/edit-auction/{itemId}', [AdminAuctionController::class, 'editAuction'])->name('edit-auction');
     Route::post('/edit-auction-post/{itemId}', [AdminAuctionController::class, 'editAuctionPost'])->name('edit-auction-post');
     Route::get('/delete-auction/{itemId}', [AdminAuctionController::class, 'deleteAuction'])->name('delete-auction');
+    Route::get('/view-auction/{adId}', [AdminAuctionController::class, 'viewAuction'])->name('view-auction');
+    Route::get('/publish-auction/{adId}', [AdminAuctionController::class, 'publishAuction'])->name('publish-auction');
+
 
     //ads
     Route::get('/ad-management', [AdminAdsController::class, 'adManagement'])->name('ad-management');

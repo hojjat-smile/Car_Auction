@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ads;
-use App\Models\Auction;
+
 use App\Models\Favorite;
 use App\Models\User;
 use Illuminate\Support\Carbon;
@@ -21,7 +21,6 @@ class AdsController extends Controller
 
     public function adManagement()
     {
-
 
         return view('admin.ad-management');
     }
@@ -293,7 +292,7 @@ class AdsController extends Controller
             'current_bid' => $request->current_bid,
         ]);
 
-        session()->flash('successfully','mission accomplished.');
+        session()->flash('Success','mission accomplished.');
 
         return redirect(route('admin.ad-management'));
     }

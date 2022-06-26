@@ -2,7 +2,7 @@
 
 
 @section('title')
-My Auction
+    My Auction
 @endsection
 
 @section('css')
@@ -13,12 +13,13 @@ My Auction
 
 @section('main')
 
+    <a href="{{route('admin.add-auction')}}" class="button green right">Add Auction</a>
     <div class="utf_dashboard_list_box table-responsive recent_booking">
         <h4>Auction List</h4>
+
         @if(session()->has('successfully'))
-            <p class=>{{session('successfully')}}</p>
+            <p id="toast"></p>
         @endif
-        <a href="{{route('admin.add-auction')}}" class="button green right">Add Auction</a>
         <div class="dashboard-list-box table-responsive invoices with-icons">
             <table class="table table-hover">
                 <thead>
@@ -37,10 +38,8 @@ My Auction
                 </tr>
                 </thead>
                 <tbody>
-
                 @foreach($ads as $ad)
                     @if($ad != null)
-
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$ad->maker->title}}</td>
@@ -53,21 +52,28 @@ My Auction
                             <td>
                                 <a href="{{route('admin.edit-auction',$ad->id)}}" class="button yellow ">Edit</a>
                                 <a href="{{route('admin.delete-auction',$ad->id)}}" class="button ">Delete</a>
+                                <a href="{{route('admin.view-auction',$ad->id)}}" class="button green">View</a>
+                                @if($ad->is_published)
+                                    <a href="{{route('admin.publish-auction',$ad->id)}}" class="button red">
+                                        Is Publish
+                                    </a>
+                                @elseif(!$ad->is_published)
+                                    <a href="{{route('admin.publish-auction',$ad->id)}}" class="button blue">
+                                        Publish
+                                    </a>
+                                @endif
                             </td>
-
                         </tr>
                     @endif
                 @endforeach
                 </tbody>
-                </tbody>
             </table>
         </div>
     </div>
-
-
 @endsection
 
 @section('script')
+
 
 @endsection
 

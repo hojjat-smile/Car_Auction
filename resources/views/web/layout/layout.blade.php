@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{asset('assets/web/css/mmenu.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
     <link rel="stylesheet" href="{{asset('assets/web/css/style.css')}}">
-
+    <link rel="stylesheet" href="{{asset('assets/web/lib/toast/jquery.toast.min.css')}}" id="colors">
 
     <!-- Google Font -->
     <link
@@ -64,6 +64,53 @@
 <script src="{{asset('assets/web/scripts/color_switcher.js')}}"></script>
 <script src="{{asset('assets/web/scripts/jquery_custom.js')}}"></script>
 
+<script src="{{asset('assets/web/lib/toast/jquery.toast.min.js')}}"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        @if(\Illuminate\Support\Facades\Session::has("Success"))
+        $.toast({
+            heading: 'Success',
+            text: "{{ \Illuminate\Support\Facades\Session::get("Success") }}",
+            icon: 'success',
+        })
+        @endif
+
+        @if(\Illuminate\Support\Facades\Session::has("Error"))
+        $.toast({
+            heading: 'Error',
+            text: "{{ \Illuminate\Support\Facades\Session::get("Error") }}",
+            icon: 'error',
+        })
+        @endif
+
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+
+        @if(\Illuminate\Support\Facades\Session::has("Success"))
+        $.toast({
+            heading: 'Success',
+            text: "{{ \Illuminate\Support\Facades\Session::get("Success") }}",
+            icon: 'success',
+        })
+        @endif
+
+        @if(\Illuminate\Support\Facades\Session::has("Error"))
+        $.toast({
+            heading: 'Error',
+            text: "{{ \Illuminate\Support\Facades\Session::get("Error") }}",
+            icon: 'error',
+        })
+        @endif
+
+    });
+</script>
 <script>
     var tpj = jQuery;
     var revapi4;

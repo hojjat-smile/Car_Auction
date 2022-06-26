@@ -56,7 +56,8 @@ class MembershipController extends Controller
             'price' => $request->price,
         ]);
 
-
+        session()->flash('Success','mission accomplished.');
+        
         return redirect()->route('admin.membership');
     }
 
@@ -89,7 +90,7 @@ class MembershipController extends Controller
             'price' => $request->price,
         ]);
 
-
+        session()->flash('Success','mission accomplished.');
         return redirect()->route('admin.membership');
     }
 

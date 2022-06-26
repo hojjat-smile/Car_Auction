@@ -43,21 +43,16 @@ Ads
                 </tr>
                 </thead>
                 <tbody>
-                @foreach(\App\Models\Ads::all() as $ad)
 
+                @foreach($ads as $ad)
                     @if($ad != null)
-
                     <tr>
-
                         <td>{{$loop->iteration}}</td>
-
                         @if($ad->image != null)
                             <td><img width="120px" height="70" src="{{asset($ad->image->image)}} " alt=""></td>
                         @else
-
                             <td>not found Image</td>
                         @endif
-
                         <td>{{$ad->maker->title}}</td>
                         <td>{{$ad->model->title}}</td>
                         <td>{{$ad->year}}</td>
@@ -71,15 +66,12 @@ Ads
                             <a href="{{route('admin.delete-ads',$ad->id)}}" class="button ">Delete</a>
                             <a href="{{route('admin.view-ads',$ad->id)}}" class="button green ">View</a>
                             <a href="{{route('admin.publish-ads',$ad->id)}}" class="button blue">
-
                                 @if($ad->is_published)
                                     Is Publish
                                 @elseif(!$ad->is_published)
                                     Publish
                                 @endif
                             </a>
-
-
                         </td>
 
                     </tr>
@@ -94,5 +86,8 @@ Ads
 @endsection
 
 @section('script')
+
+
+
 
 @endsection

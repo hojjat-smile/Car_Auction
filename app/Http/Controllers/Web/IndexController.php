@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
+use MongoDB\Driver\Query;
 
 class IndexController extends Controller
 {
@@ -117,6 +118,54 @@ class IndexController extends Controller
 
     public function findCar()
     {
+        $time = [];
+        $date = Carbon::now();
+        $i = 10;
+        while ($i >= 0) {
+            $num = (int)($date->format('Y')) - $i;
+            array_push($time, $num);
+            $i--;
+        }
+        $maker = null;
+        $search = Ads::where("is_published",1)->paginate(30);
+        return view('web.find-car', compact('time', 'maker','search'));
+    }
+
+    public function searchCar(Request $request)
+    {
+
+        $query = Ads::query();
+        $query->where("is_published",1);
+
+        if($request->input("fromYear")!=0 && $request->input("toYear")!=0){
+            $query->where("year",">=",$request->input("fromYear"))->where("year","<=", $request->input("toYear"));
+        }
+
+        $query->where("condition_id",$request->input("condition_type"));
+
+        if($request->input("country")!=0){
+            $query->where("country",$request->input("country"));
+        }
+
+        if($request->input("city")!=0){
+            $query->where("city",$request->input("city"));
+        }
+
+        if($request->input("damage")!=0){
+            $query->where("damage_id",$request->input("damage"));
+        }
+
+        if($request->input("maker")!=0){
+            $query->where("maker_id",$request->input("maker"));
+        }
+
+        if($request->input("category")!=0){
+            $query->where("category_id",$request->input("category"));
+        }
+
+
+        $search = $query->paginate(30);
+
 
         $time = [];
         $date = Carbon::now();
@@ -129,30 +178,7 @@ class IndexController extends Controller
 
         $maker = null;
 
-        return view('web.find-car', compact('time', 'maker'));
-
-    }
-
-    public function searchCar(Request $request)
-    {
-
-
-        $search = Ads::where(['year' => $request['year'],
-            'maker_id' => $request['maker_id'],
-            'model_id' => $request['model_id'],
-            'category_id' => $request['category_id']])->get();
-
-
-        $time = [];
-        $date = Carbon::now();
-        $i = 10;
-        while ($i >= 0) {
-            $num = (int)($date->format('Y')) - $i;
-            array_push($time, $num);
-            $i--;
-        }
-
-        return view('web.vehicle_search', compact('time', 'search'));
+        return view('web.find-car', compact('time', 'search','maker'));
 
 
     }

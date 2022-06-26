@@ -265,20 +265,11 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <lable>Additional Info</lable>
                         <input type="text" name="additional_info" value="{{old('additional_info')}}">
 
                         @error('additional_info')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <lable>Current Bid:</lable>
-                        <input type="text" name="current_bid" value="{{old('current_bid')}}">
-
-                        @error('current_bid')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
@@ -302,7 +293,7 @@
                     <div class="col-md-4">
                         <lable>Image Three (Optional)</lable>
                         <input type="file" name="ImageThree" />
-                        @error('ImageTwo')
+                        @error('ImageThree')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
@@ -310,7 +301,7 @@
                     <div class="col-md-4">
                         <lable>Image Four (Optional)</lable>
                         <input type="file" name="ImageFour" />
-                        @error('ImageTwo')
+                        @error('ImageFour')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
@@ -318,7 +309,7 @@
                     <div class="col-md-4">
                         <lable>Image Five (Optional)</lable>
                         <input type="file" name="ImageFive" />
-                        @error('ImageTwo')
+                        @error('ImageFive')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>

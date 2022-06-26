@@ -1,4 +1,4 @@
-<header id="header_part" class="fixed fullwidth_block dashboard">
+<header id="header_part" class="fixed dashboard">
     <div id="header" class="not-sticky">
         <div class="container-fluid">
             <div class="utf_left_side">

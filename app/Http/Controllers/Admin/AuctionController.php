@@ -18,11 +18,9 @@ class AuctionController extends Controller
 
     public function myAuction()
     {
-
         $ads = Ads::where('type_sell', 'auction')->get();
         return view('admin.my-auction', compact('ads'));
     }
-
 
     public function addAuction()
     {
@@ -35,16 +33,14 @@ class AuctionController extends Controller
             array_push($time, $num);
             $i--;
         }
-
         return view('admin.add-auction', compact('time'));
-    }
 
+    }
 
     public function addAuctionPost(Request $request)
     {
+
         $request->validate([
-            'base_price' => 'required',
-            'rough_price' => 'required',
             'car_type_id' => 'required',
             'maker_id' => 'required',
             'model_id' => 'required',
@@ -65,9 +61,8 @@ class AuctionController extends Controller
             'v_five_notes' => 'required',
             'additional_info' => 'required',
             'current_bid' => 'required',
+            'mainImage' => 'required',
         ]);
-
-
 
         $ads = Ads::create([
             'user_id' => Auth::user()->id,
@@ -95,13 +90,8 @@ class AuctionController extends Controller
             'current_bid' => $request->current_bid,
         ]);
 
-        Auction::create([
-            'ads_id' => $ads->id,
-            'base_price' => $request['base_price'],
-            'rough_price' => $request['rough_price'],
-        ]);
 
-        session()->flash('successfully','mission accomplished.');
+        session()->flash('Success','mission accomplished.');
 
         return redirect()->route('admin.my-auction');
     }

@@ -29,7 +29,7 @@ class SinglePageController extends Controller
             $ads->update([
                 'view' => $ads->view + 1,
             ]);
-            
+
             $user = User::find($ads->user_id);
             if(Auth::check()){
                 $userAds = User::find(Auth::user()->id);

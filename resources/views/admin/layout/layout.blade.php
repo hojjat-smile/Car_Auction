@@ -77,6 +77,7 @@
 <script src="{{asset('assets/web/scripts/tooltips.min.js')}}"></script>
 <script src="{{asset('assets/web/scripts/color_switcher.js')}}"></script>
 <script src="{{asset('assets/web/scripts/jquery_custom.js')}}"></script>
+
 <script>
     (function ($) {
         try {

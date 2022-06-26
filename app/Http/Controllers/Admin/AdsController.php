@@ -87,6 +87,7 @@ class AdsController extends Controller
 
 
 
+
         $ads = Ads::create([
             'user_id' => Auth::user()->id,
             'type_sell' => 'normal',
@@ -108,22 +109,75 @@ class AdsController extends Controller
             'fuel' => $request->fuel,
             'keys' => $request->keys,
             'v_five_notes' => $request->v_five_notes,
-            'additional_info' => $request->additional_info,
-            'current_bid' => $request->current_bid,
+            'additional_info' => $request->additional_info
         ]);
-
-        if (file_exists("uploads/images/".$ads->id."/".$ads->image)) {
-            File::deleteDirectory(public_path('uploads/images/'.$ads->id));
-        }
 
         $path = 'uploads/images/';
         File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
         $imageName = 'uploads/images/' . $ads->id . '/' . $request->mainImage->getClientOriginalName();
-        $request->mainImage->move(('uploads/images/'. "$ads->id/"), $imageName);
+        $request->mainImage->move(('uploads/images/'.$ads->id), $imageName);
 
-        $ads->update([
-            'image' => $imageName
-        ]);
+        $image = new Image();
+        $image->ads_id = $ads->id;
+        $image->main = 1;
+        $image->image = $imageName;
+        $image->save();
+
+        if($request->has("ImageTwo")){
+
+            $path = 'uploads/images/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/' . $ads->id . '/' . $request->ImageTwo->getClientOriginalName();
+            $request->ImageTwo->move(('uploads/images/'.$ads->id), $imageName);
+
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
+
+        if($request->has("ImageThree")){
+
+            $path = 'uploads/images/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/' . $ads->id . '/' . $request->ImageThree->getClientOriginalName();
+            $request->ImageThree->move(('uploads/images/'.$ads->id), $imageName);
+
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
+
+        if($request->has("ImageFour")){
+
+            $path = 'uploads/images/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/' . $ads->id . '/' . $request->ImageFour->getClientOriginalName();
+            $request->ImageFour->move(('uploads/images/'.$ads->id), $imageName);
+
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
+
+        if($request->has("ImageFive")){
+
+            $path = 'uploads/images/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/' . $ads->id . '/' . $request->ImageFive->getClientOriginalName();
+            $request->ImageFive->move(('uploads/images/'.$ads->id), $imageName);
+
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
 
         session()->flash('successfully','Ad Submitted Successfully.');
 

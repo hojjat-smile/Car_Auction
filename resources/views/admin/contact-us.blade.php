@@ -12,9 +12,9 @@
 
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
+            <div class="utf_dashboard_list_box table-responsive recent_booking">
 
-            <h4>Rules</h4>
 
                 <div class="utf_dashboard_list_box table-responsive recent_booking">
                     <h4>Recent Messages</h4>
@@ -57,7 +57,7 @@
 
 
 
-
+</div>
         </div>
 
 

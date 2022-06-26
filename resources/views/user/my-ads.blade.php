@@ -14,10 +14,12 @@
 
     <div class="my-ads">
 
+        <a href="{{route('user.add-ads')}}" class="button green right">Add Ads</a>
+
+
         <div class="utf_dashboard_list_box table-responsive recent_booking margin-top-50">
 
 
-            <a href="{{route('user.add-ads')}}" class="button green right">Add Ads</a>
 
 
             <h4>Ads List</h4>

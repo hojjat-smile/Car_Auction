@@ -5,15 +5,13 @@
 
 @endsection
 
-
-
 @section('main')
 
     <div class="col-fs-12">
         <div class="col-lg-12">
             <div id="utf_add_listing_part">
 
-                <div class="add_utf_listing_section margin-top-45">
+                <div class="add_utf_listing_section margin-top-15">
                     <div class="utf_add_listing_part_headline_part">
                         <h3>Sell Your Car in a Copart Auction</h3>
                     </div>

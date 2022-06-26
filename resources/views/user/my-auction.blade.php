@@ -13,12 +13,13 @@ My Auction
 
 @section('main')
 
+    <a href="{{route('user.add-auction')}}" class="button green right">Add Auction</a>
+
     <div class="utf_dashboard_list_box table-responsive recent_booking">
         <h4>Auction List</h4>
         @if(session()->has('successfully'))
             <p class=>{{session('successfully')}}</p>
         @endif
-        <a href="{{route('user.add-auction')}}" class="button green right">Add Auction</a>
         <div class="dashboard-list-box table-responsive invoices with-icons">
             <table class="table table-hover">
                 <thead>

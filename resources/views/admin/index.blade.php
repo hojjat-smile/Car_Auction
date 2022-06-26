@@ -69,9 +69,10 @@
                         @foreach($ads as $ad)
                             @if($ad != null)
                                 <tr>
+
                                     <td>{{$loop->iteration}}</td>
                                     @if($ad->image != null)
-                                        <td><img width="70px" height="70px" src="{{asset($ad->image->image)}}"
+                                        <td><img style="width: 70px;height: 70px;border-radius: 5px;" src="{{asset($ad->image->image)}}"
                                                  alt=""></td>
                                     @endif
                                     <td>{{$ad->maker->title}}</td>
@@ -81,7 +82,6 @@
                                     <td>{{$ad->city->title}}</td>
                                     <td>{{$ad->user->username}}</td>
                                     <td>{{$ad->user->email}}</td>
-                                    <td>{{$ad->mileage}}</td>
 
 
                                     <td>

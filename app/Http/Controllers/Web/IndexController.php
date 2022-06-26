@@ -22,7 +22,7 @@ class IndexController extends Controller
     public function index()
     {
 
-        $ads = Ads::orderBy('view', 'desc')->get();
+        $ads = Ads::orderBy('view', 'desc')->where("is_published",1)->get();
         $packages = Packages::all();
 
         return view('web.index', compact('ads', 'packages'));

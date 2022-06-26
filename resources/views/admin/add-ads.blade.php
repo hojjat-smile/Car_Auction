@@ -115,9 +115,9 @@
                         <lable>Condition:</lable>
                         <select name="condition_id">
 
-                            <option value="{{1}}">All</option>
-                            <option value="{{2}}">Used</option>
-                            <option value="{{3}}">Salvage</option>
+                            <option value="1">All</option>
+                            <option value="2">Used</option>
+                            <option value="3">Salvage</option>
 
                         </select>
 

@@ -10,13 +10,13 @@
 @section('main')
 
     <div class="row">
-        <div class="col-md-8">
-
+        <div class="col-md-12">
+            <div class="utf_dashboard_list_box table-responsive recent_booking">
             <h4>Rules</h4>
             <form action="{{route('admin.rules-post',$rules->id)}}" method="post">
                 @csrf
 
-                <div class="col-md-12">
+                <div class="col-md-12 margin-top-25">
                     <input name="title" type="text" placeholder="title" value="{{$rules->title}}"/>
 
                     @error('title')
@@ -35,11 +35,11 @@
 
                 <div class="col-md-12">
 
-                    <input type="submit" class="submit button" id="submit" value="Submit"/>
+                    <input type="submit" class="button margin-bottom-25" style="font-size: 20px;padding: 10px 15px;" id="submit" value="Submit"/>
                 </div>
 
             </form>
-
+            </div>
         </div>
     </div>
 

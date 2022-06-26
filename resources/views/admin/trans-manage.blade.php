@@ -13,10 +13,12 @@
 
 @section('main')
 
-    <div class="container">
+    <div>
+        <div class="utf_dashboard_list_box table-responsive recent_booking">
 
+            <h4>MemberShips</h4>
 
-        <div class="dashboard-list-box table-responsive invoices with-icons margin-top-50">
+            <div class="dashboard-list-box table-responsive invoices with-icons">
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -30,8 +32,6 @@
                     <th>Pay</th>
                     <th>Code</th>
                     <th>Status</th>
-                    <th>Action</th>
-
                 </tr>
                 </thead>
                 @foreach($transactions as $transaction)
@@ -63,7 +63,9 @@
             </table>
         </div>
 
+        </div>
     </div>
+
 @endsection
 
 @section('script')

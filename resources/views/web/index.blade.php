@@ -113,7 +113,7 @@
 
 
                             @foreach($ads as $row)
-                                @if($row->is_published == 1)
+                                @if($row->is_published == 1 && $row->type_sell=="normal")
                                     <div class="utf_carousel_item"><a
                                             href="{{route('web.single-page',$row->id)}}"
                                             class="utf_listing_item-container compact">
@@ -159,7 +159,7 @@
 
 
                             @foreach($ads as $row)
-                                @if($row->is_published == 1)
+                                @if($row->is_published == 1  && $row->type_sell=="auction")
                                     <div class="utf_carousel_item"><a
                                             href="{{route('web.single-page',$row->id)}}"
                                             class="utf_listing_item-container compact">

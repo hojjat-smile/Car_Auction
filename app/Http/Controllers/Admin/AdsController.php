@@ -21,8 +21,8 @@ class AdsController extends Controller
 
     public function adManagement()
     {
-
-        return view('admin.ad-management');
+        $ads =  Ads::where("type_sell","normal")->get();
+        return view('admin.ad-management',compact('ads'));
     }
 
     public function editAds($adId)
@@ -80,7 +80,6 @@ class AdsController extends Controller
             'keys' => 'required',
             'v_five_notes' => 'required',
             'additional_info' => 'required',
-            'current_bid' => 'required',
             'mainImage' => 'required',
         ]);
 

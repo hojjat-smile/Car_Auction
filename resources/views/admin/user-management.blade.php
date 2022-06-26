@@ -24,8 +24,7 @@
                     <th>Mobile</th>
                     <th>Company Name</th>
                     <th>Activity</th>
-                    <th>Delete</th>
-                    <th>Edit</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -62,18 +61,17 @@
                                             Active</a>
                                 </td>
                             @endif
-                            <td>
+                            <td style="vertical-align: middle">
 
-                                <form onsubmit="return confirm('Do you really want to Delete the user?');"
+                                <form style="display: inline-block;" onsubmit="return confirm('Do you really want to Delete the user?');"
                                       action="{{route('admin.user-deleted',$user->id )}}">
-
                                     <button class="button submit">Delete</button>
+                                    <a href="{{route('admin.user-edit',$user->id )}}" style="display: inline-block" class="button yellow ">Edit</a>
 
                                 </form>
 
                             </td>
-                            <td><a href="{{route('admin.user-edit',$user->id )}}" class="button yellow ">Edit</a>
-                            </td>
+
                         @endif
                         @endif
                     </tr>

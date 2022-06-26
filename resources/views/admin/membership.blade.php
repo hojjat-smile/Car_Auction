@@ -1,23 +1,20 @@
 @extends('admin.layout.layout')
 
-
-
 @section('css')
 
 @endsection
 
-
-
-
-
-
 @section('main')
 
-    <div class="container">
+    <div class="">
 
         <a href="{{route('admin.memberships-add')}}" class="button green">Add Package</a>
 
-        <div class="dashboard-list-box table-responsive invoices with-icons margin-top-50">
+        <div class="utf_dashboard_list_box table-responsive recent_booking">
+
+            <h4>MemberShips</h4>
+
+            <div class="dashboard-list-box table-responsive invoices with-icons">
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -59,6 +56,8 @@
 
 
             </table>
+        </div>
+
         </div>
 
     </div>

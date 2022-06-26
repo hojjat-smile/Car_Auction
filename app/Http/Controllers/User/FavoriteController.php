@@ -74,11 +74,10 @@ class FavoriteController extends Controller
 
         $ads = Ads::find($adsId);
 
-      
 
-        $cond = Bids::where("user_id",Auth::user()->id)->where("ads_is",$adsId)->count();
 
-        dd($userBid);
+        $cond = Bids::where("user_id",Auth::user()->id)->where("ads_id",$adsId)->count();
+
 
 
         if (!$cond) {
@@ -86,7 +85,6 @@ class FavoriteController extends Controller
                 'ads_id' => $adsId,
                 'user_id' => Auth::user()->id,
                 'price' => $request['price'],
-                'auction_id' => $ads->auction->id,
             ]);
 
             session()->flash('successful', 'mission accomplished');

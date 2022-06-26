@@ -38,9 +38,10 @@ class SinglePageController extends Controller
             }
 
             $nowDate = Carbon::now();
+
             return view('web.single-page', compact('ads', 'user', 'userAds', 'nowDate'));
         } else {
-            session()->flash('Unsuccessfully','To view information, first log in to your account.');
+            session()->flash('Error','To view information, first login to your account.');
             return redirect()->route('login');
         }
 

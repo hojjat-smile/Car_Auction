@@ -58,6 +58,7 @@ class AboutUsController extends Controller
             ]);
         }
 
+        session()->flash('Success','About us page edited.');
 
         return view('admin.about-us',compact('about'));
     }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ads;
-use App\Models\Auction;
+
 use App\Models\Bids;
 use App\Models\Favorite;
 use App\Models\User;
@@ -43,6 +43,7 @@ class FavoriteController extends Controller
 
             ]);
         }
+        session()->flash('Success', 'Favorite Submitted');
 
         return redirect()->route('web.find-car');
     }
@@ -54,6 +55,7 @@ class FavoriteController extends Controller
         $fav = Favorite::find($itemId);
 
         $fav->delete();
+        session()->flash('Success', 'Favorite deleted');
 
         return redirect()->route('user.my-favorite');
     }
@@ -87,7 +89,7 @@ class FavoriteController extends Controller
                 'price' => $request['price'],
             ]);
 
-            session()->flash('successful', 'mission accomplished');
+            session()->flash('Success', 'Bid sent');
 
             return redirect()->route('web.index');
 

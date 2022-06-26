@@ -95,7 +95,7 @@ class AdsController extends Controller
             'rough_price' => $request->rough_price,
         ]);
 
-        session()->flash('successful','mission accomplished.');
+        session()->flash('Success','Ad Edited.');
 
 
         return redirect(route('user.my-ads'));
@@ -159,7 +159,7 @@ class AdsController extends Controller
             'rough_price' => $request->rough_price,
         ]);
 
-        session()->flash('successful','mission accomplished.');
+        session()->flash('Success','Ad submitted.');
 
         return redirect()->route('user.add-ads');
     }
@@ -176,6 +176,7 @@ class AdsController extends Controller
 
         $image->delete();
         $ads->delete();
+        session()->flash('Success','Ad deleted.');
 
         return redirect()->route('admin.ad-management');
     }
@@ -196,25 +197,7 @@ class AdsController extends Controller
         return view('user.add-ads', compact('time'));
     }
 
-    public function uploadFile($user_id, $file, $oldDir = false)
-    {
 
-
-        $path = "uploads/images" . '/' . $user_id;
-
-        if ($oldDir) {
-            if (file_exists($path)) {
-                File::deleteDirectory(public_path($path));
-            }
-        }
-
-        File::exists($path) or File::makeDirectory($path, 0775, true, true);
-        $document_name = $path . '/' . $file->getClientOriginalName();
-        $file->move($path, $document_name);
-
-        return $document_name;
-
-    }
 
 
 }

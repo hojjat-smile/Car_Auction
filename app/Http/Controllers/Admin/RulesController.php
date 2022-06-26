@@ -44,6 +44,7 @@ class RulesController extends Controller
             'text_rules'=> $request['text_rules']
         ]);
 
+        session()->flash('Success','Rules Submitted');
 
         return redirect()->route('admin.rules');
     }

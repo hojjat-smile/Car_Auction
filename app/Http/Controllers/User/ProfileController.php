@@ -76,6 +76,7 @@ class ProfileController extends Controller
             ]);
 
         }
+        session()->flash('Success', 'Profile Edited');
 
         return redirect()->route('user.dashboard');
     }

@@ -46,7 +46,7 @@ class OrdersController extends Controller
             'membership' => $trialExpires,
         ]);
 
-        session()->flash('successfully', 'mission accomplished.');
+        session()->flash('successfully', 'New order submitted');
 
         return redirect()->route('user.membership');
     }

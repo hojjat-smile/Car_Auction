@@ -65,7 +65,7 @@ class AuctionController extends Controller
         ]);
 
 
-        $ads = Ads::create([
+         Ads::create([
             'user_id' => Auth::user()->id,
             'type_sell' => 'auction',
             'category' => $request->category,
@@ -91,16 +91,19 @@ class AuctionController extends Controller
             'current_bid' => $request->current_bid,
         ]);
 
-
-        session()->flash('Success','mission accomplished.');
+        session()->flash('Success','Auction Submitted.');
 
         return redirect()->route('admin.my-auction');
     }
 
 
-    public function deleteAuction()
+    public function deleteAuction($itemId)
     {
+        $ads = Ads::find($itemId);
 
+        $ads->deleted();
+
+        session()->flash('successfully', 'Auction Deleted.');
 
         return redirect()->route('admin.my-auction');
     }
@@ -183,7 +186,7 @@ class AuctionController extends Controller
             'rough_price' => $request['rough_price'],
         ]);
 
-        session()->flash('successfully', 'mission accomplished.');
+        session()->flash('successfully', 'Auction Edited.');
 
         return redirect()->route('admin.my-auction');
     }
@@ -197,14 +200,14 @@ class AuctionController extends Controller
             $ads->update([
                 'is_published' => 0
             ]);
-            session()->flash('Error', 'The auction was canceled');
+            session()->flash('Success', 'Auction Published.');
 
         } else if ($ads->is_published == 0) {
 
             $ads->update([
                 'is_published' => 1
             ]);
-            session()->flash('Success', 'The auction was published successfully');
+            session()->flash('Success', 'Auction deactivated');
 
         }
 

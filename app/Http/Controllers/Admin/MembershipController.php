@@ -56,8 +56,8 @@ class MembershipController extends Controller
             'price' => $request->price,
         ]);
 
-        session()->flash('Success','mission accomplished.');
-        
+        session()->flash('Success','Package added');
+
         return redirect()->route('admin.membership');
     }
 
@@ -90,7 +90,8 @@ class MembershipController extends Controller
             'price' => $request->price,
         ]);
 
-        session()->flash('Success','mission accomplished.');
+        session()->flash('Success','Package Edited');
+
         return redirect()->route('admin.membership');
     }
 
@@ -98,6 +99,9 @@ class MembershipController extends Controller
 
         $membership = Packages::find($itemId);
         $membership->delete();
+
+        session()->flash('Success','Package Deleted.');
+
         return redirect()->route('admin.membership');
     }
 

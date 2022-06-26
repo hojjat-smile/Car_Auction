@@ -15,7 +15,8 @@
             @if(session()->has('successful'))
                 <p style="background-color: lightgreen" class="text-center margin-top-10">{{session('successful')}}</p>
             @elseif(session()->has('Unsuccessfully'))
-                <p style="background-color: lightpink" class="text-center margin-top-10">{{session('Unsuccessfully')}}</p>
+                <p style="background-color: lightpink"
+                   class="text-center margin-top-10">{{session('Unsuccessfully')}}</p>
             @endif
 
             <div class="row">
@@ -116,10 +117,12 @@
                                     <div class="utf_carousel_item"><a
                                             href="{{route('web.single-page',$row->id)}}"
                                             class="utf_listing_item-container compact">
-                                            <div class="utf_listing_item"><img
-                                                    src="{{asset($row->image->image)}}"
-                                                    alt="">
-
+                                            <div class="utf_listing_item">
+                                                @if($row->image !=null)
+                                                    <img
+                                                        src="{{asset($row->image->image)}}"
+                                                        alt="">
+                                                @endif
                                                 <div class="utf_listing_item_content">
 
                                                     <h3>{{$row->maker->title . $row->model->title }}</h3>
@@ -160,10 +163,12 @@
                                     <div class="utf_carousel_item"><a
                                             href="{{route('web.single-page',$row->id)}}"
                                             class="utf_listing_item-container compact">
-                                            <div class="utf_listing_item"><img
-                                                    src="{{asset($row->image->image)}}"
-                                                    alt="">
-
+                                            <div class="utf_listing_item">
+                                                @if($row->image !=null)
+                                                    <img
+                                                        src="{{asset($row->image->image)}}"
+                                                        alt="">
+                                                @endif
                                                 <div class="utf_listing_item_content">
 
                                                     <h3>{{$row->maker->title . $row->model->title }}</h3>

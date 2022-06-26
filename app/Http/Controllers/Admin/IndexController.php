@@ -100,6 +100,7 @@ class IndexController extends Controller
         ]);
 
 
+
         $user = Auth::user();
 
 
@@ -128,6 +129,7 @@ class IndexController extends Controller
             ]);
         }
 
+        session()->flash('successfully', 'Profile Edited.');
 
         return redirect()->route('admin.dashboard');
     }

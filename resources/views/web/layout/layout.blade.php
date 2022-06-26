@@ -85,32 +85,11 @@
             icon: 'error',
         })
         @endif
-
     });
 </script>
 
 
-<script>
-    $(document).ready(function () {
 
-        @if(\Illuminate\Support\Facades\Session::has("Success"))
-        $.toast({
-            heading: 'Success',
-            text: "{{ \Illuminate\Support\Facades\Session::get("Success") }}",
-            icon: 'success',
-        })
-        @endif
-
-        @if(\Illuminate\Support\Facades\Session::has("Error"))
-        $.toast({
-            heading: 'Error',
-            text: "{{ \Illuminate\Support\Facades\Session::get("Error") }}",
-            icon: 'error',
-        })
-        @endif
-
-    });
-</script>
 <script>
     var tpj = jQuery;
     var revapi4;
@@ -227,6 +206,7 @@
 <script src="{{asset('assets/web/scripts/extensions/revolution.extension.parallax.min.js')}}"></script>
 <script src="{{asset('assets/web/scripts/extensions/revolution.extension.slideanims.min.js')}}"></script>
 <script src="{{asset('assets/web/scripts/extensions/revolution.extension.video.min.js')}}"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 
 @if(session('message'))
@@ -236,35 +216,7 @@
 @endif
 
 
-@if(Session::has('Error'))
 
-    <script>
-        $.toast({
-            heading: 'Error',
-            text: '{{ Session::get('Error') }}',
-            icon: 'error',
-            position: 'bottom-right',
-            loader: true,        // Change it to false to disable loader
-            loaderBg: '#9EC600'  // To change the background
-        })
-    </script>
-
-@endif
-
-@if(Session::has('Success'))
-
-    <script>
-        $.toast({
-            heading: 'Success',
-            text: '{{ Session::get('Success') }}',
-            icon: 'info',
-            position: 'bottom-right',
-            loader: true,        // Change it to false to disable loader
-            loaderBg: '#9EC600'  // To change the background
-        })
-    </script>
-
-@endif
 
 
 </body>

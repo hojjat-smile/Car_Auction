@@ -37,12 +37,14 @@ class UsersController extends Controller
 
                 'activity' => 'deactivate'
             ]);
+            session()->flash('Success', 'User disabled');
         } else if ($user->activity != 'active') {
 
             $user->update([
 
                 'activity' => 'active'
             ]);
+            session()->flash('Success', 'User activated');
         }
 
         return redirect()->route('admin.user-management');
@@ -55,19 +57,13 @@ class UsersController extends Controller
         $user = User::find($userId);
 
 
-        if ($user->deleted == 'alive') {
+
 
             $user->update([
 
                 'deleted' => 'died'
             ]);
-        } else if ($user->deleted == 'died') {
-
-            $user->update([
-
-                'deleted' => 'alive'
-            ]);
-        }
+        session()->flash('Success','User deleted.');
 
         return redirect()->route('admin.user-management');
     }
@@ -120,7 +116,7 @@ class UsersController extends Controller
                 'image' => $this->uploadFile($user->id, $request->file('image')),
             ]);
         }
-
+        session()->flash('Success','User Edited');
         return redirect()->route('admin.user-management');
     }
 

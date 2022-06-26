@@ -107,27 +107,7 @@
 </script>
 
 
-<script>
-    $(document).ready(function () {
 
-        @if(\Illuminate\Support\Facades\Session::has("Success"))
-        $.toast({
-            heading: 'Success',
-            text: "{{ \Illuminate\Support\Facades\Session::get("Success") }}",
-            icon: 'success',
-        })
-        @endif
-
-        @if(\Illuminate\Support\Facades\Session::has("Error"))
-        $.toast({
-            heading: 'Error',
-            text: "{{ \Illuminate\Support\Facades\Session::get("Error") }}",
-            icon: 'error',
-        })
-        @endif
-
-    });
-</script>
 
 @yield('script')
 <!-- Style Switcher -->

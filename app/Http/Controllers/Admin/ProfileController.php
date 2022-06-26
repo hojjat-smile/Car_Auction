@@ -20,9 +20,9 @@ class ProfileController extends Controller
     public function profile()
     {
 
-        $userId = Auth::user()->id;
 
-        $user = User::find($userId);
+
+        $user = User::find(Auth::user()->id);
 
 
         return view('admin.profile', compact('user'));
@@ -74,6 +74,7 @@ class ProfileController extends Controller
             ]);
         }
 
+        session()->flash('Success','Profile Edited');
 
         return redirect()->route('admin.dashboard');
     }

@@ -51,7 +51,7 @@ class InfoAboutUsController extends Controller
         ]);
 
 
-
+        session()->flash('successfully', 'Information Submitted.');
 
 
         return view('admin.info-about-us',compact('info'));

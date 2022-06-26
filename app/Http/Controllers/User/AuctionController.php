@@ -4,12 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ads;
-use App\Models\Auction;
-use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 
 
 class AuctionController extends Controller
@@ -97,7 +94,7 @@ class AuctionController extends Controller
         ]);
 
 
-        session()->flash('successfully', 'mission accomplished.');
+        session()->flash('Success', 'The auction submitted.');
 
         return redirect()->route('user.my-auction');
     }
@@ -106,6 +103,8 @@ class AuctionController extends Controller
     public function deleteAuction()
     {
 
+
+        session()->flash('Success','Ad deleted.');
 
         return redirect()->route('user.my-auction');
     }
@@ -185,7 +184,8 @@ class AuctionController extends Controller
         ]);
 
 
-        session()->flash('successfully', 'mission accomplished.');
+        session()->flash('Success', 'Auction edited');
+
         return redirect()->route('user.my-auction');
     }
 

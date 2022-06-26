@@ -55,6 +55,7 @@ class ContactUsController extends Controller
             'contact_us_id' => $itemId,
             'reply' => $request['reply'],
         ]);
+        session()->flash('successfully', 'Message sent.');
 
 
 

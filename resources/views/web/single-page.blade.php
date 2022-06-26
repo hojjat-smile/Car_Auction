@@ -95,6 +95,7 @@
                 </div>
                 @if($ads->type_sell == 'auction')
                     <div class="col-lg-4">
+                        @if($ads->type_sell=="auction")
                         <p style="padding: 10px; background-color: #0b7bb5; color: white; font-weight: bold">Bid
                             Information</p>
                         <table class="table table-hover">
@@ -117,8 +118,8 @@
 
                             </tr>
 
-
-                            @if($userAds->id != $user->id)
+                            @if(\Illuminate\Support\Facades\Auth::check())
+                                @if($userAds->id != $user->id)
                                 @if($nowDate < $userAds->membership)
 
                                     <form method="post" action="{{route('user.bid-now-submit',$ads->id)}}">
@@ -154,8 +155,14 @@
                                     </form>
                                 @endif
                             @endif
+                            @else
+                                @if($ads->type_sell=="auction")
+                                    <a href="{{ url("/login") }}" class="button submit form-control">Bid Now</a>
+                                @endif
+                            @endif
 
                         </table>
+                        @endif
                         <a href="{{route('user.add-favorite',$ads->id)}}" class="button red">Add to favorite</a>
                     </div>
                 @endif

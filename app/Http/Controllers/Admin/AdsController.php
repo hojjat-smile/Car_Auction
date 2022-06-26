@@ -22,7 +22,6 @@ class AdsController extends Controller
     public function adManagement()
     {
 
-
         return view('admin.ad-management');
     }
 
@@ -82,11 +81,12 @@ class AdsController extends Controller
             'v_five_notes' => 'required',
             'additional_info' => 'required',
             'current_bid' => 'required',
+            'mainImage' => 'required',
         ]);
 
 
 
-        Ads::create([
+        $ads = Ads::create([
             'user_id' => Auth::user()->id,
             'type_sell' => 'normal',
             'car_type_id' => $request->car_type_id,
@@ -111,8 +111,17 @@ class AdsController extends Controller
             'current_bid' => $request->current_bid,
         ]);
 
-        session()->flash('Success','mission accomplished.');
 
+        $path = 'uploads/images/';
+        File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+        $imageName = 'uploads/images/' . $ads->id . '/' . $request->mainImage->getClientOriginalName();
+        $request->mainImage->move(('uploads/images/'. "$ads->id/"), $imageName);
+
+        $ads->update([
+            'image' => $imageName
+        ]);
+
+        session()->flash('successfully','Ad Submitted Successfully.');
 
         return redirect()->route('admin.ad-management');
     }

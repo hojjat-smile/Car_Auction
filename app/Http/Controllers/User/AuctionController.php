@@ -68,8 +68,7 @@ class AuctionController extends Controller
         ]);
 
 
-
-        $ads = Ads::create([
+        Ads::create([
             'user_id' => Auth::user()->id,
             'type_sell' => 'auction',
             'category' => $request->category,
@@ -93,15 +92,12 @@ class AuctionController extends Controller
             'v_five_notes' => $request->v_five_notes,
             'additional_info' => $request->additional_info,
             'current_bid' => $request->current_bid,
+            'base_price' => $request->base_price,
+            'rough_price' => $request->rough_price,
         ]);
 
-        Auction::create([
-            'ads_id' => $ads->id,
-            'base_price' => $request['base_price'],
-            'rough_price' => $request['rough_price'],
-        ]);
 
-        session()->flash('successfully','mission accomplished.');
+        session()->flash('successfully', 'mission accomplished.');
 
         return redirect()->route('user.my-auction');
     }
@@ -127,7 +123,7 @@ class AuctionController extends Controller
             $i--;
         }
 
-        return view('user.edit-auction',compact('ads','time'));
+        return view('user.edit-auction', compact('ads', 'time'));
     }
 
     public function editAuctionPost(Request $request, $itemID)
@@ -184,14 +180,12 @@ class AuctionController extends Controller
             'v_five_notes' => $request->v_five_notes,
             'additional_info' => $request->additional_info,
             'current_bid' => $request->current_bid,
+            'base_price' => $request->base_price,
+            'rough_price' => $request->rough_price,
         ]);
 
-        $ads->auction->update([
-            'ads_id' => $ads->id,
-            'base_price' => $request['base_price'],
-            'rough_price' => $request['rough_price'],
-        ]);
-        session()->flash('successfully','mission accomplished.');
+
+        session()->flash('successfully', 'mission accomplished.');
         return redirect()->route('user.my-auction');
     }
 

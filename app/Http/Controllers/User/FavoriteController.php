@@ -73,13 +73,9 @@ class FavoriteController extends Controller
 
         $ads = Ads::find($adsId);
 
-        $userBid = Ads::where('type_sell', 'auction')
-            ->with(['bid' => function ($query) use ($adsId) {
-            $query->where('user_id', Auth::user()->id)->where('auction_id', $adsId);
-        }])->first();
+        $userBid = Ads::
 
-        
-
+        dd($userBid);
 
 
         if ($userBid == null) {

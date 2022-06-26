@@ -44,6 +44,8 @@ class Ads extends Model
         'is_published',
         'view',
         'car_type_id',
+        'base_price',
+        'rough_price',
     ];
 
 
@@ -133,14 +135,10 @@ class Ads extends Model
         return $this->hasOne(SecondaryDamage::class, 'id', 'secondary_damage_id');
     }
 
-    public function auction()
-    {
-        return $this->hasOne(Auction::class, 'ads_id', 'id');
-    }
 
     public function bid()
     {
-        return $this->hasOne(Bids::class, 'user_id', 'user_id');
+        return $this->hasOne(Bids::class, 'auction_id', 'id');
     }
 
     public function carType()

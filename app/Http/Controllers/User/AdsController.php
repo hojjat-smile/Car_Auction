@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ads;
-use App\Models\Auction;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -43,7 +42,6 @@ class AdsController extends Controller
 
     public function editAdsUpdate(Request $request, $adsId)
     {
-
 
         $request->validate([
             'car_type_id' => 'required',
@@ -93,6 +91,8 @@ class AdsController extends Controller
             'v_five_notes' => $request->v_five_notes,
             'additional_info' => $request->additional_info,
             'current_bid' => $request->current_bid,
+            'base_price' => $request->base_price,
+            'rough_price' => $request->rough_price,
         ]);
 
         session()->flash('successful','mission accomplished.');
@@ -126,6 +126,8 @@ class AdsController extends Controller
             'v_five_notes' => 'required',
             'additional_info' => 'required',
             'current_bid' => 'required',
+            'base_price' => 'required',
+            'rough_price' => 'required',
         ]);
 
 
@@ -153,6 +155,8 @@ class AdsController extends Controller
             'v_five_notes' => $request->v_five_notes,
             'additional_info' => $request->additional_info,
             'current_bid' => $request->current_bid,
+            'base_price' => $request->base_price,
+            'rough_price' => $request->rough_price,
         ]);
 
         session()->flash('successful','mission accomplished.');

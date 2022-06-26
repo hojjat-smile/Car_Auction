@@ -30,7 +30,11 @@ class SinglePageController extends Controller
         ]);
 
         $user = User::find($ads->user_id);
-        $userAds = User::find(Auth::user()->id);
+        if(Auth::check()){
+            $userAds = User::find(Auth::user()->id);
+        }else{
+            $userAds = 0;
+        }
         $nowDate = Carbon::now();
 
         return view('web.single-page', compact('ads', 'user', 'userAds', 'nowDate'));

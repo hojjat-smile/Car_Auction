@@ -34,7 +34,7 @@
             </div>
 
             <div class="row with-forms">
-                <form id="addCarForm" action="{{route('user.add-ads-post')}}"
+                <form id="addCarForm" action="{{route('admin.add-ads-update')}}"
                       method="post" enctype="multipart/form-data">
                     @csrf
 
@@ -282,6 +282,47 @@
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
+
+                    <div class="col-md-6">
+                        <lable>Main Image</lable>
+                        <input type="file" name="mainImage" />
+                        @error('mainImage')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <lable>Image Two (Optional)</lable>
+                        <input type="file" name="ImageTwo" />
+                        @error('ImageTwo')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4">
+                        <lable>Image Three (Optional)</lable>
+                        <input type="file" name="ImageThree" />
+                        @error('ImageTwo')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4">
+                        <lable>Image Four (Optional)</lable>
+                        <input type="file" name="ImageFour" />
+                        @error('ImageTwo')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4">
+                        <lable>Image Five (Optional)</lable>
+                        <input type="file" name="ImageFive" />
+                        @error('ImageTwo')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
 
                     <div class="col-md-12">
                         <button type="submit" class="button preview"> Submit</button>

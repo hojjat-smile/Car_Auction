@@ -68,6 +68,7 @@ Route::prefix('user-panel')->name('user.')->middleware('auth', 'checkUser')->gro
     //membership
     Route::get('/membership', [MembershipController::class, 'membership'])->name('membership');
 
+
     //auction
     Route::get('/my-auction', [UserAuctionController::class, 'myAuction'])->name('my-auction');
     Route::get('/add-auction', [UserAuctionController::class, 'addAuction'])->name('add-auction');
@@ -75,6 +76,8 @@ Route::prefix('user-panel')->name('user.')->middleware('auth', 'checkUser')->gro
     Route::get('/edit-auction/{itemId}', [UserAuctionController::class, 'editAuction'])->name('edit-auction');
     Route::post('/edit-auction-post/{itemId}', [UserAuctionController::class, 'editAuctionPost'])->name('edit-auction-post');
     Route::get('/delete-auction/{itemId}', [UserAuctionController::class, 'deleteAuction'])->name('delete-auction');
+    Route::get('/auction-image-delete/{imageId}/{adsId}', [UserAuctionController::class, 'auctionImageDelete'])->name('auction-image-delete');
+    Route::get('/auction-image-set-default/{imageId}/{adsId}', [UserAuctionController::class, 'auctionImageSetDefault'])->name('auction-image-set-default');
 
 
     // add ads
@@ -84,7 +87,8 @@ Route::prefix('user-panel')->name('user.')->middleware('auth', 'checkUser')->gro
     Route::get('/edit-ads/{adId}', [UserAdsController::class, 'editAds'])->name('edit-ads');
     Route::get('/delete-ads/{adId}', [UserAdsController::class, 'deleteAds'])->name('delete-ads');
     Route::post('/ads-update/{adId}', [UserAdsController::class, 'editAdsUpdate'])->name('ads-update');
-
+    Route::get('/ads-image-delete/{imageId}/{adsId}', [UserAdsController::class, 'adsImageDelete'])->name('ads-image-delete');
+    Route::get('/ads-image-set-default/{imageId}/{adsId}', [UserAdsController::class, 'adsImageSetDefault'])->name('ads-image-set-default');
     //profile
     Route::get('/profile', [UserProfileController::class, 'profile'])->name('profile');
     Route::post('/profile', [UserProfileController::class, 'profileUpdate'])->name('profile-update');
@@ -104,6 +108,7 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
 
 
     Route::get('/dashboard', [AdminIndexController::class, 'dashboard'])->name('dashboard');
+    Route::get('dashboard/publish-ads/{adId}', [AdminIndexController::class, 'publishAds'])->name('dashboard-publish-ads');
     Route::get('/package-management', [AdminIndexController::class, 'packageManagement'])->name('package-management');
 
     //membership
@@ -128,6 +133,9 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
     Route::get('/delete-auction/{itemId}', [AdminAuctionController::class, 'deleteAuction'])->name('delete-auction');
     Route::get('/view-auction/{adId}', [AdminAuctionController::class, 'viewAuction'])->name('view-auction');
     Route::get('/publish-auction/{adId}', [AdminAuctionController::class, 'publishAuction'])->name('publish-auction');
+    Route::get('/auction-image-delete/{imageId}/{adsId}', [AdminAuctionController::class, 'auctionImageDelete'])->name('auction-image-delete');
+    Route::get('/auction-image-set-default/{imageId}/{adsId}', [AdminAuctionController::class, 'auctionImageSetDefault'])->name('auction-image-set-default');
+
 
 
     //ads
@@ -139,6 +147,9 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
     Route::get('/delete-ads/{adId}', [AdminAdsController::class, 'deleteAds'])->name('delete-ads');
     Route::get('/view-ads/{adId}', [AdminAdsController::class, 'viewAds'])->name('view-ads');
     Route::get('/publish-ads/{adId}', [AdminAdsController::class, 'publishAds'])->name('publish-ads');
+    Route::get('/ads-image-delete/{imageId}/{adsId}', [AdminAdsController::class, 'adsImageDelete'])->name('ads-image-delete');
+    Route::get('/ads-image-set-default/{imageId}/{adsId}', [AdminAdsController::class, 'adsImageSetDefault'])->name('ads-image-set-default');
+
 
     //users
     Route::get('/user-management', [UsersController::class, 'userManagement'])->name('user-management');

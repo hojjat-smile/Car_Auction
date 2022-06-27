@@ -12,6 +12,7 @@ class Image extends Model
     protected $table = 'ads_images';
     protected $fillable = [
         'ads_id',
+        'main',
         'image',
     ];
 }

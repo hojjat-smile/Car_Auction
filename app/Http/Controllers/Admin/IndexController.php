@@ -28,24 +28,28 @@ class IndexController extends Controller
         return view('admin.index', $data);
     }
 
-    public function uploadFile($user_id, $file, $oldDir = false)
+    public function publishAds(Request $request, $adsId)
     {
 
+        $ads = Ads::find($adsId);
 
-        $path = "uploads/images" . '/' . $user_id;
 
-        if ($oldDir) {
-            if (file_exists($path)) {
-                File::deleteDirectory(public_path($path));
-            }
+        if ($ads->is_published == 1) {
+
+            $ads->update([
+                'is_published' => 0
+            ]);
+            session()->flash('Success', 'Ad Published.');
+        } else if ($ads->is_published == 0) {
+
+            $ads->update([
+                'is_published' => 1
+            ]);
+            session()->flash('Success', 'Ad deactivated');
+
         }
 
-        File::exists($path) or File::makeDirectory($path, 0775, true, true);
-        $document_name = $path . '/' . $file->getClientOriginalName();
-        $file->move($path, $document_name);
-
-        return $document_name;
-
+        return redirect(route('admin.dashboard'));
     }
 
     public function packageManagement()
@@ -61,9 +65,6 @@ class IndexController extends Controller
 
         return view('admin.settings');
     }
-
-
-
 
     public function transManage()
     {
@@ -132,6 +133,26 @@ class IndexController extends Controller
         session()->flash('successfully', 'Profile Edited.');
 
         return redirect()->route('admin.dashboard');
+    }
+
+    public function uploadFile($user_id, $file, $oldDir = false)
+    {
+
+
+        $path = "uploads/images" . '/' . $user_id;
+
+        if ($oldDir) {
+            if (file_exists($path)) {
+                File::deleteDirectory(public_path($path));
+            }
+        }
+
+        File::exists($path) or File::makeDirectory($path, 0775, true, true);
+        $document_name = $path . '/' . $file->getClientOriginalName();
+        $file->move($path, $document_name);
+
+        return $document_name;
+
     }
 
 

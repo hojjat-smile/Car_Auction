@@ -19,7 +19,7 @@ Add Auction
 
         <div class="add_utf_listing_section margin-top-45">
             <div class="utf_add_listing_part_headline_part">
-                <h3>Sell Your Car in a Copart Auction</h3>
+                <h3>Sell Your Car in a CarAuction Auction</h3>
             </div>
 
             <div class="row with-forms">
@@ -273,7 +273,26 @@ Add Auction
                     </div>
 
                     <div class="col-md-6">
-                        <lable>Main Image</lable>
+                        <lable>Base Price:</lable>
+                        <input type="text" name="base_price" value="{{old('base_price')}}">
+
+                        @error('base_price')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <lable>Rough Price:</lable>
+                        <input type="text" name="rough_price" value="{{old('rough_price')}}" >
+
+                        @error('rough_price')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <lable>Image One (Required)</lable>
                         <input type="file" name="mainImage" />
                         @error('mainImage')
                         <small class="text-danger"> {{$message}}</small>
@@ -440,7 +459,20 @@ Add Auction
                 current_bid: {
                     required: true,
                 },
+                mainImage: {
+                    required: true,
+                },
+
+                base_price: {
+                    required: true,
+                },
+
+                rough_price: {
+                    required: true,
+                },
+
             }
         });
     </script>
+
 @endsection

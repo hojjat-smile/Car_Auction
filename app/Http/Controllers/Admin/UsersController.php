@@ -37,7 +37,7 @@ class UsersController extends Controller
 
                 'activity' => 'deactivate'
             ]);
-            session()->flash('Success', 'User disabled');
+            session()->flash('Success', 'User deactivate');
         } else if ($user->activity != 'active') {
 
             $user->update([

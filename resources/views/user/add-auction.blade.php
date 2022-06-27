@@ -395,6 +395,45 @@
                                     <small class="text-danger"> {{$message}}</small>
                                     @enderror
                                 </div>
+                                <div class="col-md-6">
+                                    <lable>Image One (Required)</lable>
+                                    <input type="file" name="mainImage" />
+                                    @error('mainImage')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
+                                    <lable>Image Two (Optional)</lable>
+                                    <input type="file" name="ImageTwo" />
+                                    @error('ImageTwo')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4">
+                                    <lable>Image Three (Optional)</lable>
+                                    <input type="file" name="ImageThree" />
+                                    @error('ImageThree')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4">
+                                    <lable>Image Four (Optional)</lable>
+                                    <input type="file" name="ImageFour" />
+                                    @error('ImageFour')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4">
+                                    <lable>Image Five (Optional)</lable>
+                                    <input type="file" name="ImageFive" />
+                                    @error('ImageFive')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
 
                                 <div class="col-md-12">
                                     <button type="submit" class="button preview"> Submit</button>

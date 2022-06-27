@@ -23,7 +23,6 @@
                     <th>Email</th>
                     <th>Mobile</th>
                     <th>Company Name</th>
-                    <th>Activity</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -50,29 +49,25 @@
                                 <td>{{$user->companyname}}</td>
 
                                 <td>
-                                    @if($user->activity == 'active')
-                                        <a href="{{route('admin.user-active',$user->id )}}" class="button green">
 
+                                    @if($user->activity == 'active')
+                                        <a href="{{route('admin.user-active',$user->id )}}" class="button green  d-inline-block">
                                             Deactivate</a>
 
                                     @elseif($user->activity == 'deactivate')
-                                        <a href="{{route('admin.user-active',$user->id )}}" class="button ">
-
+                                        <a href="{{route('admin.user-active',$user->id )}}" class="button  d-inline-block">
                                             Active</a>
+                                    @endif
+                                        <form class="d-inline-block" onsubmit="return confirm('Do you really want to Delete the user?');"
+                                              action="{{route('admin.user-deleted',$user->id )}}">
+                                            <button style="display: inline-block" type="submit" class="button submit ">Delete</button>
+
+                                        </form>
+                                            <a href="{{route('admin.user-edit',$user->id )}}"  class="button yellow d-inline-block ">Edit</a>
+
                                 </td>
+
                             @endif
-                            <td style="vertical-align: middle">
-
-                                <form style="display: inline-block;" onsubmit="return confirm('Do you really want to Delete the user?');"
-                                      action="{{route('admin.user-deleted',$user->id )}}">
-                                    <button class="button submit">Delete</button>
-                                    <a href="{{route('admin.user-edit',$user->id )}}" style="display: inline-block" class="button yellow ">Edit</a>
-
-                                </form>
-
-                            </td>
-
-                        @endif
                         @endif
                     </tr>
                 @endforeach

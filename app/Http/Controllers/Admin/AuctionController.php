@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Ads;
 
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 
 class AuctionController extends Controller
@@ -18,6 +20,7 @@ class AuctionController extends Controller
     {
 
         $ads = Ads::where('type_sell', 'auction')->get();
+
         return view('admin.my-auction', compact('ads'));
 
     }
@@ -62,10 +65,11 @@ class AuctionController extends Controller
             'additional_info' => 'required',
             'current_bid' => 'required',
             'mainImage' => 'required',
+            'base_price' => 'required',
+            'rough_price' => 'required',
         ]);
 
-
-         Ads::create([
+        $ads = Ads::create([
             'user_id' => Auth::user()->id,
             'type_sell' => 'auction',
             'category' => $request->category,
@@ -89,21 +93,84 @@ class AuctionController extends Controller
             'v_five_notes' => $request->v_five_notes,
             'additional_info' => $request->additional_info,
             'current_bid' => $request->current_bid,
+            'base_price' => $request->base_price,
+            'rough_price' => $request->rough_price,
         ]);
 
-        session()->flash('Success','Auction Submitted.');
+        $path = 'uploads/images/auction/';
+        File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+        $imageName = 'uploads/images/auction/' . $ads->id . '/' . $request->mainImage->getClientOriginalName();
+        $request->mainImage->move(('uploads/images/auction/' . $ads->id), $imageName);
 
-        return redirect()->route('admin.my-auction');
-    }
+        $image = new Image();
+        $image->ads_id = $ads->id;
+        $image->main = 0;
+        $image->image = $imageName;
+        $image->save();
 
+        if ($request->has("ImageTwo")) {
 
-    public function deleteAuction($itemId)
-    {
-        $ads = Ads::find($itemId);
+            $path = 'uploads/images/auction/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/auction/' . $ads->id . '/' . $request->ImageTwo->getClientOriginalName();
+            $request->ImageTwo->move(('uploads/images/auction/' . $ads->id), $imageName);
 
-        $ads->deleted();
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
 
-        session()->flash('successfully', 'Auction Deleted.');
+        if ($request->has("ImageThree")) {
+
+            $path = 'uploads/images/auction/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/auction/' . $ads->id . '/' . $request->ImageThree->getClientOriginalName();
+            $request->ImageThree->move(('uploads/images/auction/' . $ads->id), $imageName);
+
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
+
+        if ($request->has("ImageFour")) {
+
+            $path = 'uploads/images/auction/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/auction/' . $ads->id . '/' . $request->ImageFour->getClientOriginalName();
+            $request->ImageFour->move(('uploads/images/auction/' . $ads->id), $imageName);
+
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
+
+        if ($request->has("ImageFive")) {
+
+            $path = 'uploads/images/auction/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/auction/' . $ads->id . '/' . $request->ImageFive->getClientOriginalName();
+            $request->ImageFive->move(('uploads/images/auction/' . $ads->id), $imageName);
+
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
+
+        if ($ads == null) {
+            session()->flash('Error', 'Auction error not Submitted.');
+            return redirect()->route('admin.my-auction');
+
+        }
+
+        session()->flash('Success', 'Auction Submitted.');
 
         return redirect()->route('admin.my-auction');
     }
@@ -126,6 +193,7 @@ class AuctionController extends Controller
 
     public function editAuctionPost(Request $request, $itemID)
     {
+
         $request->validate([
             'base_price' => 'required',
             'rough_price' => 'required',
@@ -149,6 +217,7 @@ class AuctionController extends Controller
             'v_five_notes' => 'required',
             'additional_info' => 'required',
             'current_bid' => 'required',
+
         ]);
 
 
@@ -178,15 +247,89 @@ class AuctionController extends Controller
             'v_five_notes' => $request->v_five_notes,
             'additional_info' => $request->additional_info,
             'current_bid' => $request->current_bid,
+            'base_price' => $request->base_price,
+            'rough_price' => $request->rough_price,
         ]);
 
-        $ads->auction->update([
-            'ads_id' => $ads->id,
-            'base_price' => $request['base_price'],
-            'rough_price' => $request['rough_price'],
-        ]);
 
-        session()->flash('successfully', 'Auction Edited.');
+
+        if ($request->has("mainImage")) {
+
+            $path = 'uploads/images/auction/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/auction/' . $ads->id . '/' . $request->mainImage->getClientOriginalName();
+            $request->mainImage->move(('uploads/images/auction/' . $ads->id), $imageName);
+
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
+        if ($request->has("ImageTwo")) {
+
+            $path = 'uploads/images/auction/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/auction/' . $ads->id . '/' . $request->ImageTwo->getClientOriginalName();
+            $request->ImageTwo->move(('uploads/images/auction/' . $ads->id), $imageName);
+
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
+
+        if ($request->has("ImageThree")) {
+
+            $path = 'uploads/images/auction/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/auction/' . $ads->id . '/' . $request->ImageThree->getClientOriginalName();
+            $request->ImageThree->move(('uploads/images/auction/' . $ads->id), $imageName);
+
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
+
+        if ($request->has("ImageFour")) {
+
+            $path = 'uploads/images/auction/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/auction/' . $ads->id . '/' . $request->ImageFour->getClientOriginalName();
+            $request->ImageFour->move(('uploads/images/auction/' . $ads->id), $imageName);
+
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
+
+        if ($request->has("ImageFive")) {
+
+            $path = 'uploads/images/auction/';
+            File::exists($path) or File::makeDirectory($path . $ads->id, 0775, true, true);
+            $imageName = 'uploads/images/auction/' . $ads->id . '/' . $request->ImageFive->getClientOriginalName();
+            $request->ImageFive->move(('uploads/images/auction/' . $ads->id), $imageName);
+
+            $image = new Image();
+            $image->ads_id = $ads->id;
+            $image->main = 0;
+            $image->image = $imageName;
+            $image->save();
+        }
+
+        if ($ads == null) {
+
+            session()->flash('Error', 'Auction error could not be edited.');
+
+            return redirect()->route('admin.my-auction');
+        }
+
+        session()->flash('Success', 'Auction Edited.');
 
         return redirect()->route('admin.my-auction');
     }
@@ -234,4 +377,46 @@ class AuctionController extends Controller
         return view('admin.view-auction', compact('auction', 'time'));
     }
 
+    public function deleteAuction($itemId)
+    {
+        $ads = Ads::find($itemId);
+
+        $ads->deleted();
+
+        session()->flash('Success', 'Auction Deleted.');
+
+        return redirect()->route('admin.my-auction');
+    }
+
+    public function auctionImageSetDefault($imageId, $adsId)
+    {
+        $images = Image::where('main', 1)->get();
+
+        foreach ($images as $image) {
+            $image->main = 0;
+            $image->save();
+
+        }
+
+        $newImage = Image::find($imageId);
+        $newImage->main = 1;
+        $newImage->save();
+
+
+        session()->flash('Success', 'Set as Default.');
+        return redirect()->route('admin.edit-auction', $adsId);
+
+    }
+
+    public function auctionImageDelete($imageId, $adsId)
+    {
+        $image = Image::find($imageId);
+
+        $image->delete();
+
+
+        session()->flash('Success', 'Image Deleted');
+        return redirect()->route('admin.edit-auction', $adsId);
+
+    }
 }

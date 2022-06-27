@@ -275,7 +275,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <lable>Main Image</lable>
+                        <lable>Image One (Required)</lable>
                         <input type="file" name="mainImage" />
                         @error('mainImage')
                         <small class="text-danger"> {{$message}}</small>
@@ -440,6 +440,9 @@
                     required: true,
                 },
                 current_bid: {
+                    required: true,
+                },
+                mainImage: {
                     required: true,
                 },
             }

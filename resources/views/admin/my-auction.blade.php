@@ -26,6 +26,7 @@
                 <tr>
 
                     <th>ID</th>
+                    <th>Image</th>
                     <th>Marker</th>
                     <th>Model</th>
                     <th>Year</th>
@@ -39,9 +40,18 @@
                 </thead>
                 <tbody>
                 @foreach($ads as $ad)
+
                     @if($ad != null)
                         <tr>
                             <td>{{$loop->iteration}}</td>
+
+
+                            @if($ad->images()->where('main',1)->first() != null)
+                                <td><img width="120px" height="70" src="{{asset($ad->images()->where('main',1)->first()->image  ?? null)}}" alt=""></td>
+                            @else
+                                <td><img width="120px" height="70" src="{{asset($ad->images()->first()->image ?? null)}}" alt=""></td>
+                            @endif
+
                             <td>{{$ad->maker->title}}</td>
                             <td>{{$ad->model->title}}</td>
                             <td>{{$ad->year}}</td>

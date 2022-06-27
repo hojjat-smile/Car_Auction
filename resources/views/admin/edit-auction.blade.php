@@ -24,7 +24,6 @@
                 <form id="addCarForm" action="{{route('admin.edit-auction-post',$ads->id)}}" method="post"
                       enctype="multipart/form-data">
                     @csrf
-
                     <div class="col-md-6">
                         <lable>Car Type:</lable>
                         <select id="car_type_id" name="car_type_id">
@@ -286,9 +285,10 @@
                         @enderror
                     </div>
 
+
                     <div class="col-md-6">
                         <lable>Base Price:</lable>
-                        <input type="text" name="base_price" value="{{$ads->auction->base_price}}">
+                        <input type="text" name="base_price" value="{{$ads->base_price}}">
 
                         @error('base_price')
                         <small class="text-danger"> {{$message}}</small>
@@ -297,21 +297,78 @@
 
                     <div class="col-md-6">
                         <lable>Rough Price:</lable>
-                        <input type="text" name="rough_price" value="{{$ads->auction->rough_price}}">
+                        <input type="text" name="rough_price" value="{{$ads->rough_price}}">
 
                         @error('rough_price')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
 
-                    <div class="col-md-12">
-                        <button type="submit" class="button preview"> Submit</button>
+                    <div class="col-md-6">
+                        <lable>Image One(Required)</lable>
+                        <input type="file" name="mainImage"/>
+                        @error('mainImage')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
                     </div>
 
+                    <div class="col-md-6">
+                        <lable>Image Two (Optional)</lable>
+                        <input type="file" name="ImageTwo"/>
+                        @error('ImageTwo')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
 
+                    <div class="col-md-4">
+                        <lable>Image Three (Optional)</lable>
+                        <input type="file" name="ImageThree"/>
+                        @error('ImageThree')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4">
+                        <lable>Image Four (Optional)</lable>
+                        <input type="file" name="ImageFour"/>
+                        @error('ImageFour')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4">
+                        <lable>Image Five (Optional)</lable>
+                        <input type="file" name="ImageFive"/>
+                        @error('ImageFive')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-12">
+                        <button type="submit" class="button preview">Update</button>
+                    </div>
                 </form>
             </div>
-
+            <div class="">
+                <h3>Images</h3>
+                <div class="row">
+                    @foreach($ads->images as $image)
+                        <div class="col-md-3">
+                            <img src="{{asset($image->image)}}" alt="" width="100%"/>
+                            <form
+                                action="{{route('admin.auction-image-delete',['imageId'=>$image->id,'adsId'=>$ads->id])}}">
+                                <button class="button yellow" type="submit">Delete</button>
+                            </form>
+                            @if($image->main != 1)
+                                <form
+                                    action="{{route('admin.auction-image-set-default',['imageId'=>$image->id,'adsId'=>$ads->id])}}">
+                                    <button class="button green" type="submit">Set as Default</button>
+                                </form>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 
@@ -432,6 +489,16 @@
                 current_bid: {
                     required: true,
                 },
+
+
+                base_price: {
+                    required: true,
+                },
+
+                rough_price: {
+                    required: true,
+                },
+
             }
         });
     </script>

@@ -24,7 +24,7 @@
             <div class="utf_dashboard_stat color-2">
                 <div class="utf_dashboard_stat_content">
                     <h4>{{$auction->count()}}</h4>
-                    <span>All Acutions</span>
+                    <span>All Auction</span>
                 </div>
                 <div class="utf_dashboard_stat_icon"><i class="im im-icon-Add-UserStar"></i></div>
             </div>
@@ -61,7 +61,6 @@
                             <th>City</th>
                             <th>Username</th>
                             <th>Email</th>
-                            <th>Action</th>
 
                         </tr>
                         </thead>
@@ -71,10 +70,13 @@
                                 <tr>
 
                                     <td>{{$loop->iteration}}</td>
-                                    @if($ad->image != null)
-                                        <td><img style="width: 70px;height: 70px;border-radius: 5px;" src="{{asset($ad->image->image)}}"
-                                                 alt=""></td>
+
+                                    @if($ad->images()->where('main',1)->first() != null)
+                                        <td><img width="120px" height="70" src="{{asset($ad->images()->where('main',1)->first()->image  ?? null)}}" alt=""></td>
+                                    @else
+                                        <td><img width="120px" height="70" src="{{asset($ad->images()->first()->image ?? null)}}" alt=""></td>
                                     @endif
+
                                     <td>{{$ad->maker->title}}</td>
                                     <td>{{$ad->model->title}}</td>
                                     <td>{{$ad->year}}</td>
@@ -82,22 +84,6 @@
                                     <td>{{$ad->city->title}}</td>
                                     <td>{{$ad->user->username}}</td>
                                     <td>{{$ad->user->email}}</td>
-
-
-                                    <td>
-                                        <a href="{{route('admin.edit-ads',$ad->id)}}" class="button yellow">Edit</a>
-                                        <a href="{{route('admin.delete-ads',$ad->id)}}" class="button ">Delete</a>
-                                        <a href="{{route('admin.view-ads',$ad->id)}}" class="button green">View</a>
-                                        @if($ad->is_published)
-                                            <a href="{{route('admin.publish-ads',$ad->id)}}" class="button red">
-                                                Is Publish
-                                            </a>
-                                        @elseif(!$ad->is_published)
-                                            <a href="{{route('admin.publish-ads',$ad->id)}}" class="button blue">
-                                                Publish
-                                            </a>
-                                        @endif
-                                    </td>
 
                                 </tr>
                             @endif

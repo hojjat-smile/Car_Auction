@@ -51,7 +51,8 @@
                                     <select id="car_type_id" name="car_type_id">
 
                                         @foreach(\App\Models\CarType::all() as $carType)
-                                            <option value="{{$carType->id}}" {{$ads->car_type_id == $carType->id ? 'selected' : '' }}>{{ $carType->title }}</option>
+                                            <option
+                                                value="{{$carType->id}}" {{$ads->car_type_id == $carType->id ? 'selected' : '' }}>{{ $carType->title }}</option>
                                         @endforeach
 
                                     </select>
@@ -96,7 +97,8 @@
                                     <select name="colour_id">
 
                                         @foreach(\App\Models\Colour::all() as $color)
-                                            <option value="{{$color->id}}" {{$ads->colour_id == $color->id ? 'selected' : '' }}>{{ $color->title }}</option>
+                                            <option
+                                                value="{{$color->id}}" {{$ads->colour_id == $color->id ? 'selected' : '' }}>{{ $color->title }}</option>
                                         @endforeach
                                     </select>
 
@@ -110,7 +112,8 @@
                                     <select name="category_id">
 
                                         @foreach(\App\Models\Categories::all() as $category)
-                                            <option value="{{$category->id}}" {{$ads->category_id == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
+                                            <option
+                                                value="{{$category->id}}" {{$ads->category_id == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
                                         @endforeach
                                     </select>
 
@@ -152,7 +155,8 @@
                                     <select name="year">
 
                                         @foreach($time as $row)
-                                            <option value="{{$row}}" {{$ads->year == $row ? 'selected' : '' }}>{{ $row }}</option>
+                                            <option
+                                                value="{{$row}}" {{$ads->year == $row ? 'selected' : '' }}>{{ $row }}</option>
                                         @endforeach
 
                                     </select>
@@ -166,7 +170,8 @@
                                     <lable>Country:</lable>
                                     <select name="country_id">
                                         @foreach(\App\Models\Country::all() as $country)
-                                            <option value="{{$country->id}}" {{$ads->country->id == $country->id ? 'selected' : '' }}>{{ $country->title }}</option>
+                                            <option
+                                                value="{{$country->id}}" {{$ads->country->id == $country->id ? 'selected' : '' }}>{{ $country->title }}</option>
                                         @endforeach
                                     </select>
 
@@ -180,7 +185,8 @@
                                     <select type="text" name="city_id">
 
                                         @foreach(\App\Models\City::all() as $city)
-                                            <option value="{{$city->id}}" {{$ads->city->id == $city->id ? 'selected' : '' }}>{{ $city->title }}</option>
+                                            <option
+                                                value="{{$city->id}}" {{$ads->city->id == $city->id ? 'selected' : '' }}>{{ $city->title }}</option>
                                         @endforeach
                                     </select>
 
@@ -194,7 +200,8 @@
                                     <select name="damage_id">
 
                                         @foreach(\App\Models\DamageType::all() as $damage)
-                                            <option value="{{$damage->id}}" {{$ads->damage->id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
+                                            <option
+                                                value="{{$damage->id}}" {{$ads->damage->id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
 
 
                                         @endforeach
@@ -218,7 +225,8 @@
                                     <select name="primary_damage_id">
 
                                         @foreach(\App\Models\PrimaryDamage::all() as $damage)
-                                            <option value="{{$damage->id}}" {{$ads->damage->id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
+                                            <option
+                                                value="{{$damage->id}}" {{$ads->damage->id == $damage->id ? 'selected' : '' }}>{{ $damage->title }}</option>
                                         @endforeach
                                     </select>
 
@@ -238,7 +246,7 @@
 
                                 <div class="col-md-6">
                                     <lable>Transmission</lable>
-                                    <input type="text" name="transmission"  value="{{$ads->transmission}}">
+                                    <input type="text" name="transmission" value="{{$ads->transmission}}">
 
                                     @error('transmission')
                                     <small class="text-danger"> {{$message}}</small>
@@ -247,7 +255,7 @@
 
                                 <div class="col-md-6">
                                     <lable>Fuel</lable>
-                                    <input type="text" name="fuel"  value="{{$ads->fuel}}">
+                                    <input type="text" name="fuel" value="{{$ads->fuel}}">
 
                                     @error('fuel')
                                     <small class="text-danger"> {{$message}}</small>
@@ -256,7 +264,7 @@
 
                                 <div class="col-md-6">
                                     <lable>Keys</lable>
-                                    <input type="text" name="keys"  value="{{$ads->keys}}">
+                                    <input type="text" name="keys" value="{{$ads->keys}}">
 
                                     @error('keys')
                                     <small class="text-danger"> {{$message}}</small>
@@ -308,22 +316,76 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-12">
-                                    <button type="submit" class="button preview"> Submit</button>
+
+                                <div class="col-md-6">
+                                    <lable>Image One(Required)</lable>
+                                    <input type="file" name="mainImage"/>
+                                    @error('mainImage')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
                                 </div>
 
+                                <div class="col-md-6">
+                                    <lable>Image Two (Optional)</lable>
+                                    <input type="file" name="ImageTwo"/>
+                                    @error('ImageTwo')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
 
+                                <div class="col-md-4">
+                                    <lable>Image Three (Optional)</lable>
+                                    <input type="file" name="ImageThree"/>
+                                    @error('ImageThree')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4">
+                                    <lable>Image Four (Optional)</lable>
+                                    <input type="file" name="ImageFour"/>
+                                    @error('ImageFour')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4">
+                                    <lable>Image Five (Optional)</lable>
+                                    <input type="file" name="ImageFive"/>
+                                    @error('ImageFive')
+                                    <small class="text-danger"> {{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-12">
+                                    <button type="submit" class="button preview">Update</button>
+                                </div>
                             </form>
-
                         </div>
-
-
                     </div>
                 </div>
-
+            </div>
+            <div class="">
+                <h3>Images</h3>
+                <div class="row">
+                    @foreach($ads->images as $image)
+                        <div class="col-md-3">
+                            <img src="{{asset($image->image)}}" alt="" width="100%"/>
+                            <form
+                                action="{{route('user.auction-image-delete',['imageId'=>$image->id,'adsId'=>$ads->id])}}">
+                                <button class="button yellow" type="submit">Delete</button>
+                            </form>
+                            @if($image->main != 1)
+                                <form
+                                    action="{{route('user.auction-image-set-default',['imageId'=>$image->id,'adsId'=>$ads->id])}}">
+                                    <button class="button green" type="submit">Set as Default</button>
+                                </form>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
-
     </div>
 
 @endsection
@@ -379,73 +441,68 @@
 
             rules: {
 
-                category: {
+                category_id: {
+                    required: true,
+                },
+
+                odometer: {
+                    required: true,
+                },
+
+                primary_damage: {
+                    required: true,
+                },
+                year: {
+                    required: true,
+                },
+
+                body_style: {
+                    required: true,
+                },
+
+                colour_id: {
+                    required: true,
+                },
+
+                type: {
+                    required: true,
+                },
+
+                engine_type: {
+                    required: true,
+                },
+
+                transmission: {
+                    required: true,
+                },
+
+
+                fuel: {
+                    required: true,
+                },
+
+                keys: {
+                    required: true,
+                },
+
+                v_five_notes: {
+                    required: true,
+                },
+
+                additional_info: {
+                    required: true,
+                },
+
+                mainImage: {
+                    required: true,
+                },
+                current_bid: {
                     required: true,
                 },
                 base_price: {
                     required: true,
                 },
                 rough_price: {
-                    required: true,
-                },
-                car_type_id: {
-                    required: true,
-                },
-                maker_id: {
-                    required: true,
-                },
-                model_id: {
-                    required: true,
-                },
-                colour_id: {
-                    required: true,
-                },
-                category_id: {
-                    required: true,
-                },
-                condition_id: {
-                    required: true,
-                },
-                engine_type: {
-                    required: true,
-                },
-                year: {
-                    required: true,
-                },
-                country_id: {
-                    required: true,
-                },
-                city_id: {
-                    required: true,
-                },
-                damage_id: {
-                    required: true,
-                },
-                odometer: {
-                    required: true,
-                },
-                primary_damage_id: {
-                    required: true,
-                },
-                body_style: {
-                    required: true,
-                },
-                transmission: {
-                    required: true,
-                },
-                fuel: {
-                    required: true,
-                },
-                keys: {
-                    required: true,
-                },
-                v_five_notes: {
-                    required: true,
-                },
-                additional_info: {
-                    required: true,
-                },
-                current_bid: {
                     required: true,
                 },
             }

@@ -3,7 +3,7 @@
 
 
 @section('title')
-View Ads
+    View Ads
 @endsection
 
 @section('css')
@@ -273,7 +273,23 @@ View Ads
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
-                    
+
+                    <div class="col-md-12">
+                        <lable>Images</lable>
+                        <div class="row">
+                            @foreach($ads->images as $image)
+                                <div class="col-md-3">
+                                    <img src="{{asset($image->image)}}" alt="" width="100%"/>
+                                    <form action="{{route('admin.')}}">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                    <form action="">
+                                        <button type="submit">Set as Default</button>
+                                    </form>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
 
                     <div class="col-md-12">
                         <button type="submit" class="button preview"> Submit</button>

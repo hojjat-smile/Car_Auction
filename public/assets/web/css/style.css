@@ -102,6 +102,10 @@ textarea:-ms-input-placeholder {color:#828282;}
     height: 150px;
 }
 
+.a-style{
+    height: auto;
+    width: auto;
+}
 
 
 

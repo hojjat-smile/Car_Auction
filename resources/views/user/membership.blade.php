@@ -14,7 +14,7 @@
 @section('main')
 
     <section class="fullwidth_block margin-top-0 padding-top-0 padding-bottom-15" data-background-color="#f9f9f9">
-        <div class="container">
+
             @if(session()->has('successfully'))
                 <p class=>{{session('successfully')}}</p>
             @endif
@@ -45,15 +45,16 @@
                     @endforeach
                 </div>
             </div>
-        </div>
+
     </section>
 
 
     <div class="col-lg-12 col-md-12 mb-4">
         <div class="utf_dashboard_list_box table-responsive recent_booking">
-            <h4>Recent Ads</h4>
+            <h4>Purchased packages</h4>
             <div class="dashboard-list-box table-responsive invoices with-icons">
                 <table class="table table-hover">
+
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -62,16 +63,13 @@
                         <th>StartDate</th>
                         <th>EndDate</th>
                         <th>Pay</th>
-
                     </tr>
                     </thead>
-                    <tbody>
 
+                    <tbody>
                     @foreach($transactions as $transaction)
 
-
                         <tr>
-
                             <td>{{$loop->iteration}}</td>
                             <td>{{$transaction->price}}</td>
                             <td>{{$transaction->package->period}} Month</td>
@@ -91,6 +89,7 @@
 
 
                         </tr>
+
                     @endforeach
                     </tbody>
                 </table>

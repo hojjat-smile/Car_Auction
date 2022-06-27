@@ -54,6 +54,11 @@ class Ads extends Model
         return $this->hasOne(Image::class, 'ads_id', 'id');
     }
 
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'ads_id', 'id');
+    }
+
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');

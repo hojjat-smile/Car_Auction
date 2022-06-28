@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Ads;
-
 use App\Models\Bids;
 use App\Models\Favorite;
 use App\Models\User;
@@ -60,29 +58,23 @@ class FavoriteController extends Controller
         return redirect()->route('user.my-favorite');
     }
 
-    public function bidNow(Request $request, $adsId)
-    {
-
-        $ads = Ads::find($adsId);
-
-
-        return view('web.single-page', compact('ads'));
-
-    }
 
     public function bidNowSubmit(Request $request, $adsId)
     {
 
 
-        $ads = Ads::find($adsId);
+        $count = Bids::where("user_id", Auth::user()->id)->where("ads_id", $adsId)->count();
+
+        $bid = Bids::where('ads_id', $adsId)->max('price');
 
 
+        if (!$count) {
 
-        $cond = Bids::where("user_id",Auth::user()->id)->where("ads_id",$adsId)->count();
+            if ($bid > $request->price) {
+                session()->flash('Error', 'Your bid is less than the last bid.');
 
-
-
-        if (!$cond) {
+                return redirect()->route('web.single-page',$adsId);
+            }
             Bids::create([
                 'ads_id' => $adsId,
                 'user_id' => Auth::user()->id,
@@ -95,9 +87,7 @@ class FavoriteController extends Controller
 
         }
 
-
-        session()->flash('Unsuccessfully', 'You have already bid on this auction');
-
+        session()->flash('Error', 'You have already bid on this auction');
 
         return redirect()->route('web.index');
 

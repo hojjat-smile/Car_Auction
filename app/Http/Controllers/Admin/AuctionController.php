@@ -63,7 +63,7 @@ class AuctionController extends Controller
             'keys' => 'required',
             'v_five_notes' => 'required',
             'additional_info' => 'required',
-            'current_bid' => 'required',
+
             'mainImage' => 'required',
             'base_price' => 'required',
             'rough_price' => 'required',
@@ -92,7 +92,7 @@ class AuctionController extends Controller
             'keys' => $request->keys,
             'v_five_notes' => $request->v_five_notes,
             'additional_info' => $request->additional_info,
-            'current_bid' => $request->current_bid,
+
             'base_price' => $request->base_price,
             'rough_price' => $request->rough_price,
         ]);
@@ -216,7 +216,7 @@ class AuctionController extends Controller
             'keys' => 'required',
             'v_five_notes' => 'required',
             'additional_info' => 'required',
-            'current_bid' => 'required',
+
 
         ]);
 
@@ -246,7 +246,7 @@ class AuctionController extends Controller
             'keys' => $request->keys,
             'v_five_notes' => $request->v_five_notes,
             'additional_info' => $request->additional_info,
-            'current_bid' => $request->current_bid,
+
             'base_price' => $request->base_price,
             'rough_price' => $request->rough_price,
         ]);

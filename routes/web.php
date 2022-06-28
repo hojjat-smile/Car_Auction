@@ -98,7 +98,6 @@ Route::prefix('user-panel')->name('user.')->middleware('auth', 'checkUser')->gro
     Route::get('/add-favorite/{adsId}', [FavoriteController::class, 'addFavorite'])->name('add-favorite');
     Route::get('/delete-favorite/{adsId}', [FavoriteController::class, 'deleteFavorite'])->name('delete-favorite');
 
-    Route::get('/bid-now/{adsId}', [FavoriteController::class, 'bidNow'])->name('bid-now');
     Route::post('/bid-now-submit/{ads}', [FavoriteController::class, 'bidNowSubmit'])->name('bid-now-submit');
 
 

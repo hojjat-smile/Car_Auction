@@ -7,50 +7,37 @@ use App\Models\AboutUs;
 use App\Models\Ads;
 use App\Models\ContactUs;
 use App\Models\InfoAboutUs;
-use App\Models\Maker;
 use App\Models\Packages;
 use App\Models\Rules;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
-use MongoDB\Driver\Query;
+
 
 class IndexController extends Controller
 {
     public function index()
     {
 
-        $ads = Ads::orderBy('view', 'desc')->where("is_published",1)->get();
+        $ads = Ads::orderBy('view', 'desc')->where("is_published", 1)->where("type_sell", 'normal')->get();
+        $auction = Ads::orderBy('view', 'desc')->where("is_published", 1)->where("type_sell", 'auction')->get();
+
         $packages = Packages::all();
 
-        return view('web.index', compact('ads', 'packages'));
+        return view('web.index', compact('ads', 'auction', 'packages'));
     }
 
     public function search(Request $request)
     {
 
-
-//        $maker = Maker::where('title', 'LIKE', '%' . $request->search . '%')->get();
-
-
-        $search = $request->search;
-
-
-        $maker = Ads::whereHas(
-            'makers', function (Builder $query, $search) {
-            $query->where('title', 'LIKE', '%' . $search . '%');
-        }
-
-        )->orWhereHas(
-            'models', function (Builder $query, $search) {
-            $query->where('title', 'LIKE', '%' . $search . '%');
-
+        $ads = Ads::where('is_published', 1)->where(function ($q) use ($request) {
+            $q->where('maker', 'like', "%$request->search%")
+                ->orWhereRaw("concat(maker, ' ', model) like '%$request->search%'")
+                ->orWhere('model', 'like', "$request->search");
         })->get();
 
 
-        return view('web.find-car', compact('maker'));
+        return view('web.find-car', compact('ads'));
     }
 
     public function aboutUs()
@@ -127,40 +114,40 @@ class IndexController extends Controller
             $i--;
         }
         $maker = null;
-        $search = Ads::where("is_published",1)->paginate(30);
-        return view('web.find-car', compact('time', 'maker','search'));
+        $search = Ads::where("is_published", 1)->paginate(30);
+        return view('web.find-car', compact('time', 'maker', 'search'));
     }
 
     public function searchCar(Request $request)
     {
 
         $query = Ads::query();
-        $query->where("is_published",1);
+        $query->where("is_published", 1);
 
-        if($request->input("fromYear")!=0 && $request->input("toYear")!=0){
-            $query->where("year",">=",$request->input("fromYear"))->where("year","<=", $request->input("toYear"));
+        if ($request->input("fromYear") != 0 && $request->input("toYear") != 0) {
+            $query->where("year", ">=", $request->input("fromYear"))->where("year", "<=", $request->input("toYear"));
         }
 
-        $query->where("condition_id",$request->input("condition_type"));
+        $query->where("condition_id", $request->input("condition_type"));
 
-        if($request->input("country")!=0){
-            $query->where("country",$request->input("country"));
+        if ($request->input("country") != 0) {
+            $query->where("country", $request->input("country"));
         }
 
-        if($request->input("city")!=0){
-            $query->where("city",$request->input("city"));
+        if ($request->input("city") != 0) {
+            $query->where("city", $request->input("city"));
         }
 
-        if($request->input("damage")!=0){
-            $query->where("damage_id",$request->input("damage"));
+        if ($request->input("damage") != 0) {
+            $query->where("damage_id", $request->input("damage"));
         }
 
-        if($request->input("maker")!=0){
-            $query->where("maker_id",$request->input("maker"));
+        if ($request->input("maker") != 0) {
+            $query->where("maker_id", $request->input("maker"));
         }
 
-        if($request->input("category")!=0){
-            $query->where("category_id",$request->input("category"));
+        if ($request->input("category") != 0) {
+            $query->where("category_id", $request->input("category"));
         }
 
 
@@ -178,7 +165,7 @@ class IndexController extends Controller
 
         $maker = null;
 
-        return view('web.find-car', compact('time', 'search','maker'));
+        return view('web.find-car', compact('time', 'search', 'maker'));
 
 
     }

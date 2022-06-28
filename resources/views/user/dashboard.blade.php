@@ -1,11 +1,11 @@
 @extends('user.layout.layout')
 
-@section('css')
-
+@section('title')
+Dashboard
 @endsection
 
-@section('main')
 
+@section('main')
 
     <div id="titlebar" class="dashboard_gradient">
         <div class="row">
@@ -20,7 +20,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-lg-2 col-md-6">
@@ -158,8 +157,8 @@
         </div>
     </div>
 
-
 @endsection
+
 
 @section('script')
 

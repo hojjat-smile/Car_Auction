@@ -14,12 +14,10 @@
 @section('main')
 
     <a href="{{route('admin.add-auction')}}" class="button green right">Add Auction</a>
+
     <div class="utf_dashboard_list_box table-responsive recent_booking">
         <h4>Auction List</h4>
 
-        @if(session()->has('successfully'))
-            <p id="toast"></p>
-        @endif
         <div class="dashboard-list-box table-responsive invoices with-icons">
             <table class="table table-hover">
                 <thead>

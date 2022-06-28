@@ -1,38 +1,27 @@
 @extends('user.layout.layout')
 
-
 @section('title')
     My Ads
 @endsection
+
 @section('css')
 
 @endsection
 
 
-
 @section('main')
 
-    <div class="my-ads">
+
 
         <a href="{{route('user.add-ads')}}" class="button green right">Add Ads</a>
 
-
-        <div class="utf_dashboard_list_box table-responsive recent_booking margin-top-50">
-
-
-
-
+        <div class="utf_dashboard_list_box table-responsive recent_booking ">
             <h4>Ads List</h4>
-
-            @if(session()->has('successfully'))
-                <p class="alert alert-success text-center">{{session('successfully')}}</p>
-            @endif
             <div class="dashboard-list-box table-responsive invoices with-icons">
 
                 <table class="table table-hover">
                     <thead>
                     <tr>
-
                         <th>ID</th>
                         <th>Image</th>
                         <th>Marker</th>
@@ -51,7 +40,6 @@
                         @if($ad != null)
                             <tbody>
 
-
                             <tr>
                                 <td>{{$loop->iteration}}</td>
 
@@ -68,21 +56,24 @@
                                 <td>{{$ad->user->username}}</td>
                                 <td>{{$ad->user->email}}</td>
                                 <td>
-                                    <a href="{{route('user.edit-ads',$ad->id)}}" class="button yellow ">Edit</a>
-                                    <a href="{{route('user.delete-ads',$ad->id)}}" class="button ">Delete</a>
+                                    <a  href="{{route('user.edit-ads',$ad->id)}}" class="button yellow ">Edit</a>
+                                    <form style="display: inline-block;"
+                                        onsubmit="return confirm('Are you sure you want to delete this ad?');"
+                                        action="{{route('user.delete-ads',$ad->id)}}">
+                                        <button class="btn btn-danger">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endif
 
                             </tbody>
                             @endforeach
-
                 </table>
             </div>
         </div>
-    </div>
 
 @endsection
+
 
 @section('script')
 

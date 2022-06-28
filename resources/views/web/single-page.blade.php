@@ -1,5 +1,9 @@
 @extends('web.layout.layout')
 
+@section('title')
+    {{$ads->maker->title . '  '.$ads->model->title}}
+@endsection
+
 @section('css')
 
 @endsection
@@ -13,14 +17,38 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <img src="{{asset($ads->image->image)}}" style="width: 100%;border-radius: 15px;margin: 0 0 15px;"
-                         alt="">
+                    @if($ads->images()->where('main',1)->first() != null)
+                      <img style="width: 100%;border-radius: 15px;margin: 0 0 15px;"  src="{{asset($ads->images()->where('main',1)->first()->image  ?? null)}}" alt="">
+                    @else
+                    <img style="width: 100%;border-radius: 15px;margin: 0 0 15px;" src="{{asset($ads->images()->first()->image ?? null)}}" alt="">
+                    @endif
+                </div>
+
+                <div class="col-lg-12 margin-bottom-20 margin-top-20">
+                    <h3>Images</h3>
+                    <div class="row">
+                        @foreach($ads->images as $image)
+                            <div class="col-md-3">
+                                <img src="{{asset($image->image)}}" alt="" width="100%"/>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
 
                 <div class="col-lg-8">
                     <p style="padding: 10px; background-color: #0b7bb5; color: white; font-weight: bold">Lot #
                         31140712:</p>
                     <table class="table table-hover">
+
+                        <tr>
+                            <th>Maker:</th>
+                            <td>{{$ads->maker->title}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Model:</th>
+                            <td>{{$ads->model->title}}</td>
+                        </tr>
 
                         <tr>
                             <th>Category:</th>
@@ -102,25 +130,18 @@
 
 
                             <tr>
-                                <th>Bid Status::</th>
-                                <td>{{$ads->category->title}}</td>
-                            </tr>
-
-                            <tr>
-                                <th>Sale Status:</th>
-                                <td>{{$ads->category->title}}</td>
-
+                                <th>Bid Status:</th>
+                                <td>{{$ads->base_price}}</td>
                             </tr>
 
                             <tr>
                                 <th>Current Bid:</th>
-                                <td>{{$ads->category->title}}</td>
-
+                                <td>{{$bid}}</td>
                             </tr>
 
                             @if(\Illuminate\Support\Facades\Auth::check())
-                                @if($userAds->id != $user->id)
-                                @if($nowDate < $userAds->membership)
+                                @if($user->id != $userAds->id)
+                                @if($nowDate < $user->membership)
 
                                     <form method="post" action="{{route('user.bid-now-submit',$ads->id)}}">
                                         @csrf
@@ -140,18 +161,21 @@
                                         </tr>
                                     </form>
 
-                                @elseif($nowDate > $userAds->membership)
+                                @elseif($nowDate > $user->membership)
                                     <form action="{{route('user.membership')}}">
                                         @csrf
+
                                         <tr>
                                             <th><input type="text" name="price">
                                             </th>
                                         </tr>
+
                                         <tr>
                                             <th>
                                                 <button class="button submit form-control">Bid Now</button>
                                             </th>
                                         </tr>
+
                                     </form>
                                 @endif
                             @endif

@@ -20,9 +20,9 @@ class IndexController extends Controller
 {
     public function dashboard()
     {
-        $data['auction'] = Ads::where('type_sell', 'auction')->where('is_published','1')->get();
 
-        $data['ads'] = Ads::latest()->where('is_published','1')->take(10)->get();
+        $data['auction'] = Ads::where('type_sell', 'auction')->where('is_published','1')->get();
+        $data['ads'] = Ads::where('is_published','1')->where('type_sell', 'normal')->take(10)->get();
         $data['recentAuction'] = Ads::where('type_sell', 'auction')->where('is_published','1')->latest()->take(10)->get();
 
 

@@ -17,14 +17,10 @@ My Auction
 
     <div class="utf_dashboard_list_box table-responsive recent_booking">
         <h4>Auction List</h4>
-        @if(session()->has('successfully'))
-            <p class=>{{session('successfully')}}</p>
-        @endif
         <div class="dashboard-list-box table-responsive invoices with-icons">
             <table class="table table-hover">
                 <thead>
                 <tr>
-
                     <th>ID</th>
                     <th>Image</th>
                     <th>Marker</th>
@@ -35,7 +31,6 @@ My Auction
                     <th>Username</th>
                     <th>Email</th>
                     <th>Action</th>
-
                 </tr>
                 </thead>
                 <tbody>
@@ -59,7 +54,12 @@ My Auction
                             <td>{{$ad->user->email}}</td>
                             <td>
                                 <a href="{{route('user.edit-auction',$ad->id)}}" class="button yellow ">Edit</a>
-                                <a href="{{route('user.delete-auction',$ad->id)}}" class="button ">Delete</a>
+                                <form style="display: inline-block;"
+                                      onsubmit="return confirm('Are you sure you want to delete this ad?');"
+                                      action="{{route('user.delete-auction',$ad->id)}}">
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
+
                             </td>
 
                         </tr>
@@ -70,7 +70,6 @@ My Auction
             </table>
         </div>
     </div>
-
 
 @endsection
 

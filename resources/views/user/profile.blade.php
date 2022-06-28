@@ -13,7 +13,7 @@
 
                 <div class="add_utf_listing_section margin-top-15">
                     <div class="utf_add_listing_part_headline_part">
-                        <h3>Sell Your Car in a Copart Auction</h3>
+                        <h3>Profile</h3>
                     </div>
                     <form action="{{route('user.profile-update')}}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -22,11 +22,8 @@
 
                             <div class="col-md-2">
                                 <h5>Image Profile</h5>
-
                                 <img style="width: 100px; height: 100px " src="{{asset($user->image)}}" alt="">
                                 <input type="file" name="image">
-
-
                             </div>
                         </div>
 
@@ -35,8 +32,6 @@
                                 <h5>User Name</h5>
                                 <input type="text" name="username" value="{{$user->username}}">
                             </div>
-
-
                         </div>
 
                         <div class="row with-forms">
@@ -75,7 +70,6 @@
                             </div>
 
                         </div>
-
                         <button type="submit" class="button">Update</button>
                     </form>
 

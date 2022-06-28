@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{asset('assets/web/css/stylesheet.css')}}">
     <link rel="stylesheet" href="{{asset('assets/web/css/mmenu.css')}}">
     <link rel="stylesheet" href="{{asset('assets/web/css/perfect-scrollbar.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/web/css/style.css')}}" id="colors">
     <link rel="stylesheet" href="{{asset('assets/web/lib/toast/jquery.toast.min.css')}}" id="colors">
 
     <!-- Google Font -->

@@ -8,17 +8,11 @@
 @section('main')
 
 
-
-
     <!-- Dashboard -->
     <div>
-
         <div>
-
             <div class="container">
                 <div class="row">
-
-
                     <!-- Sidebar -->
                     <div class="col-lg-4 col-md-4 margin-top-75 sidebar-search">
 

@@ -19,11 +19,6 @@
                     Favorites
                 </h4>
                 <div class="dashboard-list-box table-responsive invoices with-icons margin-top-15">
-
-                    @if(session()->has('successfully'))
-                        <p class=>{{session('successfully')}}</p>
-                    @endif
-
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -43,7 +38,8 @@
 
                                 <td>{{$favorite->ads->current_bid}}</td>
 
-                                <td><a href="{{route('user.delete-favorite',$favorite->id)}}" class="button red">Delete</a></td>
+                                <td><a href="{{route('user.delete-favorite',$favorite->id)}}"
+                                       class="button red">Delete</a></td>
 
                             </tr>
                             </tbody>
@@ -53,7 +49,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 @endsection

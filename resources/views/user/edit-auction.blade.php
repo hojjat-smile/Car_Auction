@@ -289,14 +289,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6">
-                                    <lable>Current Bid:</lable>
-                                    <input type="text" name="current_bid" value="{{$ads->current_bid}}">
 
-                                    @error('current_bid')
-                                    <small class="text-danger"> {{$message}}</small>
-                                    @enderror
-                                </div>
 
                                 <div class="col-md-6">
                                     <lable>Base Price:</lable>
@@ -496,9 +489,7 @@
                 mainImage: {
                     required: true,
                 },
-                current_bid: {
-                    required: true,
-                },
+
                 base_price: {
                     required: true,
                 },

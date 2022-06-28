@@ -4,28 +4,18 @@
     Car Auction
 @endsection
 
+@section('css')
 
+@endsection
 
 @section('main')
 
-
     <div class="main_slider">
         <div class="container">
-
-            @if(session()->has('successful'))
-                <p style="background-color: lightgreen" class="text-center margin-top-10">{{session('successful')}}</p>
-            @elseif(session()->has('Unsuccessfully'))
-                <p style="background-color: lightpink"
-                   class="text-center margin-top-10">{{session('Unsuccessfully')}}</p>
-            @endif
-
             <div class="row">
                 <div class="col-md-12">
-                    <div id="utf_rev_slider_block" class="rev_slider home fullwidthabanner" style="display:none;"
-                         data-version="5.0.7">
-
+                    <div id="utf_rev_slider_block" class="rev_slider home fullwidthabanner" style="display:none;" data-version="5.0.7">
                         <ul>
-
                             @foreach($ads as $row)
 
                                 <li data-transition="fade" data-slotamount="default"
@@ -33,8 +23,20 @@
                                     data-easeout="Power4.easeInOut" data-masterspeed="1000" data-rotate="0"
                                     data-fstransition="fade"
                                     data-fsmasterspeed="800" data-fsslotamount="7" data-saveperformance="off">
-                                    @if($row->image !=null)
-                                        <img src="{{asset($row->image->image)}}" alt="" data-bgposition="center center"
+
+                                    @if($row->images()->where('main',1)->first() != null)
+                                        <img src="{{asset($row->images()->where('main',1)->first()->image  ?? null)}}"
+                                             alt="" data-bgposition="center center"
+                                             data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10"
+                                             class="rev-slidebg"
+                                             data-no-retina data-kenburns="on" data-duration="12000"
+                                             data-ease="Linear.easeNone"
+                                             data-scalestart="100" data-scaleend="112" data-rotatestart="0"
+                                             data-rotateend="0"
+                                             data-offsetstart="0 0" data-offsetend="0 0">
+                                    @else
+                                        <img src="{{asset($row->images()->first()->image ?? null)}}" alt=""
+                                             data-bgposition="center center"
                                              data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10"
                                              class="rev-slidebg"
                                              data-no-retina data-kenburns="on" data-duration="12000"
@@ -43,6 +45,7 @@
                                              data-rotateend="0"
                                              data-offsetstart="0 0" data-offsetend="0 0">
                                     @endif
+
                                     <div
                                         class="tp-caption centered utf_custom_caption tp-shape tp-shapewrapper tp-resizeme rs-parallaxlevel-0"
                                         id="utf_slide_layer_item_one"
@@ -86,7 +89,6 @@
                                             More</a>
                                     </div>
                                 </li>
-
                             @endforeach
 
                         </ul>
@@ -118,10 +120,13 @@
                                             href="{{route('web.single-page',$row->id)}}"
                                             class="utf_listing_item-container compact">
                                             <div class="utf_listing_item">
-                                                @if($row->image !=null)
-                                                    <img
-                                                        src="{{asset($row->image->image)}}"
-                                                        alt="">
+                                                @if($row->images()->where('main',1)->first() != null)
+                                                    <img width="120px" height="70"
+                                                         src="{{asset($row->images()->where('main',1)->first()->image  ?? null)}}"
+                                                         alt="">
+                                                @else
+                                                    <img width="120px" height="70"
+                                                         src="{{asset($row->images()->first()->image ?? null)}}" alt="">
                                                 @endif
                                                 <div class="utf_listing_item_content">
 
@@ -158,16 +163,20 @@
                         <div class="simple_slick_carousel_block utf_dots_nav">
 
 
-                            @foreach($ads as $row)
+                            @foreach($auction as $row)
                                 @if($row->is_published == 1  && $row->type_sell=="auction")
                                     <div class="utf_carousel_item"><a
                                             href="{{route('web.single-page',$row->id)}}"
                                             class="utf_listing_item-container compact">
                                             <div class="utf_listing_item">
-                                                @if($row->image !=null)
-                                                    <img
-                                                        src="{{asset($row->image->image)}}"
-                                                        alt="">
+                                                @if($row->images()->where('main',1)->first() != null)
+                                                    <img width="120px" height="70"
+                                                         src="{{asset($row->images()->where('main',1)->first()->image  ?? null)}}"
+                                                         alt="">
+                                                @else
+                                                    <img width="120px" height="70"
+                                                         src="{{asset($row->images()->first()->image ?? null)}}"
+                                                         alt="">
                                                 @endif
                                                 <div class="utf_listing_item_content">
 
@@ -190,117 +199,38 @@
         </div>
     </section>
 
-    <section class="fullwidth_block">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="headline_part centered margin-bottom-20">Choose Your Plan<span>Discover & connect with top-rated local businesses</span>
-                    </h3>
+    @if(\Illuminate\Support\Facades\Auth::check())
+        <section class="fullwidth_block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="headline_part centered margin-bottom-20">Choose Your Plan<span>Discover & connect with top-rated local businesses</span>
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="utf_pricing_container_block margin-top-30 margin-bottom-20">
+                        @foreach($packages as $package)
+                            <div class="plan featured col-md-3 col-sm-6 col-xs-12 active">
+                                <div class="utf_price_plan">
+                                    <h3>{{$package->title}}</h3>
+                                    <span
+                                        class="value">${{$package->price}}<span>/{{$package->period}} Month</span></span>
+                                    <span class="period">Business User Membership</span>
+                                </div>
+                                <div class="utf_price_plan_features">
+                                    <ul>
+                                        <li>Description: {{$package->description}}</li>
+                                    </ul>
+                                    <a class="button" href="{{route('user.membership')}}"><i class="sl sl-icon-basket"></i> Order Now</a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="utf_pricing_container_block margin-top-30 margin-bottom-20">
-                    @foreach($packages as $package)
-                        <div class="plan featured col-md-3 col-sm-6 col-xs-12 active">
-                            <div class="utf_price_plan">
-                                <h3>{{$package->title}}</h3>
-                                <span class="value">${{$package->price}}<span>/{{$package->period}} Month</span></span>
-                                <span class="period">Business User Membership</span>
-                            </div>
-                            <div class="utf_price_plan_features">
-                                <ul>
-                                    <li>Description: {{$package->description}}</li>
-
-                                </ul>
-                                <a class="button" href="#"><i class="sl sl-icon-basket"></i> Order Now</a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{--        <div class="homeCtagories">--}}
-    {{--            <div class="container">--}}
-    {{--                <div class="row">--}}
-
-    {{--                    <div class="col-md-2">--}}
-    {{--                        <h4>Category </h4>--}}
-    {{--                        <ul class="social_footer_link">--}}
-    {{--                            @foreach(\App\Models\Categories::all() as $cat)--}}
-    {{--                                <li><a class="hyperlink-style"--}}
-    {{--                                       href="{{route('web.category-list', [$cat->id,'normal'])}}">{{$cat->title}}</a></li>--}}
-    {{--                            @endforeach--}}
-
-    {{--                        </ul>--}}
-    {{--                    </div>--}}
-
-    {{--                    <div class="col-md-2">--}}
-    {{--                        <h4>Category Auction</h4>--}}
-    {{--                        <ul class="social_footer_link">--}}
-    {{--                            @foreach(\App\Models\Categories::all() as $cat)--}}
-    {{--                                <li><a class="hyperlink-style"--}}
-    {{--                                       href="{{route('web.category-list', [$cat->id,'auction'])}}">{{$cat->title}}</a>--}}
-    {{--                                </li>--}}
-    {{--                            @endforeach--}}
-
-    {{--                        </ul>--}}
-    {{--                    </div>--}}
-
-
-    {{--                    <div class="col-md-2">--}}
-    {{--                        <h4>Vehicle Types</h4>--}}
-    {{--                        <ul class="social_footer_link">--}}
-    {{--                            @foreach(\App\Models\CarType::all() as $carType)--}}
-    {{--                                <li><a class="hyperlink-style"--}}
-    {{--                                       href="{{route('web.car-type-list', [$carType->id,'normal'])}}">{{$carType->title}}</a>--}}
-    {{--                                </li>--}}
-    {{--                            @endforeach--}}
-
-    {{--                        </ul>--}}
-    {{--                    </div>--}}
-
-    {{--                    <div class="col-md-2">--}}
-    {{--                        <h4>Vehicle Types Auction</h4>--}}
-    {{--                        <ul class="social_footer_link">--}}
-    {{--                            @foreach(\App\Models\CarType::all() as $carType)--}}
-    {{--                                <li><a class="hyperlink-style"--}}
-    {{--                                       href="{{route('web.car-type-list', [$carType->id,'auction'])}}">{{$carType->title}}</a>--}}
-    {{--                                </li>--}}
-    {{--                            @endforeach--}}
-
-    {{--                        </ul>--}}
-    {{--                    </div>--}}
-
-
-    {{--                    <div class="col-md-2">--}}
-    {{--                        <h4>Damage</h4>--}}
-    {{--                        <ul class="social_footer_link">--}}
-    {{--                            @foreach(\App\Models\AdditionalDamage::all() as $damage)--}}
-    {{--                                <li><a class="hyperlink-style"--}}
-    {{--                                       href="{{route('web.damage-list', [$damage->id,'normal'])}}">{{$damage->title}}</a></li>--}}
-    {{--                            @endforeach--}}
-
-    {{--                        </ul>--}}
-    {{--                    </div>--}}
-
-    {{--                    <div class="col-md-2">--}}
-    {{--                        <h4>Damage Auction</h4>--}}
-    {{--                        <ul class="social_footer_link">--}}
-    {{--                            @foreach(\App\Models\AdditionalDamage::all() as $damage)--}}
-    {{--                                <li><a class="hyperlink-style"--}}
-    {{--                                       href="{{route('web.damage-list', [$damage->id,'auction'])}}">{{$damage->title}}</a></li>--}}
-    {{--                            @endforeach--}}
-
-    {{--                        </ul>--}}
-    {{--                    </div>--}}
-
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-
-
+        </section>
+    @endif
 
 @endsection
 

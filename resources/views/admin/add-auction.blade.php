@@ -263,14 +263,7 @@ Add Auction
                         @enderror
                     </div>
 
-                    <div class="col-md-6">
-                        <lable>Current Bid:</lable>
-                        <input type="text" name="current_bid" value="{{old('current_bid')}}">
 
-                        @error('current_bid')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
 
                     <div class="col-md-6">
                         <lable>Base Price:</lable>
@@ -456,9 +449,7 @@ Add Auction
                 additional_info: {
                     required: true,
                 },
-                current_bid: {
-                    required: true,
-                },
+
                 mainImage: {
                     required: true,
                 },

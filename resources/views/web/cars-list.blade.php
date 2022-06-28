@@ -1,5 +1,9 @@
 @extends('web.layout.layout')
 
+@section('title')
+    Card List
+@endsection
+
 @section('css')
 
 @endsection

@@ -1,5 +1,8 @@
 @extends('admin.layout.layout')
 
+@section('title')
+    Rules
+@endsection
 
 @section('css')
 

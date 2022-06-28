@@ -1,5 +1,10 @@
 @extends('admin.layout.layout')
 
+
+@section('title')
+    Memberships
+@endsection
+
 @section('css')
 
 @endsection
@@ -37,7 +42,7 @@
                             <td>
                                 <a href="{{route('admin.memberships-edit',$package->id)}}" class="button blue">Edit</a>
 
-                                <form onsubmit="return confirm('Are you sure?');"
+                                <form style="display: inline-block" onsubmit="return confirm('Are you sure?');"
                                       action="{{route('admin.memberships-delete',$package->id)}}">
                                     <button type="submit" class="button red">Delete</button>
                                 </form>

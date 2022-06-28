@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href="{{asset('assets/web/images/favicon.png')}}">
     <!-- Style CSS -->
     <link rel="stylesheet" href="{{asset('assets/web/css/stylesheet.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/web/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/web/css/mmenu.css')}}">
     <link rel="stylesheet" href="{{asset('assets/web/css/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('assets/web/lib/toast/jquery.toast.min.css')}}" id="colors">

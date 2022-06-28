@@ -1,6 +1,8 @@
 @extends('admin.layout.layout')
 
-
+@section('title')
+    Memberships Edit
+@endsection
 
 @section('css')
 

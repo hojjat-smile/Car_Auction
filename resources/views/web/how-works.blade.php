@@ -1,5 +1,7 @@
 @extends('web.layout.layout')
-
+@section('title')
+    How It work
+@endsection
 
 
 @section('css')

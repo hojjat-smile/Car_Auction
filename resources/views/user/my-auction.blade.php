@@ -2,7 +2,7 @@
 
 
 @section('title')
-My Auction
+My Auctions
 @endsection
 
 @section('css')
@@ -55,7 +55,7 @@ My Auction
                             <td>
                                 <a href="{{route('user.edit-auction',$ad->id)}}" class="button yellow ">Edit</a>
                                 <form style="display: inline-block;"
-                                      onsubmit="return confirm('Are you sure you want to delete this ad?');"
+                                      onsubmit="return confirm('Are you sure you want to delete this auction?');"
                                       action="{{route('user.delete-auction',$ad->id)}}">
                                     <button class="btn btn-danger">Delete</button>
                                 </form>

@@ -25,7 +25,7 @@ class MembershipController extends Controller
     {
 
         $packages = Packages::all();
-        $transactions = Transactions::where('user_id',Auth::user()->id)->get();
+        $transactions = Transactions::where('user_id',Auth::user()->id)->latest()->get();
 
         return view('user.membership',compact('packages','transactions'));
     }

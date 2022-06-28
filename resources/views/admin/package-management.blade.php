@@ -1,5 +1,8 @@
 t@extends('admin.layout.layout')
 
+@section('title')
+   Package Management
+@endsection
 
 @section('css')
 

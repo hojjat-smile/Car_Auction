@@ -3,7 +3,7 @@
 
 
 @section('title')
-View Auction
+ Auction View
 @endsection
 
 @section('css')
@@ -285,7 +285,7 @@ View Auction
 
                     <div class="col-md-6">
                         <lable>Base Price:</lable>
-                        <input disabled type="text" name="base_price" value="{{$auction->auction->base_price}}">
+                        <input disabled type="text" name="base_price" value="{{$auction->base_price}}">
 
                         @error('base_price')
                         <small class="text-danger"> {{$message}}</small>
@@ -294,7 +294,7 @@ View Auction
 
                     <div class="col-md-6">
                         <lable>Rough Price:</lable>
-                        <input disabled type="text" name="rough_price" value="{{$auction->auction->rough_price}}">
+                        <input disabled type="text" name="rough_price" value="{{$auction->rough_price}}">
 
                         @error('rough_price')
                         <small class="text-danger"> {{$message}}</small>
@@ -302,16 +302,24 @@ View Auction
                     </div>
 
                     <div class="col-md-12">
-                        <button type="submit" class="button preview"> Submit</button>
+                        <lable>Images</lable>
+                        <div class="row">
+                            @foreach($auction->images as $image)
+                                <div class="col-md-3">
+                                    <img src="{{asset($image->image)}}" alt="" width="100%"/>
+
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
 
+                    <div class="col-md-12">
+                        <a href="{{route('admin.my-auction')}}" class="button preview">Back</a>
+                    </div>
 
                 </form>
             </div>
-
         </div>
-
-
     </div>
 
 

@@ -1,6 +1,9 @@
 @extends('user.layout.layout')
 
 
+@section('title')
+    Memberships
+@endsection
 
 @section('css')
 

@@ -1,6 +1,8 @@
 @extends('admin.layout.layout')
 
-
+@section('title')
+    Transactions
+@endsection
 
 @section('css')
 
@@ -16,7 +18,7 @@
     <div>
         <div class="utf_dashboard_list_box table-responsive recent_booking">
 
-            <h4>MemberShips</h4>
+            <h4>Transactions</h4>
 
             <div class="dashboard-list-box table-responsive invoices with-icons">
             <table class="table table-hover">
@@ -43,7 +45,7 @@
 
 
                         <td>{{$transaction->price}}</td>
-                        <td>{{$transaction->package->period}} Month</td>
+                        <td>{{$transaction->package->period ?? null}} Month</td>
                         @php
                             $date =\Carbon\Carbon::parse($transaction->created_at);
                             $membership =\Carbon\Carbon::parse($transaction->user->membership);

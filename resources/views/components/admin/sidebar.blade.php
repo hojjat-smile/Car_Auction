@@ -20,7 +20,7 @@
                     <i class="sl sl-icon-basket"></i>Ads</a>
             </li>
 
-            <li class="{{ request()->is('/my-auction') ? 'active' : '' }}">
+            <li class="{{ request()->is('admin-panel/my-auction') ? 'active' : '' }}">
                 <a href="{{route('admin.my-auction')}}">
                     <i class="sl sl-icon-bag"></i>Auctions</a>
             </li>

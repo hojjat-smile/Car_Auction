@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Web\ContactUsController as WebContactUsController;
 use App\Http\Controllers\Admin\InfoAboutUsController;
 
+use App\Http\Controllers\Admin\PackageManagementController;
 use App\Http\Controllers\Admin\RulesController;
+use App\Http\Controllers\Admin\TransactionManagementController;
 use App\Http\Controllers\User\AdsController as UserAdsController;
 use App\Http\Controllers\admin\AdsController as AdminAdsController;
 use App\Http\Controllers\User\AuctionController as UserAuctionController;
@@ -17,6 +20,7 @@ use App\Http\Controllers\User\ProfileController as UserProfileController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\Web\CarsListController;
+use App\Http\Controllers\Web\FilterSearchController;
 use App\Http\Controllers\Web\IndexController;
 use App\Http\Controllers\User\IndexController as UserIndexController;
 use App\Http\Controllers\Admin\IndexController as AdminIndexController;
@@ -41,17 +45,18 @@ Route::name('web.')->group(function () {
     Route::get('/single-page/{adsId}', [SinglePageController::class, 'singlePage'])->name('single-page');
     Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('about-us');
     Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
-    Route::post('/contact-send-message', [IndexController::class, 'contactSendMessage'])->name('contact-send-message');
+    Route::post('/contact-send-message', [WebContactUsController::class, 'contactSendMessage'])->name('contact-send-message');
     Route::get('/rules', [IndexController::class, 'rules'])->name('rules');
     Route::get('/vehicle-search', [IndexController::class, 'vehicle_search'])->name('vehicle_search');
     Route::get('/how-it-works', [IndexController::class, 'workings'])->name('how-works');
 //  Route::get('/roles', [IndexController::class, 'roles'])->name('roles'); is there a need for authentication page??????
 
 
-    Route::get('/find-car', [IndexController::class, 'findCar'])->name('find-car');
+    Route::get('/find-car-view', [FilterSearchController::class, 'findCarView'])->name('find-car-view');
+    Route::post('/find-car', [FilterSearchController::class, 'findCar'])->name('find-car');
     Route::get('/search', [IndexController::class, 'search'])->name('search');
 
-    Route::post('/search-car', [IndexController::class, 'searchCar'])->name('search-car');
+//    Route::post('/search-car', [IndexController::class, 'searchCar'])->name('search-car');
 
     Route::get('/category-list/{itemId}/{type}', [CarsListController::class, 'categoryList'])->name('category-list');
     Route::get('/car-type-list/{itemId}/{type}', [CarsListController::class, 'carTypeList'])->name('car-type-list');
@@ -108,7 +113,7 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
 
     Route::get('/dashboard', [AdminIndexController::class, 'dashboard'])->name('dashboard');
     Route::get('dashboard/publish-ads/{adId}', [AdminIndexController::class, 'publishAds'])->name('dashboard-publish-ads');
-    Route::get('/package-management', [AdminIndexController::class, 'packageManagement'])->name('package-management');
+    Route::get('/package-management', [PackageManagementController::class, 'packageManagement'])->name('package-management');
 
     //membership
     Route::get('/membership', [AdminMembershipController::class, 'membership'])->name('membership');
@@ -120,7 +125,7 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
 
 
     //transactions
-    Route::get('/trans-manage', [AdminIndexController::class, 'transManage'])->name('trans-manage');
+    Route::get('/trans-manage', [TransactionManagementController::class, 'transManage'])->name('trans-manage');
 
 
     //auction

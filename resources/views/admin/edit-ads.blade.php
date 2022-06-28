@@ -1,6 +1,8 @@
 @extends('admin.layout.layout')
 
-
+@section('title')
+     Ad Edit
+@endsection
 
 @section('css')
 
@@ -275,6 +277,14 @@
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
+                    <div class="col-md-6">
+                        <lable>Price</lable>
+                        <input type="text" name="price" value="{{$ads->price}}">
+
+                        @error('price')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
 
                     <div class="col-md-6">
                         <lable>Image One (Required)</lable>
@@ -330,11 +340,13 @@
                     @foreach($ads->images as $image)
                         <div class="col-md-3">
                             <img src="{{asset($image->image)}}" alt="" width="100%"/>
-                            <form action="{{route('admin.ads-image-delete',['imageId'=>$image->id,'adsId'=>$ads->id])}}">
+                            <form
+                                action="{{route('admin.ads-image-delete',['imageId'=>$image->id,'adsId'=>$ads->id])}}">
                                 <button class="button yellow" type="submit">Delete</button>
                             </form>
                             @if($image->main != 1)
-                                <form action="{{route('admin.ads-image-set-default',['imageId'=>$image->id,'adsId'=>$ads->id])}}">
+                                <form
+                                    action="{{route('admin.ads-image-set-default',['imageId'=>$image->id,'adsId'=>$ads->id])}}">
                                     <button class="button green" type="submit">Set as Default</button>
                                 </form>
                             @endif
@@ -355,7 +367,6 @@
 
 @section('script')
 
-    <script src="{{asset('assets//web/scripts/jquery.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/jquery.validate.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/additional-methods.min.js')}}"></script>
     <script>
@@ -470,9 +481,10 @@
                     required: true,
                 },
 
-                vat: {
+                price: {
                     required: true,
                 },
+
 
             }
         });

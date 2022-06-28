@@ -84,7 +84,7 @@
 
                         </li>
 
-                        <li><a href="{{route('web.find-car')}}">Find Vehicles</a>
+                        <li><a href="{{route('web.find-car-view')}}">Find Vehicles</a>
 
                         </li>
 

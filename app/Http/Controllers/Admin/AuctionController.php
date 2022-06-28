@@ -381,7 +381,7 @@ class AuctionController extends Controller
     {
         $ads = Ads::find($itemId);
 
-        $ads->deleted();
+        $ads->delete();
 
         session()->flash('Success', 'Auction Deleted.');
 
@@ -413,7 +413,6 @@ class AuctionController extends Controller
         $image = Image::find($imageId);
 
         $image->delete();
-
 
         session()->flash('Success', 'Image Deleted');
         return redirect()->route('admin.edit-auction', $adsId);

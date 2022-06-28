@@ -1,5 +1,9 @@
 @extends('web.layout.layout')
 
+@section('title')
+    Find Vehicles
+@endsection
+
 @section('css')
     <style>
         label.button{
@@ -29,70 +33,14 @@
 
     <div class="findCar">
         <div class="container">
-{{--            @if($maker !=null)--}}
-{{--                <div class="col-md-12">--}}
-{{--                    <div class="utf_dashboard_list_box table-responsive recent_booking">--}}
-{{--                        <h4>Recent Booking</h4>--}}
-{{--                        <div class="dashboard-list-box table-responsive invoices with-icons">--}}
-{{--                            <table class="table table-hover">--}}
-
-{{--                                <thead>--}}
-{{--                                <tr>--}}
-
-{{--                                    <th>Image</th>--}}
-{{--                                    <th>Lot Info</th>--}}
-{{--                                    <th>Vehicle Info</th>--}}
-{{--                                    <th>Condition</th>--}}
-{{--                                    <th>Sale Info</th>--}}
-{{--                                    <th>Action</th>--}}
-
-{{--                                </tr>--}}
-{{--                                </thead>--}}
-
-{{--                                @foreach($maker as $row)--}}
-{{--                                    @foreach($row->ads as $ads)--}}
-{{--                                        @if($ads->is_published == 1)--}}
-
-{{--                                            <tbody>--}}
-{{--                                            <tr>--}}
-{{--                                                <td>--}}
-{{--                                                    <img class="image-style"--}}
-{{--                                                         src="{{asset($ads->image->image)}}">--}}
-{{--                                                </td>--}}
-{{--                                                <td> {{$ads->maker->title}}--}}
-{{--                                                    {{$ads->model->title}} </td>--}}
-{{--                                                <td>--}}
-{{--                                                    <p>Odometer</p> {{substr($ads->odometer,0,15)." and......"}}--}}
-
-{{--                                                </td>--}}
-{{--                                                <td>{{substr($ads->damage->title,0,10)."......"}}</td>--}}
-{{--                                                <td>{{$ads->type_sell}}</td>--}}
-{{--                                                <td>--}}
-{{--                                                    <a href="{{route('user.add-favorite',$ads->id)}}"> <span--}}
-{{--                                                            class="table-action-icon icon-favorite icon-material-outline-favorite text-danger"></span></a>--}}
-{{--                                                    <a href="{{route('user.bid-now',$ads->id)}}"><span--}}
-{{--                                                            class="table-action-icon fa fa-legal icon-legal table-action-icon"></span></a>--}}
-{{--                                                </td>--}}
-{{--                                            </tr>--}}
-{{--                                            </tbody>--}}
-
-{{--                                        @endif--}}
-{{--                                    @endforeach--}}
-{{--                                @endforeach--}}
-{{--                            </table>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @endif--}}
-
             <div class="row">
-                @if($maker ==null)
+
                     <div class="col-lg-3 col-md-4 margin-top-75 sidebar-search">
                         <div class="utf_box_widget booking_widget_box margin-bottom-50">
                             <h3>Filter</h3>
                             <div class="row with-forms margin-top-0">
 
-                                <form action="{{route('web.search-car')}}" method="post">
+                                <form action="{{route('web.find-car')}}" method="post">
                                     @csrf
 
                                     <div class="col-md-12 margin-bottom-15">
@@ -186,8 +134,8 @@
 
                                         <select id="makerChange" name="maker">
                                             <option value="0">Maker</option>
-                                            @foreach(\App\Models\Maker::all() as $maker)
-                                                <option value="{{$maker->id}}">{{$maker->title}}</option>
+                                            @foreach(\App\Models\Maker::all() as $row)
+                                                <option value="{{$row->id}}">{{$row->title}}</option>
 
                                             @endforeach
                                         </select>
@@ -219,6 +167,7 @@
                         </div>
                     </div>
 
+                @if($maker != null)
                     <div class="col-lg-9 col-md-8  margin-top-75">
                         <div class="utf_dashboard_list_box table-responsive recent_booking">
                             <h4>Recent Booking</h4>
@@ -241,8 +190,18 @@
                                             <tr>
 
                                                 <td>
-                                                    <img src="{{asset($ads->image->image)}}"
-                                                         style="width: 100px;border-radius: 5px;"/>
+
+                                                    <a href="{{route('web.single-page',$ads->id)}}">
+
+                                                        @if($ads->images()->where('main',1)->first() != null)
+                                                            <img style="width: 250px; height: 150px"  src="{{asset($ads->images()->where('main',1)->first()->image  ?? null)}}" alt="">
+                                                        @else
+                                                            <img style="width: 250px; height: 150px" src="{{asset($ads->images()->first()->image ?? null)}}" alt="">
+                                                        @endif
+                                                    </a>
+
+
+
                                                 </td>
 
                                                 <td> {{$ads->maker->title}}

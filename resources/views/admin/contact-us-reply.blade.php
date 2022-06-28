@@ -1,6 +1,10 @@
 @extends('admin.layout.layout')
 
 
+@section('title')
+    ContactUs Reply
+@endsection
+
 @section('css')
 
 @endsection

@@ -1,6 +1,8 @@
 @extends('user.layout.layout')
 
-
+@section('title')
+    Ad Edit
+@endsection
 
 @section('css')
 
@@ -289,20 +291,13 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6">
-                        <lable>Base Price:</lable>
-                        <input type="text" name="base_price" value="{{$ads->base_price}}">
 
-                        @error('base_price')
-                        <small class="text-danger"> {{$message}}</small>
-                        @enderror
-                    </div>
 
                     <div class="col-md-6">
-                        <lable>Rough Price:</lable>
-                        <input type="text" name="rough_price" value="{{$ads->rough_price}}">
+                        <lable>Price:</lable>
+                        <input type="text" name="price" value="{{$ads->rough_price}}">
 
-                        @error('rough_price')
+                        @error('price')
                         <small class="text-danger"> {{$message}}</small>
                         @enderror
                     </div>
@@ -389,7 +384,6 @@
 
 @section('script')
 
-    <script src="{{asset('assets//web/scripts/jquery.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/jquery.validate.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/additional-methods.min.js')}}"></script>
     <script>
@@ -487,7 +481,7 @@
                     required: true,
                 },
 
-                mainImage: {
+                price: {
                     required: true,
                 },
 

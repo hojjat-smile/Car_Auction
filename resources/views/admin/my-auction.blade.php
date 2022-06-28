@@ -59,7 +59,12 @@
                             <td>{{$ad->user->email}}</td>
                             <td>
                                 <a href="{{route('admin.edit-auction',$ad->id)}}" class="button yellow ">Edit</a>
-                                <a href="{{route('admin.delete-auction',$ad->id)}}" class="button ">Delete</a>
+                                <form style="display: inline-block;"
+                                      onsubmit="return confirm('Are you sure you want to delete this auction?');"
+                                      action="{{route('admin.delete-auction',$ad->id)}}">
+                                    @csrf
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
                                 <a href="{{route('admin.view-auction',$ad->id)}}" class="button green">View</a>
                                 @if($ad->is_published)
                                     <a href="{{route('admin.publish-auction',$ad->id)}}" class="button red">

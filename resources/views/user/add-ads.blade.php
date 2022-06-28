@@ -1,7 +1,7 @@
 @extends('user.layout.layout')
 
 @section('title')
-    Add Ads
+     Ad Add
 @endsection
 
 
@@ -363,12 +363,11 @@
                                     <small class="text-danger"> {{$message}}</small>
                                     @enderror
                                 </div>
-
                                 <div class="col-md-6">
-                                    <lable>Current Bid:</lable>
-                                    <input type="text" name="current_bid" value="{{old('current_bid')}}">
+                                    <lable>Price</lable>
+                                    <input type="text" name="price" value="{{old('price')}}">
 
-                                    @error('current_bid')
+                                    @error('price')
                                     <small class="text-danger"> {{$message}}</small>
                                     @enderror
                                 </div>
@@ -433,7 +432,6 @@
 
 @section('script')
 
-    <script src="{{asset('assets//web/scripts/jquery.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/jquery.validate.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/additional-methods.min.js')}}"></script>
 
@@ -542,7 +540,10 @@
                 additional_info: {
                     required: true,
                 },
-                current_bid: {
+                price: {
+                    required: true,
+                },
+                mainImage: {
                     required: true,
                 },
             }

@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Edit Auction
+     Auction Edit
 @endsection
 
 
@@ -370,7 +370,6 @@
 
 @section('script')
 
-    <script src="{{asset('assets//web/scripts/jquery.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/jquery.validate.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/additional-methods.min.js')}}"></script>
 

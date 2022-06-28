@@ -79,6 +79,7 @@ class AdsController extends Controller
             'v_five_notes' => 'required',
             'additional_info' => 'required',
             'mainImage' => 'required',
+            'price' => 'required',
         ]);
 
 
@@ -103,7 +104,8 @@ class AdsController extends Controller
             'fuel' => $request->fuel,
             'keys' => $request->keys,
             'v_five_notes' => $request->v_five_notes,
-            'additional_info' => $request->additional_info
+            'additional_info' => $request->additional_info,
+            'price' => $request->price,
         ]);
 
         $path = 'uploads/images/ads/';
@@ -256,6 +258,7 @@ class AdsController extends Controller
             'keys' => 'required',
             'v_five_notes' => 'required',
             'additional_info' => 'required',
+            'price' => 'required',
         ]);
 
         $ads = Ads::find($adsId);
@@ -282,6 +285,7 @@ class AdsController extends Controller
             'keys' => $request->keys,
             'v_five_notes' => $request->v_five_notes,
             'additional_info' => $request->additional_info,
+            'price' => $request->price,
         ]);
         if ($request->has("mainImage")) {
 

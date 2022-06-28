@@ -1,5 +1,8 @@
 @extends('admin.layout.layout')
 
+@section('title')
+     Ad Add
+@endsection
 
 
 @section('css')
@@ -274,6 +277,15 @@
                         @enderror
                     </div>
 
+                    <div class="col-md-12">
+                        <lable>Price</lable>
+                        <input type="text" name="price" value="{{old('price')}}">
+
+                        @error('price')
+                        <small class="text-danger"> {{$message}}</small>
+                        @enderror
+                    </div>
+
                     <div class="col-md-6">
                         <lable>Image One (Required)</lable>
                         <input type="file" name="mainImage" />
@@ -330,7 +342,6 @@
 
 @section('script')
 
-    <script src="{{asset('assets//web/scripts/jquery.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/jquery.validate.min.js')}}"></script>
     <script src="{{asset('assets//web/scripts/plugins/jquery-validate/additional-methods.min.js')}}"></script>
 
@@ -443,6 +454,9 @@
                     required: true,
                 },
                 mainImage: {
+                    required: true,
+                },
+                price: {
                     required: true,
                 },
             }

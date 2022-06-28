@@ -1,5 +1,7 @@
 @extends('admin.layout.layout')
-
+@section('title')
+    Info About
+@endsection
 
 @section('css')
 

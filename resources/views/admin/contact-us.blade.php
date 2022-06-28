@@ -1,5 +1,8 @@
 @extends('admin.layout.layout')
 
+@section('title')
+    ContactUs
+@endsection
 
 @section('css')
 

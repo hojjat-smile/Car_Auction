@@ -70,7 +70,7 @@
                                         Is Publish
                                     </a>
                                 @elseif(!$ad->is_published)
-                                    <a href="{{route('admin.publish-ads',$ad->id)}}" class="button blue">
+                                    <a href="{{route('admin.publish-ads',$ad->id)}}" class="button red">
                                         Publish
                                     </a>
                                 @endif

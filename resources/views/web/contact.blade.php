@@ -1,6 +1,8 @@
 @extends('web.layout.layout')
 
-
+@section('title')
+    ContactUs
+@endsection
 
 @section('css')
 

@@ -1,6 +1,8 @@
 @extends('admin.layout.layout')
 
-
+@section('title')
+    Users
+@endsection
 @section('css')
 
 @endsection
@@ -58,12 +60,12 @@
                                         <a href="{{route('admin.user-active',$user->id )}}" class="button  d-inline-block">
                                             Active</a>
                                     @endif
-                                        <form class="d-inline-block" onsubmit="return confirm('Do you really want to Delete the user?');"
+                                        <form style="display: inline-block"  onsubmit="return confirm('Do you really want to Delete the user?');"
                                               action="{{route('admin.user-deleted',$user->id )}}">
                                             <button style="display: inline-block" type="submit" class="button submit ">Delete</button>
 
                                         </form>
-                                            <a href="{{route('admin.user-edit',$user->id )}}"  class="button yellow d-inline-block ">Edit</a>
+                                            <a href="{{route('admin.user-edit',$user->id )}}"  class="button yellow  ">Edit</a>
 
                                 </td>
 

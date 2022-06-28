@@ -13,17 +13,12 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
-class IndexController extends Controller
+class PackageManagementController extends Controller
 {
-
-    public function dashboard()
+    public function packageManagement()
     {
 
-        $data['auction'] = Ads::where('type_sell', 'auction')->latest()->take(10)->get();
-        $data['ads'] = Ads::where('type_sell', 'normal')->latest()->take(10)->get();
 
-
-        return view('admin.index', $data);
+        return view('admin.package-management');
     }
-
 }

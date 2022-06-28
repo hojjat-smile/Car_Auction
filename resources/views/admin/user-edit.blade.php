@@ -1,6 +1,8 @@
 @extends('admin.layout.layout')
 
-
+@section('title')
+    User Edit
+@endsection
 @section('css')
 
 @endsection
@@ -171,7 +173,7 @@
 
 
             },
-           
+
         });
     </script>
 

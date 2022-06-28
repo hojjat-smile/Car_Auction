@@ -1,5 +1,7 @@
 @extends('admin.layout.layout')
-
+@section('title')
+    Profile Admin
+@endsection
 
 @section('css')
 
@@ -15,7 +17,7 @@
 
                 <div class="add_utf_listing_section margin-top-45">
                     <div class="utf_add_listing_part_headline_part">
-                        <h3>Sell Your Car in a Copart Auction</h3>
+                        <h3>Profile Admin</h3>
                     </div>
                     <form action="{{route('admin.profile-update')}}" method="post" enctype="multipart/form-data">
                         @csrf

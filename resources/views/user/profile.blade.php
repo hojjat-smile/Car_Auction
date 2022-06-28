@@ -1,6 +1,8 @@
 @extends('user.layout.layout')
 
-
+@section('title')
+    Profile
+@endsection
 @section('css')
 
 @endsection

@@ -46,6 +46,7 @@ class Ads extends Model
         'car_type_id',
         'base_price',
         'rough_price',
+        'price',
     ];
 
 

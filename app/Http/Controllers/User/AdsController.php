@@ -59,8 +59,7 @@ class AdsController extends Controller
             'keys' => 'required',
             'v_five_notes' => 'required',
             'additional_info' => 'required',
-            'current_bid' => 'required',
-
+            'price' => 'required',
         ]);
 
         $ads = Ads::create([
@@ -85,7 +84,7 @@ class AdsController extends Controller
             'keys' => $request->keys,
             'v_five_notes' => $request->v_five_notes,
             'additional_info' => $request->additional_info,
-
+            'price' => $request->price,
         ]);
         if ($request->has("mainImage")) {
 
@@ -203,7 +202,7 @@ class AdsController extends Controller
             'keys' => 'required',
             'v_five_notes' => 'required',
             'additional_info' => 'required',
-            'current_bid' => 'required',
+            'price' => 'required',
         ]);
 
         $ads = Ads::find($adsId);
@@ -230,9 +229,7 @@ class AdsController extends Controller
             'keys' => $request->keys,
             'v_five_notes' => $request->v_five_notes,
             'additional_info' => $request->additional_info,
-            'current_bid' => $request->current_bid,
-            'base_price' => $request->base_price,
-            'rough_price' => $request->rough_price,
+            'price' => $request->price,
         ]);
 
         if ($request->has("mainImage")) {

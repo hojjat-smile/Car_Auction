@@ -3,7 +3,7 @@
 
 
 @section('title')
-    View Ads
+     Ad View
 @endsection
 
 @section('css')
@@ -280,19 +280,14 @@
                             @foreach($ads->images as $image)
                                 <div class="col-md-3">
                                     <img src="{{asset($image->image)}}" alt="" width="100%"/>
-                                    <form action="{{route('admin.')}}">
-                                        <button type="submit">Delete</button>
-                                    </form>
-                                    <form action="">
-                                        <button type="submit">Set as Default</button>
-                                    </form>
+
                                 </div>
                             @endforeach
                         </div>
                     </div>
 
                     <div class="col-md-12">
-                        <button type="submit" class="button preview"> Submit</button>
+                        <a href="{{route('admin.my-auction')}}" class="button preview">Back</a>
                     </div>
 
 

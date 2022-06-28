@@ -3,16 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Ads;
-use App\Models\Auction;
-use App\Models\Image;
 use App\Models\Packages;
 use App\Models\Transactions;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 
 
 class OrdersController extends Controller
@@ -46,7 +41,7 @@ class OrdersController extends Controller
             'membership' => $trialExpires,
         ]);
 
-        session()->flash('successfully', 'New order submitted');
+        session()->flash('Success', 'New order submitted');
 
         return redirect()->route('user.membership');
     }

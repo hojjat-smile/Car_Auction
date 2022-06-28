@@ -13,17 +13,13 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
-class IndexController extends Controller
+class TransactionManagementController extends Controller
 {
 
-    public function dashboard()
+    public function transManage()
     {
 
-        $data['auction'] = Ads::where('type_sell', 'auction')->latest()->take(10)->get();
-        $data['ads'] = Ads::where('type_sell', 'normal')->latest()->take(10)->get();
-
-
-        return view('admin.index', $data);
+        $transactions = Transactions::all();
+        return view('admin.trans-manage',compact('transactions'));
     }
-
 }

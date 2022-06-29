@@ -60,12 +60,6 @@
 
 </div>
 
-
-
-@yield('script')
-
-<!-- Scripts -->
-
 <script src="{{asset('assets/web/scripts/jquery-3.4.1.min.js')}}"></script>
 <script src="{{asset('assets/web/scripts/chosen.min.js')}}"></script>
 <script src="{{asset('assets/web/scripts/perfect-scrollbar.min.js')}}"></script>
@@ -117,5 +111,8 @@
         }
     })(jQuery);
 </script>
+
+@yield('script')
+
 </body>
 

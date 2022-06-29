@@ -37,7 +37,7 @@ class IndexController extends Controller
         })->get();
 
 
-        return view('web.find-car', compact('ads'));
+        return view('web.vehicle_search', compact('ads'));
     }
 
     public function aboutUs()
@@ -47,10 +47,8 @@ class IndexController extends Controller
         return view('web.about-us', compact('about'));
     }
 
-
-    public function contact(Request $request)
+    public function contact()
     {
-
 
         $info = InfoAboutUs::find(1);
 
@@ -66,21 +64,11 @@ class IndexController extends Controller
         return view('web.rules', compact('rules'));
     }
 
-    public function vehicle_search()
-    {
-        return view('web.vehicle_search');
-
-
-    }
-
     public function workings()
     {
 
 
         return view('web.how-works');
     }
-
-
-
 
 }

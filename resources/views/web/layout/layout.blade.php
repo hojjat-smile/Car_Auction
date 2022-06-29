@@ -48,7 +48,7 @@
 </div>
 
 
-@yield('script')
+
 
 
 <!-- Scripts -->
@@ -87,7 +87,6 @@
         @endif
     });
 </script>
-
 
 
 <script>
@@ -209,11 +208,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 
-@if(session('message'))
-    <div class="card-header justify-content-center">
-        <p style="background-color: #fd8e8e" class="text-white text-center ">{{session('message')}}</p>
-    </div>
-@endif
+
+@yield('script')
 
 
 

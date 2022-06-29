@@ -24,6 +24,8 @@
                 <div class="col-md-5">
                     <div>
                         @if(\Illuminate\Support\Facades\Auth::check())
+
+
                             <a href="{{route('logout')}}"
                                class="button border sign-in "><i
                                     class="fa fa-sign-in"></i>Logout</a>
@@ -80,7 +82,7 @@
                     <ul id="responsive">
 
 
-                        <li><a href="{{route('web.rules')}}">How It Works</a>
+                        <li><a href="{{route('web.how-works')}}">How It Works</a>
 
                         </li>
 

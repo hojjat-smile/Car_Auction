@@ -15,7 +15,7 @@
                 <ul class="social_footer_link">
 
                     <li><a href="{{route('web.how-works')}}">How It Works</a></li>
-                    <li><a href="{{route('web.find-car')}}">Find Vehicles</a></li>
+                    <li><a href="{{route('web.find-car-view')}}">Find Vehicles</a></li>
                     <li><a href="{{route('web.contact')}}">Contact us</a></li>
                     <li><a href="{{route('web.about-us')}}">About Us</a></li>
                     <li><a href="{{route('web.rules')}}">Rules and Regulations</a></li>

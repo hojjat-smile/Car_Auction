@@ -18,7 +18,7 @@ class FilterSearchController extends Controller
 {
 
 
-    public function findCarView(Request $request)
+    public function findCarView()
     {
         $time = [];
         $date = Carbon::now();
@@ -48,11 +48,11 @@ class FilterSearchController extends Controller
         $query->where("condition_id", $request->input("condition_type"));
 
         if ($request->input("country") != 0) {
-            $query->where("country", $request->input("country"));
+            $query->where("country_id", $request->input("country"));
         }
 
         if ($request->input("city") != 0) {
-            $query->where("city", $request->input("city"));
+            $query->where("city_id", $request->input("city"));
         }
 
         if ($request->input("damage") != 0) {
@@ -80,7 +80,7 @@ class FilterSearchController extends Controller
             $i--;
         }
 
-        $maker = null;
+        $maker = true;
 
         return view('web.find-car', compact('time', 'search', 'maker'));
 

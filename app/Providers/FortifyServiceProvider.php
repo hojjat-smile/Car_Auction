@@ -24,28 +24,23 @@ class FortifyServiceProvider extends ServiceProvider
     public function register()
     {
 
-        $this->app->instance(LoginResponse::class, new class implements LoginResponse
-        {
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
             public function toResponse($request)
             {
+
                 $user = User::find(auth()->id());
-
-
-                if ($user->activity == 'deactivate' && $user->deleted == 'died') {
-
-                    auth()->logout($user);
-
-                    return redirect()->route('web.index')->with('danger', 'Your account has been terminated by the administrator');
-                }
-
 
 
                 if ($user->usertype == 'admin') {
 
                     return redirect()->route('admin.dashboard');
+
                 } else if ($user->usertype == 'user') {
+
+
                     return redirect()->route('user.dashboard');
                 }
+
                 return redirect()->route('web.index');
             }
         });
@@ -72,15 +67,14 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetPasswordView(function (Request $request) {
 
 
-            return view('auth.reset-password',compact('request'));
+            return view('auth.reset-password', compact('request'));
         });
 
 
-
         RateLimiter::for('login', function (Request $request) {
-            $email = (string) $request->email;
+            $email = (string)$request->email;
 
-            return Limit::perMinute(5)->by($email.$request->ip());
+            return Limit::perMinute(5)->by($email . $request->ip());
         });
 
         RateLimiter::for('two-factor', function (Request $request) {

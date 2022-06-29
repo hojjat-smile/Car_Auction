@@ -16,12 +16,23 @@ class CheckUserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+
         if ($request->user()->usertype == 'user' && $request->user()->activity == 'active' && $request->user()->deleted == 'alive') {
 
             return $next($request);
-        } else {
+
+        } elseif ($request->user()->usertype == 'user' && $request->user()->activity == 'deactivate' && $request->user()->deleted == 'alive') {
+
             //your account has been deactivated
-            return redirect()->route('web.index')->with('message', 'Your account has been terminated by the administrator');;
+            session()->flash('Error', 'Your account has been terminated by the administrator');
+            auth()->logout($request->user());
+            return redirect()->route('web.index');
+        } elseif ($request->user()->usertype == 'user' && $request->user()->deleted == 'died') {
+
+            //your account has been deactivated
+            session()->flash('Error', 'Your account has been deleted by the administrator. Please follow us through the contact page');
+            auth()->logout($request->user());
+            return redirect()->route('web.index');
         }
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\AboutUsController;
+use App\Http\Controllers\Admin\AboutUsController as AdminAboutUsController;
+use App\Http\Controllers\Web\AboutUsController as WebAboutUsController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Web\ContactUsController as WebContactUsController;
 use App\Http\Controllers\Admin\InfoAboutUsController;
@@ -19,12 +20,13 @@ use App\Http\Controllers\User\OrdersController;
 use App\Http\Controllers\User\ProfileController as UserProfileController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\admin\UsersController;
-use App\Http\Controllers\Web\CarsListController;
+
 use App\Http\Controllers\Web\FilterSearchController;
 use App\Http\Controllers\Web\IndexController;
 use App\Http\Controllers\User\IndexController as UserIndexController;
 use App\Http\Controllers\Admin\IndexController as AdminIndexController;
 use App\Http\Controllers\Web\SinglePageController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,24 +45,17 @@ Route::name('web.')->group(function () {
 
     Route::get('/', [IndexController::class, 'index'])->name('index');
     Route::get('/single-page/{adsId}', [SinglePageController::class, 'singlePage'])->name('single-page');
-    Route::get('/about-us', [IndexController::class, 'aboutUs'])->name('about-us');
+    Route::get('/about-us', [WebAboutUsController::class, 'aboutUs'])->name('about-us');
     Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
     Route::post('/contact-send-message', [WebContactUsController::class, 'contactSendMessage'])->name('contact-send-message');
     Route::get('/rules', [IndexController::class, 'rules'])->name('rules');
-    Route::get('/vehicle-search', [IndexController::class, 'vehicle_search'])->name('vehicle_search');
     Route::get('/how-it-works', [IndexController::class, 'workings'])->name('how-works');
-//  Route::get('/roles', [IndexController::class, 'roles'])->name('roles'); is there a need for authentication page??????
-
 
     Route::get('/find-car-view', [FilterSearchController::class, 'findCarView'])->name('find-car-view');
     Route::post('/find-car', [FilterSearchController::class, 'findCar'])->name('find-car');
     Route::get('/search', [IndexController::class, 'search'])->name('search');
 
-//    Route::post('/search-car', [IndexController::class, 'searchCar'])->name('search-car');
 
-    Route::get('/category-list/{itemId}/{type}', [CarsListController::class, 'categoryList'])->name('category-list');
-    Route::get('/car-type-list/{itemId}/{type}', [CarsListController::class, 'carTypeList'])->name('car-type-list');
-    Route::get('/damage-list/{itemId}/{type}', [CarsListController::class, 'damageList'])->name('damage-list');
 
 });
 
@@ -141,7 +136,6 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
     Route::get('/auction-image-set-default/{imageId}/{adsId}', [AdminAuctionController::class, 'auctionImageSetDefault'])->name('auction-image-set-default');
 
 
-
     //ads
     Route::get('/ad-management', [AdminAdsController::class, 'adManagement'])->name('ad-management');
     Route::get('/edit-ads/{adId}', [AdminAdsController::class, 'editAds'])->name('edit-ads');
@@ -171,8 +165,8 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
     Route::post('/rules-post/{itemId}', [RulesController::class, 'rulesPost'])->name('rules-post');
 
     //aboutUs
-    Route::get('/about-us', [AboutUsController::class, 'aboutUs'])->name('about-us');
-    Route::post('/about-us-update/{itemId}', [AboutUsController::class, 'aboutUsEdit'])->name('about-us-update');
+    Route::get('/about-us', [AdminAboutUsController::class, 'aboutUs'])->name('about-us');
+    Route::post('/about-us-update/{itemId}', [AdminAboutUsController::class, 'aboutUsEdit'])->name('about-us-update');
 
 
     //contact
@@ -187,3 +181,7 @@ Route::prefix('admin-panel')->name('admin.')->middleware('auth', 'checkAdmin')->
 
 });
 
+Route::get('logout', function () {
+    auth()->logout(Auth::user());
+    return redirect()->route('web.index');
+});

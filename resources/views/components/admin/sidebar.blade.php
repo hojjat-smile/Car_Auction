@@ -72,8 +72,7 @@
 
 
             <li class="{{ request()->is('logout') ? 'active' : '' }}">
-                <a href="{{route('logout')}}"
-                   onclick="event.preventDefault(); document.getElementById('submit-form').submit();">
+                <a href="{{route('logout')}}">
                     <i class="sl sl-icon-logout">
                     </i>
                     <span>

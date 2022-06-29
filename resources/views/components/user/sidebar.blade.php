@@ -29,15 +29,9 @@
                     <i class="sl sl-icon-magnifier-add"></i>Profile</a></li>
 
             <li class="{{ request()->is('logout') ? 'active' : '' }}"><a
-                    href="{{route('logout')}}"
-                    onclick="event.preventDefault();
-                    document.getElementById('submit-form').submit();"><i
+                    href="{{route('logout')}}"><i
                         class="sl sl-icon-logout"></i>Logout</a></li>
 
-
-            <form id="submit-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                @csrf
-            </form>
         </ul>
     </div>
 </div>
